@@ -59,40 +59,19 @@ MonoBehaviour:
   _spline:
     points:
     - _type: 0
-      position: {x: 0, y: 0, z: -30}
+      position: {x: 0, y: 0, z: 30}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0, y: 1, z: 0}
       size: 1
-      tangent: {x: 0, y: 0, z: -30}
-      tangent2: {x: 0, y: 0, z: -30}
+      tangent: {x: 0, y: 0, z: 30}
+      tangent2: {x: 0, y: 0, z: 30}
     - _type: 0
-      position: {x: 0, y: 0, z: -10}
+      position: {x: 0, y: 0, z: 15}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0, y: 1, z: 0}
       size: 1
-      tangent: {x: 0, y: 0, z: -10}
-      tangent2: {x: 0, y: 0, z: -10}
-    - _type: 0
-      position: {x: -15, y: 0, z: -10}
-      color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: 0, y: 1, z: 0}
-      size: 1
-      tangent: {x: -15, y: 0, z: -10}
-      tangent2: {x: -15, y: 0, z: -10}
-    - _type: 0
-      position: {x: -15, y: 0, z: 3}
-      color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: 0, y: 1, z: 0}
-      size: 1
-      tangent: {x: -15, y: 0, z: 3}
-      tangent2: {x: -15, y: 0, z: 3}
-    - _type: 0
-      position: {x: 15, y: 0, z: 3}
-      color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: 0, y: 1, z: 0}
-      size: 1
-      tangent: {x: 15, y: 0, z: 3.0000005}
-      tangent2: {x: 15, y: 0, z: 3.0000005}
+      tangent: {x: 0, y: 0, z: 15}
+      tangent2: {x: 0, y: 0, z: 15}
     - _type: 0
       position: {x: 15, y: 0, z: 15}
       color: {r: 1, g: 1, b: 1, a: 1}
@@ -101,19 +80,40 @@ MonoBehaviour:
       tangent: {x: 15, y: 0, z: 15}
       tangent2: {x: 15, y: 0, z: 15}
     - _type: 0
-      position: {x: 0, y: 0, z: 15}
+      position: {x: 15, y: 0, z: 3}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0, y: 1, z: 0}
-      size: 0.4
-      tangent: {x: 0, y: 0, z: 15}
-      tangent2: {x: 0, y: 0, z: 15}
+      size: 1
+      tangent: {x: 15, y: 0, z: 3}
+      tangent2: {x: 15, y: 0, z: 3}
     - _type: 0
-      position: {x: 0, y: 0, z: 30}
+      position: {x: -15, y: 0, z: 3}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 1
+      tangent: {x: -15, y: 0, z: 3.0000005}
+      tangent2: {x: -15, y: 0, z: 3.0000005}
+    - _type: 0
+      position: {x: -15, y: 0, z: -10}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 1
+      tangent: {x: -15, y: 0, z: -10}
+      tangent2: {x: -15, y: 0, z: -10}
+    - _type: 0
+      position: {x: 0, y: 0, z: -10}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0, y: 1, z: 0}
       size: 0.4
-      tangent: {x: 0, y: 0, z: 30}
-      tangent2: {x: 0, y: 0, z: 30}
+      tangent: {x: 0, y: 0, z: -10}
+      tangent2: {x: 0, y: 0, z: -10}
+    - _type: 0
+      position: {x: 0, y: 0, z: -30}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 0.4
+      tangent: {x: 0, y: 0, z: -30}
+      tangent2: {x: 0, y: 0, z: -30}
     type: 3
     linearAverageDirection: 1
     customValueInterpolation:
@@ -140,51 +140,51 @@ MonoBehaviour:
   _subscribers:
   - {fileID: 1517395345}
   _rawSamples:
-  - position: {x: 0, y: 0, z: -30}
+  - position: {x: 0, y: 0, z: 30}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: 0, y: 0, z: 1}
+    forward: {x: 0, y: 0, z: -1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: 0, y: 0, z: -10}
+  - position: {x: 0, y: 0, z: 15}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: -0.70710677, y: 0, z: 0.70710677}
+    forward: {x: 0.70710677, y: 0, z: -0.70710677}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.14285714285714285
-  - position: {x: -15, y: 0, z: -10}
+  - position: {x: 15, y: 0, z: 15}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: -0.70710677, y: 0, z: 0.70710677}
+    forward: {x: 0.70710677, y: 0, z: -0.70710677}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.2857142857142857
-  - position: {x: -15, y: 0, z: 3}
+  - position: {x: 15, y: 0, z: 3}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.70710677, y: 0, z: 0.70710677}
+    forward: {x: -0.70710677, y: 0, z: -0.70710677}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.42857142857142855
-  - position: {x: 15, y: 0, z: 3}
+  - position: {x: -15, y: 0, z: 3}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.70710677, y: 0, z: 0.70710677}
+    forward: {x: -0.70710677, y: 0, z: -0.70710677}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.5714285714285714
-  - position: {x: 15, y: 0, z: 15}
+  - position: {x: -15, y: 0, z: -10}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: -0.70710677, y: 0, z: 0.70710677}
+    forward: {x: 0.70710677, y: 0, z: -0.70710677}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.7142857142857143
-  - position: {x: 0, y: 0, z: 15}
+  - position: {x: 0, y: 0, z: -10}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: -0.70710677, y: 0, z: 0.70710677}
+    forward: {x: 0.70710677, y: 0, z: -0.70710677}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 0.4
     percent: 0.8571428571428571
-  - position: {x: 0, y: 0, z: 30}
+  - position: {x: 0, y: 0, z: -30}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: 0, y: 0, z: 1}
+    forward: {x: 0, y: 0, z: -1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 0.4
     percent: 1
@@ -459,16 +459,16 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: 0, y: 0, z: -30}
+    position: {x: 0, y: 0, z: 30}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: 0, y: 0, z: 1}
+    forward: {x: 0, y: 0, z: -1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: 0, y: 0, z: 30}
+    position: {x: 0, y: 0, z: -30}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: 0, y: 0, z: 1}
+    forward: {x: 0, y: 0, z: -1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 0.4
     percent: 1
@@ -3143,7 +3143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2889923036924341724, guid: c2174794c2099294fbce962b67538c11, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2889923036924341724, guid: c2174794c2099294fbce962b67538c11, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3177,6 +3177,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7495581742147203422, guid: c2174794c2099294fbce962b67538c11, type: 3}
+      propertyPath: listSplineComputer.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7495581742147203422, guid: c2174794c2099294fbce962b67538c11, type: 3}
+      propertyPath: listSplineComputer.Array.data[0]
+      value: 
+      objectReference: {fileID: 37311231}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2174794c2099294fbce962b67538c11, type: 3}
 --- !u!4 &1467465315196859834 stripped

@@ -37,5 +37,6 @@ public class Ingredient : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        amountTxt.text = amount + "x";
     }
 }

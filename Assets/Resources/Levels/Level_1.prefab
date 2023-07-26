@@ -3043,7 +3043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2889923036924341724, guid: c2174794c2099294fbce962b67538c11, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2889923036924341724, guid: c2174794c2099294fbce962b67538c11, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3077,6 +3077,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7495581742147203422, guid: c2174794c2099294fbce962b67538c11, type: 3}
+      propertyPath: listSplineComputer.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7495581742147203422, guid: c2174794c2099294fbce962b67538c11, type: 3}
+      propertyPath: listSplineComputer.Array.data[0]
+      value: 
+      objectReference: {fileID: 37311231}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2174794c2099294fbce962b67538c11, type: 3}
 --- !u!4 &1467465315196859834 stripped

@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 1590040798409930742}
   m_Layer: 8
   m_Name: upgrade
-  m_TagString: Untagged
+  m_TagString: Upgrade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -343,7 +343,7 @@ MonoBehaviour:
   - {fileID: 3291725579184632287}
   - {fileID: 2492210668540666379}
   nameBuilding: {fileID: 6751947462269137804}
-  delay: 5
+  delay: 1
   id: 0
   typeBuilding: 0
 --- !u!1001 &3771092821768941120

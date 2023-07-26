@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -13,6 +14,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private VariableJoystick _joystick;
     [SerializeField] private Animator anim;
     private bool delay;
+    private List<Slot> _listSlot;
+    [SerializeField] private List<CollectedItem> listBlock;
+    public bool isFull;
     public enum PlayerState
     {
         Idle,
@@ -106,6 +110,15 @@ public class PlayerController : MonoBehaviour
     private void Run()
     {
         anim.SetTrigger("Run");
+        foreach (var slot in _listSlot)
+        {
+            slot.isBusy = false;
+        }
+
+        for (int i = 0; i < listBlock.Count; i++)
+        {
+            _listSlot[i].isBusy = true;
+        }
     }
     
     private void Farm()
@@ -120,7 +133,12 @@ public class PlayerController : MonoBehaviour
     {
         
     }
-    
+
+    private void Start()
+    {
+        _listSlot = GetComponentsInChildren<Slot>().ToList();
+    }
+
     private void Movement()
     {
         if(!_joystick.gameObject.activeSelf)
@@ -170,5 +188,50 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetTrigger("Chopping");
         }
-    }   
+    }
+
+    public void Stack(CollectedItem block)
+    {
+        foreach (var s in _listSlot)
+        {
+            if (_listSlot[^1].isBusy)
+            {
+                isFull = true;
+                return;
+            }
+
+            if (s.isBusy) continue;
+            block.transform.DOMove(s.transform.position, 0.2f).OnComplete(() =>
+            {
+                block.transform.parent = transform;
+                block.transform.position = s.transform.position;
+                block.transform.localEulerAngles = Vector3.zero;
+                listBlock.Add(block);
+            });
+            s.isBusy = true;
+            break;
+        }
+    }
+
+    public void RemoveBlock(CollectedItem.TypeItem type, Transform pos)
+    {
+        foreach (var block in listBlock.Where(block => block._typeItem == type))
+        {
+            listBlock.Remove(block);
+            block.transform.DOMove(pos.position, 0.2f).OnComplete(() =>
+            {
+                block.gameObject.SetActive(false);
+                ReSort();
+            });
+            break;
+        }
+    }
+
+    private void ReSort()
+    {
+        for (int i = 0; i < listBlock.Count; i++)
+        {
+            listBlock[i].transform.position = _listSlot[i].transform.position;
+        }
+    }
 }

@@ -8,6 +8,8 @@ TagManager:
   - Tree
   - Slave
   - Cow
+  - Upgrade
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -19,8 +21,8 @@ TagManager:
   - House
   - Obstacle
   - Ingredient
-  - 
-  - 
+  - Tower
+  - Enemy
   - 
   - 
   - 

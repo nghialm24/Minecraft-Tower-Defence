@@ -1,4 +1,7 @@
 using System;
+using Cinemachine;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +16,11 @@ namespace Funzilla
 		[SerializeField] bool needLoad;
 		[SerializeField] bool isTest;
 		[SerializeField] string levelTest;
+		[SerializeField] private CinemachineVirtualCamera cam1;
+		[SerializeField] private CinemachineVirtualCamera cam2;
+		[SerializeField] private float countDown;
+		[SerializeField] private TextMeshProUGUI countDownTxt;
+		[SerializeField] private GameObject joy;
 		private enum State
 		{
 			Init,
@@ -99,6 +107,15 @@ namespace Funzilla
 				case State.Init:
 					break;
 				case State.Play:
+					cam2.gameObject.SetActive(true);
+					cam1.gameObject.SetActive(false);
+					joy.gameObject.SetActive(false);
+					DOVirtual.DelayedCall(5f, () =>
+					{
+						cam1.gameObject.SetActive(true);
+						cam2.gameObject.SetActive(false);
+						joy.gameObject.SetActive(true);
+					});
 					Analytics.LogLevelStartEvent();
 					break;
 				case State.Win:
@@ -137,6 +154,16 @@ namespace Funzilla
 			switch (_state)
 			{
 				case State.Init:
+					if(countDown > 0)
+					{
+						countDown -= Time.deltaTime;
+						countDownTxt.text = ((int)countDown).ToString();
+					}
+					else
+					{
+						countDownTxt.gameObject.SetActive(false);
+						Play();
+					}
 					break;
 				case State.Play:
 					break;

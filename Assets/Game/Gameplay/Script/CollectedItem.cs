@@ -20,7 +20,7 @@ public class CollectedItem : MonoBehaviour
         ironArmor
     }
 
-    private TypeItem _typeItem;
+    public TypeItem _typeItem;
     public void Init(TypeItem type)
     {
         _typeItem = type;
@@ -78,9 +78,10 @@ public class CollectedItem : MonoBehaviour
                     throw new ArgumentOutOfRangeException();
             }
 
+            if (other.GetComponent<PlayerController>().isFull) return;
             GetComponent<BoxCollider>().enabled = false;
-            transform.DOMove(other.transform.position+ new Vector3(0,2,0), 0.2f).OnComplete(
-                () => gameObject.SetActive(false));
+            GetComponent<Rigidbody>().isKinematic = true;
+            other.GetComponent<PlayerController>().Stack(this);
         }
     }
 }
