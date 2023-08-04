@@ -154,16 +154,16 @@ namespace Funzilla
 			switch (_state)
 			{
 				case State.Init:
-					if(countDown > 0)
-					{
-						countDown -= Time.deltaTime;
-						countDownTxt.text = ((int)countDown).ToString();
-					}
-					else
-					{
-						countDownTxt.gameObject.SetActive(false);
-						Play();
-					}
+					// if(countDown > 0)
+					// {
+					// 	countDown -= Time.deltaTime;
+					// 	countDownTxt.text = ((int)countDown).ToString();
+					// }
+					// else
+					// {
+					// 	countDownTxt.gameObject.SetActive(false);
+					// 	Play();
+					// }
 					break;
 				case State.Play:
 					break;

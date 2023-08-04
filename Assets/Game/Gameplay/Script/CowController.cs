@@ -7,33 +7,50 @@ using UnityEngine;
 public class CowController : MonoBehaviour
 {
     [SerializeField] private CollectedItem cowSkin;
-    private float delay2;
-    [SerializeField] private float timeDelay;
+    //private float delay2;
+    //[SerializeField] private float timeDelay;
+    [SerializeField] private int count;
+    private bool run;
+    [SerializeField] float speed;
     void Start()
     {
-        delay2 = timeDelay;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!run)
+            return;
+        if (speed > 0)
+        {
+            speed -= Time.deltaTime;
+            GetComponent<Rigidbody>().velocity = transform.forward * 5;
+            Debug.Log("Runnn");
+        }
+        else
+        {
+            GetComponent<Rigidbody>().velocity = transform.forward * 0;
+            run = false;
+        }
     }
     
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if(delay2 > 0)
-                delay2 -= Time.deltaTime;
-            else
+            if(count == 1)
             {
-                var w = Instantiate(cowSkin);
-                w.transform.position = transform.position;
-                w.Init(CollectedItem.TypeItem.skin);
-                delay2 = timeDelay;
                 gameObject.SetActive(false);
             }
+
+            if (count <= 0) return;
+            var w = Instantiate(cowSkin);
+            w.transform.position = transform.position;
+            w.Init(CollectedItem.TypeItem.skin);
+            count -= 1;
+            run = true;
+            speed = 1;
         }
     }
 }

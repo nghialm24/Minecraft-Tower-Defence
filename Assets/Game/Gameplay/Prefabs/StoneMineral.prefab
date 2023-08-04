@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4017790151815826053}
-  - component: {fileID: 1346623170556432868}
+  - component: {fileID: 1704786795188285169}
   - component: {fileID: 3856858319727468714}
   - component: {fileID: 3317622933265116589}
+  - component: {fileID: 5351650060103450759}
   m_Layer: 8
   m_Name: StoneMineral
   m_TagString: StoneMineral
@@ -35,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1346623170556432868
+--- !u!65 &1704786795188285169
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,6 +79,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stone: {fileID: 5633550435740021910, guid: 188ddd7f1cb51c54bb0dcadee12b71f3, type: 3}
   timeDelay: 2
+--- !u!208 &5351650060103450759
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546190475064411444}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.5, y: 1, z: 2.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &7029230465885427514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,7 +108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5a2b19153be27694a988aa320bbd07b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.7441845
+      value: -2.53
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5a2b19153be27694a988aa320bbd07b2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -99,7 +116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5a2b19153be27694a988aa320bbd07b2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.99
+      value: 1.84
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5a2b19153be27694a988aa320bbd07b2, type: 3}
       propertyPath: m_LocalRotation.w

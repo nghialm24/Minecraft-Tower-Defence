@@ -68,126 +68,108 @@ public class ProduceController : MonoBehaviour
                     switch (ing.type)
                     {
                         case Ingredient.TypeItem.wood:
-                            if (Gameplay.Instance.itemCollection.wood >= ing.amount)
+                            if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.wood) >= ing.amount)
                             {
                                 if (delay > 0)
                                     delay -= Time.deltaTime;
                                 else
                                 {
-                                    Gameplay.Instance.itemCollection.wood -= ing.amount;
-                                    Gameplay.Instance.itemCollection.UpdateWood();
                                     ing.current = ing.amount;
                                     delay = timeDelay;
                                 }
                             }
                             break;
                         case Ingredient.TypeItem.stone:
-                            if (Gameplay.Instance.itemCollection.stone >= ing.amount)
+                            if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.stone) >= ing.amount)
                             {
                                 if (delay > 0)
                                     delay -= Time.deltaTime;
                                 else
                                 {
-                                    Gameplay.Instance.itemCollection.stone -= ing.amount;
-                                    Gameplay.Instance.itemCollection.UpdateStone();
                                     ing.current = ing.amount;
                                     delay = timeDelay;
                                 }
                             }
                             break;
                         case Ingredient.TypeItem.skin:
-                            if (Gameplay.Instance.itemCollection.skin >= ing.amount)
+                            if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.skin) >= ing.amount)
                             {
                                 if (delay > 0)
                                     delay -= Time.deltaTime;
                                 else
                                 {
-                                    Gameplay.Instance.itemCollection.skin -= ing.amount;
-                                    Gameplay.Instance.itemCollection.UpdateSkin();
                                     ing.current = ing.amount;
                                     delay = timeDelay;
                                 }
                             }
                             break;
                         case Ingredient.TypeItem.iron:
-                            if (Gameplay.Instance.itemCollection.iron >= ing.amount)
+                            if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.iron) >= ing.amount)
                             {
                                 if (delay > 0)
                                     delay -= Time.deltaTime;
                                 else
                                 {
-                                    Gameplay.Instance.itemCollection.iron -= ing.amount;
-                                    Gameplay.Instance.itemCollection.UpdateIron();
                                     ing.current = ing.amount;
                                     delay = timeDelay;
                                 }
                             }
                             break;
                         case Ingredient.TypeItem.diamond:
-                            if (Gameplay.Instance.itemCollection.diamond >= ing.amount)
+                            if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.diamond) >= ing.amount)
                             {
                                 if (delay > 0)
                                     delay -= Time.deltaTime;
                                 else
                                 {
-                                    Gameplay.Instance.itemCollection.diamond -= ing.amount;
-                                    Gameplay.Instance.itemCollection.UpdateDiamond();
                                     ing.current = ing.amount;
                                     delay = timeDelay;
                                 }
                             }
                             break;
                         case Ingredient.TypeItem.woodVip:
-                            if (Gameplay.Instance.itemCollection.woodVip >= ing.amount)
+                            if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.woodVip) >= ing.amount)
                             {
                                 if (delay > 0)
                                     delay -= Time.deltaTime;
                                 else
                                 {
-                                    Gameplay.Instance.itemCollection.woodVip -= ing.amount;
-                                    Gameplay.Instance.itemCollection.UpdateWoodVip();
                                     ing.current = ing.amount;
                                     delay = timeDelay;
                                 }
                             }
                             break;                        
                         case Ingredient.TypeItem.ironVip:
-                            if (Gameplay.Instance.itemCollection.ironVip >= ing.amount)
+                            if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.ironVip) >= ing.amount)
                             {
                                 if (delay > 0)
                                     delay -= Time.deltaTime;
                                 else
                                 {
-                                    Gameplay.Instance.itemCollection.ironVip -= ing.amount;
-                                    Gameplay.Instance.itemCollection.UpdateIronVip();
                                     ing.current = ing.amount;
                                     delay = timeDelay;
                                 }
                             }
                             break;                        
                         case Ingredient.TypeItem.skinArmor:
-                            if (Gameplay.Instance.itemCollection.skinArmor >= ing.amount)
+                            if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.skinArmor) >= ing.amount)
                             {
                                 if (delay > 0)
                                     delay -= Time.deltaTime;
                                 else
                                 {
-                                    Gameplay.Instance.itemCollection.skinArmor -= ing.amount;
-                                    Gameplay.Instance.itemCollection.UpdateSkinArmor();
                                     ing.current = ing.amount;
                                     delay = timeDelay;
                                 }
                             }
                             break;                        
                         case Ingredient.TypeItem.ironArmor:
-                            if (Gameplay.Instance.itemCollection.ironArmor >= ing.amount)
+                            if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.ironArmor) >= ing.amount)
                             {
                                 if (delay > 0)
                                     delay -= Time.deltaTime;
                                 else
                                 {
-                                    Gameplay.Instance.itemCollection.ironArmor -= ing.amount;
-                                    Gameplay.Instance.itemCollection.UpdateIronArmor();
                                     ing.current = ing.amount;
                                     delay = timeDelay;
                                 }

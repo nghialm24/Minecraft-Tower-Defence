@@ -18,7 +18,7 @@ allprojects {
 		**ARTIFACTORYREPOSITORY**
 		maven { url "https://maven.google.com" }
 		maven { url "https://android-sdk.is.com" }
-		//maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" }
+        maven { url "https://jitpack.io" }
 		mavenLocal()
 		mavenCentral()
 		google()

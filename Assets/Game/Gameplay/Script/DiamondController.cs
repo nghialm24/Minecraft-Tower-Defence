@@ -29,7 +29,7 @@ public class DiamondController : MonoBehaviour
             else
             {
                 var w = Instantiate(diamond);
-                w.transform.position = transform.position + new Vector3(2.8f,3,Random.Range(-1,1));
+                w.transform.position = transform.position;
                 //w.transform.DOMove(other.transform.position, 1f);
                 w.Init(CollectedItem.TypeItem.diamond);
                 delay2 = timeDelay;

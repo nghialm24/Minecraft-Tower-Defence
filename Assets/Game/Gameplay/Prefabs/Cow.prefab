@@ -60,7 +60,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -77,7 +77,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cowSkin: {fileID: 3423673120657664990, guid: 6bfb2116923fa3a4f933d979c79b12c8, type: 3}
-  timeDelay: 5
+  count: 4
+  speed: 1
 --- !u!1001 &8879188431027370268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,15 +92,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3e54aaf1f5de40040b76344ab95d39d0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 150
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3e54aaf1f5de40040b76344ab95d39d0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 150
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3e54aaf1f5de40040b76344ab95d39d0, type: 3}
       propertyPath: m_LocalScale.z
-      value: 150
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3e54aaf1f5de40040b76344ab95d39d0, type: 3}
       propertyPath: m_LocalPosition.x

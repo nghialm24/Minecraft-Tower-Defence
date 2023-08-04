@@ -15,7 +15,7 @@ public class AllCowController : MonoBehaviour
             var c = Instantiate(cow);
             c.transform.parent = transform;
             c.transform.position = transform.position + new Vector3(Random.Range(-maxX, maxX), 0, Random.Range(-maxZ, maxZ));
-
+            c.transform.eulerAngles = new Vector3(0,Random.Range(0,360),0);
         }
     }
 

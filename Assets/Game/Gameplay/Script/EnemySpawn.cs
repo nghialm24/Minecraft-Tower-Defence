@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Dreamteck.Splines;
@@ -15,6 +16,8 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private bool isx2;
     private int currentWave;
     [SerializeField] private List<int> wave;
+    [SerializeField] private GameObject start;
+    [SerializeField] private float startTime;
     void Start()
     {
         //SpawnEnemy();
@@ -23,6 +26,7 @@ public class EnemySpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (startTime > 0) return;
         if (wave[currentWave] > 0)
         {
             if(isx2)
@@ -80,5 +84,20 @@ public class EnemySpawn : MonoBehaviour
         e.transform.position = transform.position;
         e.Init(listSplineComputer[1]);
         listEnemy2.Add(e);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if(startTime > 0)
+                startTime -= Time.deltaTime;
+            else
+            {
+                
+                start.SetActive(false);
+                GetComponent<BoxCollider>().enabled = false;
+            }
+        }
     }
 }

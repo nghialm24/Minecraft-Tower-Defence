@@ -10,6 +10,8 @@ TagManager:
   - Cow
   - Upgrade
   - Enemy
+  - Start
+  - Sell
   layers:
   - Default
   - TransparentFX

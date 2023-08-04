@@ -4,9 +4,13 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Funzilla;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CollectedItem : MonoBehaviour
 {
+    [SerializeField] private float anim;
+    private Vector3 target;
+    public bool haveAnim;
     public enum TypeItem
     {
         stone,
@@ -26,58 +30,31 @@ public class CollectedItem : MonoBehaviour
         _typeItem = type;
     }
 
+    private void Start()
+    {
+        var x = Random.Range(1, 4);
+        if(x == 1)
+            target = transform.position + new Vector3(Random.Range(-4f,4f), 0, -4);
+        if(x == 2)
+            target = transform.position + new Vector3(Random.Range(-4f,4f), 0, 4);
+        if(x == 3)
+            target = transform.position + new Vector3(-4f, 0, Random.Range(-4f,4f));
+        if(x == 4)
+            target = transform.position + new Vector3(4, 0, Random.Range(-4f,4f));
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        if (!haveAnim) return;
+        transform.position = Vector3.Lerp(transform.position, new Vector3(target.x,0.5f,target.z), Time.deltaTime*2);
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            switch (_typeItem)
-            {
-                case TypeItem.stone:
-                    Gameplay.Instance.itemCollection.stone++;
-                    Gameplay.Instance.itemCollection.UpdateStone();
-                    break;
-                case TypeItem.wood:
-                    Gameplay.Instance.itemCollection.wood++;
-                    Gameplay.Instance.itemCollection.UpdateWood();                    
-                    break;
-                case TypeItem.skin:
-                    Gameplay.Instance.itemCollection.skin++;
-                    Gameplay.Instance.itemCollection.UpdateSkin();
-                    break;
-                case TypeItem.iron:
-                    Gameplay.Instance.itemCollection.iron++;
-                    Gameplay.Instance.itemCollection.UpdateIron();
-                    break;
-                case TypeItem.diamond:
-                    Gameplay.Instance.itemCollection.diamond++;
-                    Gameplay.Instance.itemCollection.UpdateDiamond();
-                    break;
-                case TypeItem.woodVip:
-                    Gameplay.Instance.itemCollection.woodVip++;
-                    Gameplay.Instance.itemCollection.UpdateWoodVip();
-                    break;
-                case TypeItem.ironVip:
-                    Gameplay.Instance.itemCollection.ironVip++;
-                    Gameplay.Instance.itemCollection.UpdateIronVip();                    
-                    break;
-                case TypeItem.skinArmor:
-                    Gameplay.Instance.itemCollection.skinArmor++;
-                    Gameplay.Instance.itemCollection.UpdateSkinArmor();
-                    break;
-                case TypeItem.ironArmor:
-                    Gameplay.Instance.itemCollection.ironArmor++;
-                    Gameplay.Instance.itemCollection.UpdateIronArmor();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
+            haveAnim = false;
             if (other.GetComponent<PlayerController>().isFull) return;
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<Rigidbody>().isKinematic = true;

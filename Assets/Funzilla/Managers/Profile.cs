@@ -26,6 +26,9 @@ namespace Funzilla
 
 			[SerializeField] internal List<string> skins = new List<string>();
 			[SerializeField] internal int currentSkin;
+			
+			// 
+			[SerializeField] internal int round = 0;
 		}
 
 		private UserData _data;
@@ -128,6 +131,17 @@ namespace Funzilla
 			{
 				if (Instance._data == null) return;
 				Instance._data.level = value < 1 ? 1 : value;
+				RequestSave();
+			}
+		}
+		
+		internal static int CurrentRounde
+		{
+			get => Instance._data?.round ?? 0;
+			set
+			{
+				if (Instance._data == null) return;
+				Instance._data.round = value < 0 ? 0 : value;
 				RequestSave();
 			}
 		}

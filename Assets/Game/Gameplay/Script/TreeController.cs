@@ -40,10 +40,8 @@ public class TreeController : MonoBehaviour
             if (countWood > 0)
             {
                 countWood -= 1;
-                var w = Instantiate(wood);
-                w.transform.position = transform.position + new Vector3(Random.Range(-2,2),3,Random.Range(-2,2));
-                //w.transform.DOMove(target.transform.position, 1f);
-                w.Init(CollectedItem.TypeItem.wood);
+                _beController.CollectWood(wood);
+                transform.GetChild(0).transform.position += Vector3.down;
                 delay = timeDelay;
             }
             else
@@ -75,22 +73,22 @@ public class TreeController : MonoBehaviour
                 delay2 -= Time.deltaTime;
             else
             {
-                if (countWood > 0)
-                {
-                    countWood -= 1;
-                    var w = Instantiate(wood);
-                    w.transform.position = transform.position  + new Vector3(Random.Range(-2,2),3,Random.Range(-2,2));
-                    //w.transform.DOMove(other.transform.position, 1f);
-                    w.Init(CollectedItem.TypeItem.wood);
-                    delay2 = timeDelay;
-                }
-                else
+                if(countWood == 1)
                 {
                     gameObject.SetActive(false);
                     if(num == 1)
                         _beController.listTree1.Remove(this);
                     if(num == 2)
-                        _beController.listTree2.Remove(this);                
+                        _beController.listTree2.Remove(this);                    
+                }
+                if (countWood > 0)
+                {
+                    countWood -= 1;
+                    var w = Instantiate(wood);
+                    w.transform.position = transform.position;
+                    w.Init(CollectedItem.TypeItem.wood);
+                    transform.GetChild(0).transform.position += Vector3.down*1.2f;
+                    delay2 = timeDelay;
                 }
             }
         }

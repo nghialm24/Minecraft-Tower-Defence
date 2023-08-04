@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Funzilla;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BeController : MonoBehaviour
 {
@@ -18,12 +21,18 @@ public class BeController : MonoBehaviour
     [SerializeField] private TextMeshPro nameBuilding;
     public int beLevel;
     [SerializeField] private List<GameObject> listBeLevel;
+    [SerializeField] private Transform wareSlot;
+    [SerializeField] private List<Slot> listSlot;
+    [SerializeField] private List<CollectedItem> listWood;
+    public bool isFull;
+    private float delayCollect;
     private void Start()
     {
         listTree1 = forest1.GetComponentsInChildren<TreeController>().ToList();
         listTree2 = forest2.GetComponentsInChildren<TreeController>().ToList();        
         listPos1 = forest1.GetComponentsInChildren<TreeController>().ToList();
         listPos2 = forest2.GetComponentsInChildren<TreeController>().ToList();
+        listSlot = wareSlot.GetComponentsInChildren<Slot>().ToList();
         foreach (var tree in listTree1)
         {
             tree.Init(1,this);
@@ -41,7 +50,10 @@ public class BeController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
+        if (!isFull)
+            return;
+        if (listWood.Count < listSlot.Count)
+            isFull = false;
     }
     
     
@@ -91,6 +103,47 @@ public class BeController : MonoBehaviour
                 tree.transform.position = pos.transform.position;
                 listTree2.Add(tree);
                 tree.Init(2,this);
+            }
+        }
+    }
+
+    public void CollectWood(CollectedItem wood)
+    {
+        if (isFull) return;
+        foreach (var t in listSlot)
+        {
+            if (listSlot[^1].isBusy)
+                isFull = true;
+            if (t.isBusy) continue;
+            var w = Instantiate(wood);
+            w.Init(CollectedItem.TypeItem.wood);
+            w.haveAnim = false;
+            w.transform.position = t.transform.position;
+            w.GetComponent<BoxCollider>().enabled = false;
+            listWood.Add(w);
+            t.isBusy = true;
+            break;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (!other.GetComponent<PlayerController>().isFull)
+            {
+                if(listWood.Count > 0)
+                {
+                    if (delayCollect > 0)
+                        delayCollect -= Time.deltaTime;
+                    else
+                    {
+                        other.GetComponent<PlayerController>().Stack(listWood[^1]);
+                        listWood.Remove(listWood[^1]);
+                        listSlot[listWood.Count].isBusy = false;
+                        delayCollect = 0.05f;
+                    }
+                }
             }
         }
     }

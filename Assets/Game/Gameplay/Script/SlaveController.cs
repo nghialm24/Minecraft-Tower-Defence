@@ -11,6 +11,70 @@ public class SlaveController : MonoBehaviour
     private Tween _tween1;
     [SerializeField] private BeController beController;
     private int level;
+    
+    public enum PlayerState
+    {
+        Idle,
+        Farm
+    }
+    private PlayerState _currentState;
+
+    private void EnterState()
+    {
+        switch (_currentState)
+        {
+            case PlayerState.Idle:
+                anim.SetTrigger("Idle");
+                break;
+            case PlayerState.Farm:
+                Farm();
+                break;
+        }
+    }
+    
+    private void ExitState()
+    {
+        switch (_currentState)
+        {
+            case PlayerState.Idle:
+                break;
+            case PlayerState.Farm:
+                break;
+        }
+    }
+    
+    private void UpdateState()
+    {
+        switch (_currentState)
+        {
+            case PlayerState.Idle:
+                if (!beController.isFull)
+                {
+                    ChangeState(PlayerState.Farm);
+                }
+                break;
+            case PlayerState.Farm:
+                if (beController.isFull)
+                {
+                    ChangeState(PlayerState.Idle);
+                    return;
+                }
+                if (target.gameObject.activeSelf)
+                    return;
+                Farm();
+                break;
+        }
+    }
+    
+    private void ChangeState(PlayerState newState)
+    {
+        if (newState == _currentState)
+            return;
+        ExitState();
+        _currentState = newState;
+        EnterState();
+    }
+    
     public void Init(int lv, TreeController tg, BeController be)
     {
         level = lv;
@@ -18,17 +82,10 @@ public class SlaveController : MonoBehaviour
         beController = be;
         Farm();
     }
-    private void Start()
-    {
-        
-    }
 
-    
     private void Update()
     {
-        if (target.gameObject.activeSelf)
-            return;
-        Farm();
+        UpdateState();
     }
 
     private void Farm()
