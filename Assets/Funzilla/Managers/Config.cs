@@ -50,7 +50,7 @@ namespace Funzilla
 					if (!GameAnalytics.IsRemoteConfigsReady()) return;
 					LoadConfigs();
 #else
-					Ads.Instance.Init();
+					//Ads.Instance.Init();
 					enabled = false;
 					_state = State.Initialized;
 #endif

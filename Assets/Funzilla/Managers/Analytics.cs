@@ -151,7 +151,7 @@ namespace Funzilla
 #if UNITY_EDITOR || DEBUG_ENABLED
 			Debug.Log($"Interstitial failed at {placement}");
 #else
-			GameAnalytics.NewAdEvent(GAAdAction.FailedShow, GAAdType.Interstitial, Ads.SdkName, placement);
+			//GameAnalytics.NewAdEvent(GAAdAction.FailedShow, GAAdType.Interstitial, Ads.SdkName, placement);
 			LogFirebaseEvent("ad_fs_failed");
 #endif
 		}
@@ -161,7 +161,7 @@ namespace Funzilla
 #if UNITY_EDITOR || DEBUG_ENABLED
 			Debug.Log($"Interstitial showed at {placement}");
 #else
-			GameAnalytics.NewAdEvent(GAAdAction.Show, GAAdType.Interstitial, Ads.SdkName, placement);
+			//GameAnalytics.NewAdEvent(GAAdAction.Show, GAAdType.Interstitial, Ads.SdkName, placement);
 			LogFirebaseEvent("ad_fs_shown", "place", placement);
 #endif
 			Adjust.TrackEvent(Adjust.FsShown);
@@ -172,7 +172,7 @@ namespace Funzilla
 #if UNITY_EDITOR || DEBUG_ENABLED
 			Debug.Log($"Interstitial clicked at {placement}");
 #else
-			GameAnalytics.NewAdEvent(GAAdAction.Clicked, GAAdType.Interstitial, Ads.SdkName, placement);
+			//GameAnalytics.NewAdEvent(GAAdAction.Clicked, GAAdType.Interstitial, Ads.SdkName, placement);
 			LogFirebaseEvent("ad_fs_clicked", "place", placement);
 #endif
 		}
@@ -182,7 +182,7 @@ namespace Funzilla
 #if UNITY_EDITOR || DEBUG_ENABLED
 			Debug.Log($"Rewarded video failed at {placement}");
 #else
-			GameAnalytics.NewAdEvent(GAAdAction.FailedShow, GAAdType.RewardedVideo, Ads.SdkName, placement);
+			//GameAnalytics.NewAdEvent(GAAdAction.FailedShow, GAAdType.RewardedVideo, Ads.SdkName, placement);
 			LogFirebaseEvent("ad_rw_shown", "place", placement);
 #endif
 		}
@@ -192,7 +192,7 @@ namespace Funzilla
 #if UNITY_EDITOR || DEBUG_ENABLED
 			Debug.Log($"Rewarded video showed at {placement}");
 #else
-			GameAnalytics.NewAdEvent(GAAdAction.Show, GAAdType.RewardedVideo, Ads.SdkName, placement);
+			//GameAnalytics.NewAdEvent(GAAdAction.Show, GAAdType.RewardedVideo, Ads.SdkName, placement);
 			LogFirebaseEvent("ad_rw_shown", "place", placement);
 #endif
 			Adjust.TrackEvent(Adjust.RwShown);
@@ -203,7 +203,7 @@ namespace Funzilla
 #if UNITY_EDITOR || DEBUG_ENABLED
 			Debug.Log($"Rewarded video watched at {placement}");
 #else
-			GameAnalytics.NewAdEvent(GAAdAction.Clicked, GAAdType.RewardedVideo, Ads.SdkName, placement);
+			//GameAnalytics.NewAdEvent(GAAdAction.Clicked, GAAdType.RewardedVideo, Ads.SdkName, placement);
 			LogFirebaseEvent("ad_rw_clicked", "place", placement);
 #endif
 			Adjust.TrackEvent(Adjust.RwClicked);
@@ -214,7 +214,7 @@ namespace Funzilla
 #if UNITY_EDITOR || DEBUG_ENABLED
 			Debug.Log($"Rewarded video watched at {placement}");
 #else
-			GameAnalytics.NewAdEvent(GAAdAction.RewardReceived, GAAdType.RewardedVideo, Ads.SdkName, placement);
+			//GameAnalytics.NewAdEvent(GAAdAction.RewardReceived, GAAdType.RewardedVideo, Ads.SdkName, placement);
 			LogFirebaseEvent("ad_rw_watched", "place", placement);
 #endif
 			Adjust.TrackEvent(Adjust.RwWatched);
@@ -225,7 +225,7 @@ namespace Funzilla
 #if UNITY_EDITOR || DEBUG_ENABLED
 			Debug.Log("Banner failed");
 #else
-			GameAnalytics.NewAdEvent(GAAdAction.FailedShow, GAAdType.Banner, Ads.SdkName, string.Empty);
+			//GameAnalytics.NewAdEvent(GAAdAction.FailedShow, GAAdType.Banner, Ads.SdkName, string.Empty);
 			LogFirebaseEvent("ad_bn_failed");
 #endif
 		}
@@ -235,7 +235,7 @@ namespace Funzilla
 #if UNITY_EDITOR || DEBUG_ENABLED
 			Debug.Log("Banner clicked");
 #else
-			GameAnalytics.NewAdEvent(GAAdAction.Clicked, GAAdType.Banner, Ads.SdkName, string.Empty);
+			//GameAnalytics.NewAdEvent(GAAdAction.Clicked, GAAdType.Banner, Ads.SdkName, string.Empty);
 			LogFirebaseEvent("ad_bn_clicked");
 #endif
 		}
@@ -245,7 +245,7 @@ namespace Funzilla
 #if UNITY_EDITOR || DEBUG_ENABLED
 			Debug.Log("Banner shown");
 #else
-			GameAnalytics.NewAdEvent(GAAdAction.Show, GAAdType.Banner, Ads.SdkName, string.Empty);
+			//GameAnalytics.NewAdEvent(GAAdAction.Show, GAAdType.Banner, Ads.SdkName, string.Empty);
 			LogFirebaseEvent("ad_bn_shown");
 #endif
 		}

@@ -26,7 +26,6 @@ public class CowController : MonoBehaviour
         {
             speed -= Time.deltaTime;
             GetComponent<Rigidbody>().velocity = transform.forward * 5;
-            Debug.Log("Runnn");
         }
         else
         {
