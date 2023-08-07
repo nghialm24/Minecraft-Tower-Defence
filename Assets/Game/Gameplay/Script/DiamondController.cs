@@ -28,7 +28,7 @@ public class DiamondController : MonoBehaviour
                 delay2 -= Time.deltaTime;
             else
             {
-                var w = Instantiate(diamond);
+                var w = Instantiate(diamond,Gameplay.Instance.transform);
                 w.transform.position = transform.position;
                 //w.transform.DOMove(other.transform.position, 1f);
                 w.Init(CollectedItem.TypeItem.diamond);

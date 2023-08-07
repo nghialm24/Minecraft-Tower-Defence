@@ -45,7 +45,7 @@ public class CowController : MonoBehaviour
             }
 
             if (count <= 0) return;
-            var w = Instantiate(cowSkin);
+            var w = Instantiate(cowSkin,Gameplay.Instance.transform);
             w.transform.position = transform.position;
             w.Init(CollectedItem.TypeItem.skin);
             count -= 1;

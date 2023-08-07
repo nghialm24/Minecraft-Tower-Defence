@@ -29,7 +29,7 @@ public class IronController : MonoBehaviour
                 delay2 -= Time.deltaTime;
             else
             {
-                var w = Instantiate(iron);
+                var w = Instantiate(iron,Gameplay.Instance.transform);
                 w.transform.position = transform.position;
                 //w.transform.DOMove(other.transform.position, 1f);
                 w.Init(CollectedItem.TypeItem.iron);

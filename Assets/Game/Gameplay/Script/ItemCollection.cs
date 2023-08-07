@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Funzilla;
 using TMPro;
 using UnityEngine;
 
@@ -129,21 +130,21 @@ public class ItemCollection : MonoBehaviour
         {
             for (int i = 0; i < 10; i++)
             {
-                var w = Instantiate(stoneUI);
+                var w = Instantiate(stoneUI,Gameplay.Instance.transform);
                 w.GetComponent<CollectedItem>().Init(CollectedItem.TypeItem.stone);
             }
         }else if (typeItem == CollectedItem.TypeItem.wood)
         {
             for (int i = 0; i < 10; i++)
             {
-                var w =Instantiate(woodUI);
+                var w =Instantiate(woodUI,Gameplay.Instance.transform);
                 w.GetComponent<CollectedItem>().Init(CollectedItem.TypeItem.wood);
             }
         }else if (typeItem == CollectedItem.TypeItem.skin)
         {
             for (int i = 0; i < 10; i++)
             {
-                var w = Instantiate(skinUI);
+                var w = Instantiate(skinUI,Gameplay.Instance.transform);
                 w.GetComponent<CollectedItem>().Init(CollectedItem.TypeItem.skin);
 
             }
@@ -151,7 +152,7 @@ public class ItemCollection : MonoBehaviour
         {
             for (int i = 0; i < 10; i++)
             {
-                var w =Instantiate(ironUI);
+                var w =Instantiate(ironUI,Gameplay.Instance.transform);
                 w.GetComponent<CollectedItem>().Init(CollectedItem.TypeItem.iron);
 
             }
@@ -159,7 +160,7 @@ public class ItemCollection : MonoBehaviour
         {
             for (int i = 0; i < 10; i++)
             {
-                var w = Instantiate(diamondUI);
+                var w = Instantiate(diamondUI,Gameplay.Instance.transform);
                 w.GetComponent<CollectedItem>().Init(CollectedItem.TypeItem.diamond);
 
             }
@@ -167,7 +168,7 @@ public class ItemCollection : MonoBehaviour
         {
             for (int i = 0; i < 10; i++)
             {
-                var w = Instantiate(woodVipUI);
+                var w = Instantiate(woodVipUI,Gameplay.Instance.transform);
                 w.GetComponent<CollectedItem>().Init(CollectedItem.TypeItem.woodVip);
 
             }
@@ -175,7 +176,7 @@ public class ItemCollection : MonoBehaviour
         {
             for (int i = 0; i < 10; i++)
             {
-                var w = Instantiate(ironVipUI);                
+                var w = Instantiate(ironVipUI,Gameplay.Instance.transform);                
                 w.GetComponent<CollectedItem>().Init(CollectedItem.TypeItem.ironVip);
 
             }
@@ -183,14 +184,14 @@ public class ItemCollection : MonoBehaviour
         {
             for (int i = 0; i < 10; i++)
             {
-                var w = Instantiate(skinArmorUI);
+                var w = Instantiate(skinArmorUI,Gameplay.Instance.transform);
                 w.GetComponent<CollectedItem>().Init(CollectedItem.TypeItem.skinArmor);
             }
         }else if (typeItem == CollectedItem.TypeItem.ironArmor)
         {
             for (int i = 0; i < 10; i++)
             {
-                var w = Instantiate(ironArmorUI);
+                var w = Instantiate(ironArmorUI,Gameplay.Instance.transform);
                 w.GetComponent<CollectedItem>().Init(CollectedItem.TypeItem.ironArmor);
             }
         }

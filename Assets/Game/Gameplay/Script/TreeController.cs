@@ -84,7 +84,7 @@ public class TreeController : MonoBehaviour
                 if (countWood > 0)
                 {
                     countWood -= 1;
-                    var w = Instantiate(wood);
+                    var w = Instantiate(wood,Gameplay.Instance.transform);
                     w.transform.position = transform.position;
                     w.Init(CollectedItem.TypeItem.wood);
                     transform.GetChild(0).transform.position += Vector3.down*1.2f;

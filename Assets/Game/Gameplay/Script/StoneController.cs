@@ -29,7 +29,7 @@ public class StoneController : MonoBehaviour
                 delay2 -= Time.deltaTime;
             else
             {
-                var w = Instantiate(stone);
+                var w = Instantiate(stone,Gameplay.Instance.transform);
                 
                 w.transform.position = transform.position;
                 //w.transform.DOMove(other.transform.position, 1f);
