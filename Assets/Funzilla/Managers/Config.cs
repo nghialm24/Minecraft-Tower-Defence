@@ -47,8 +47,8 @@ namespace Funzilla
 			{
 				case State.Initializing:
 #if !UNITY_EDITOR && REMOTE_ENABLED
-					if (!GameAnalytics.IsRemoteConfigsReady()) return;
-					LoadConfigs();
+					//if (!GameAnalytics.IsRemoteConfigsReady()) return;
+					//LoadConfigs();
 #else
 					//Ads.Instance.Init();
 					enabled = false;

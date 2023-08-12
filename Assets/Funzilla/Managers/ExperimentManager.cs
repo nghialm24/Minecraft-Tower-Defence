@@ -57,7 +57,7 @@ namespace Funzilla
 			_activeExperiment = Experiments[experiment];
 #endif
 			var logEvent = $"{configName}_{_activeExperiment.ToString()}";
-			Analytics.LogEvent(logEvent);
+			//Analytics.LogEvent(logEvent);
 		}
 
 		internal static void ChangeTest(ExperimentType experiment)

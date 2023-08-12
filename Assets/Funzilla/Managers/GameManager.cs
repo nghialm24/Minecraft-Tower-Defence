@@ -1,7 +1,7 @@
 
 using System;
 using System.Collections.Generic;
-using Facebook.Unity;
+//using Facebook.Unity;
 using UnityEngine;
 using Firebase;
 using Firebase.Analytics;
@@ -43,16 +43,17 @@ namespace Funzilla
 					Instance._state = State.InitializingFirebase;
 					Application.targetFrameRate = 60;
 					GameAnalytics.Initialize();
-					FB.Init();
+					//FB.Init();
 #if UNITY_EDITOR
 					FirebaseOk = true;
 #else
-					FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
-					{
-						if (task.Result != DependencyStatus.Available) return;
-						FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
-						FirebaseOk = true;
-					});
+					// FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+					// {
+					// 	if (task.Result != DependencyStatus.Available) return;
+					// 	FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
+					// 	FirebaseOk = true;
+					// });
+					FirebaseOk = true;
 #endif
 					if (onComplete != null) Instance._queue.Enqueue(onComplete);
 					break;
@@ -79,7 +80,7 @@ namespace Funzilla
 					{
 						_state = State.InitializingConfig;
 						Config.Init();
-						Adjust.Init();
+						//Adjust.Init();
 					}
 					break;
 				case State.InitializingConfig:

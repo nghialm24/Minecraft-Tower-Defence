@@ -116,15 +116,15 @@ namespace Funzilla
 						cam2.gameObject.SetActive(false);
 						joy.gameObject.SetActive(true);
 					});
-					Analytics.LogLevelStartEvent();
+					//Analytics.LogLevelStartEvent();
 					break;
 				case State.Win:
-					Analytics.LogLevelCompleteEvent();
+					//Analytics.LogLevelCompleteEvent();
 					SceneManager.OpenScene(SceneID.WinUI);
 					Profile.Level++;
 					break;
 				case State.Lose:
-					Analytics.LogLevelFailEvent();
+					//Analytics.LogLevelFailEvent();
 					SceneManager.OpenScene(SceneID.LoseUI);
 					break;
 				default:
