@@ -30,10 +30,10 @@ namespace Funzilla
 #if UNITY_IOS
 			rateButton.onClick.AddListener(() => UnityEngine.iOS.Device.RequestStoreReview());
 #else
-			rateButton.onClick.AddListener(() => Application.OpenURL("https://play.google.com/store/apps/details?id=" + Application.identifier));
+			rateButton.onClick.AddListener(() => {});
 #endif
-			privacyPolicyButton.onClick.AddListener(() => Application.OpenURL("https://www.funzilla.io/games/privacy"));
-			termOfUseButton.onClick.AddListener(() => Application.OpenURL(TermsUrl));
+			privacyPolicyButton.onClick.AddListener(() => {});
+			termOfUseButton.onClick.AddListener(() => {});
 			sfxToggle.Init(Preference.SfxOn, active => Preference.SfxOn = active);
 			musicToggle.Init(Preference.MusicOn, active => Preference.MusicOn = active);
 			vibrateToggle.Init(Preference.VibrationOn, active => Preference.VibrationOn = active);

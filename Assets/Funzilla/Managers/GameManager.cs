@@ -42,7 +42,7 @@ namespace Funzilla
 				case State.None:
 					Instance._state = State.InitializingFirebase;
 					Application.targetFrameRate = 60;
-					GameAnalytics.Initialize();
+					//GameAnalytics.Initialize();
 					//FB.Init();
 #if UNITY_EDITOR
 					FirebaseOk = true;
@@ -53,7 +53,6 @@ namespace Funzilla
 					// 	FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
 					// 	FirebaseOk = true;
 					// });
-					FirebaseOk = true;
 #endif
 					if (onComplete != null) Instance._queue.Enqueue(onComplete);
 					break;
@@ -76,12 +75,14 @@ namespace Funzilla
 				case State.None:
 					break;
 				case State.InitializingFirebase:
-					if (FirebaseOk)
-					{
-						_state = State.InitializingConfig;
-						Config.Init();
-						//Adjust.Init();
-					}
+					_state = State.InitializingConfig;
+					Config.Init();
+					// if (FirebaseOk)
+					// {
+					// 	_state = State.InitializingConfig;
+					// 	Config.Init();
+					// 	//Adjust.Init();
+					// }
 					break;
 				case State.InitializingConfig:
 					if (Config.Initialized)
