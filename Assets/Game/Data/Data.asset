@@ -19,53 +19,375 @@ MonoBehaviour:
       levelData:
       - levelID: 1
         delayPerWave: 15
+        listEnemyDelay:
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 0
       - levelID: 2
         delayPerWave: 15
+        listEnemyDelay:
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 1
+          timeDelay: 0
+          trans: -1
+        - typeEnemy: 1
+          timeDelay: 0
+          trans: 1
       - levelID: 3
         delayPerWave: 15
+        listEnemyDelay:
+        - typeEnemy: 4
+          timeDelay: 5
+          trans: 0
     - id: 1
       delayPerLevel: 25
       levelData:
       - levelID: 4
         delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 0
+          timeDelay: 0
+          trans: -1
+        - typeEnemy: 0
+          timeDelay: 0
+          trans: 1
       - levelID: 5
         delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 1
+          timeDelay: 0
+          trans: -1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
       - levelID: 6
         delayPerWave: 0
-      - levelID: 7
+        listEnemyDelay:
+        - typeEnemy: 2
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 2
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 2
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 2
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 2
+          timeDelay: 5
+          trans: 0
+      - levelID: 6
         delayPerWave: 0
-      - levelID: 8
+        listEnemyDelay:
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: -1
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 1
+          timeDelay: 0
+          trans: -1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 0
+          timeDelay: 0
+          trans: -1
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 1
+          timeDelay: 0
+          trans: -1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 2
+          timeDelay: 0
+          trans: -1
+        - typeEnemy: 2
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 2
+          timeDelay: 0
+          trans: -1
+        - typeEnemy: 2
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 2
+          timeDelay: 5
+          trans: 1
+      - levelID: 6
         delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 5
+          timeDelay: 5
+          trans: 0
     - id: 2
       delayPerLevel: 30
       levelData:
       - levelID: 9
         delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
       - levelID: 10
         delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 0
       - levelID: 11
         delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 2
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 2
+          timeDelay: 5
+          trans: 0
       - levelID: 12
         delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 4
+          timeDelay: 15
+          trans: 0
       - levelID: 13
         delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: -1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 2
+          timeDelay: 0
+          trans: -1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 1
+      - levelID: 13
+        delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: -1
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 0
+          timeDelay: 0
+          trans: -1
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 0
+          timeDelay: 0
+          trans: -1
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 1
+      - levelID: 13
+        delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 5
+          timeDelay: 5
+          trans: 0
+    - id: 2
+      delayPerLevel: 30
+      levelData:
+      - levelID: 9
+        delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 0
+      - levelID: 10
+        delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 2
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 2
+          timeDelay: 5
+          trans: 0
+      - levelID: 11
+        delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 0
+      - levelID: 12
+        delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 4
+          timeDelay: 5
+          trans: 0
+      - levelID: 13
+        delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 0
+          timeDelay: 0
+          trans: -1
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 1
+          timeDelay: 0
+          trans: -1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 0
+          timeDelay: 0
+          trans: -1
+        - typeEnemy: 0
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 1
+          timeDelay: 0
+          trans: -1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 1
+      - levelID: 13
+        delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: -1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: -1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: -1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: -1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: -1
+        - typeEnemy: 1
+          timeDelay: 5
+          trans: 1
+      - levelID: 13
+        delayPerWave: 0
+        listEnemyDelay:
+        - typeEnemy: 5
+          timeDelay: 5
+          trans: 0
     towerData:
     - level: 1
       damage: 1
-      atkSpeed: 2
-      range: 5
+      atkSpeed: 2.5
+      range: 4.5
     - level: 2
       damage: 2
-      atkSpeed: 1
-      range: 5.5
+      atkSpeed: 1.5
+      range: 5
     - level: 3
       damage: 2
       atkSpeed: 0.75
-      range: 5.5
+      range: 5
     - level: 4
-      damage: 2
+      damage: 3
       atkSpeed: 1
-      range: 6
+      range: 5.5
     bullet: {fileID: 5106783021055957943, guid: 7cfa7d544d4ebae4bad30715523bf526, type: 3}
     ingredientData:
     - type: 0

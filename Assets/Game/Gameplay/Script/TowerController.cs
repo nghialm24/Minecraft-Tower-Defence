@@ -36,6 +36,8 @@ public class TowerController : MonoBehaviour
     {
         if(towerLevel == 0 )
             return;
+        if(delayAtk > 0)
+            delayAtk -= Time.deltaTime;
         if (target != null)
         {
             distance = Vector3.Distance(target.transform.position, firePos.position);
@@ -46,7 +48,8 @@ public class TowerController : MonoBehaviour
             }
             else
             {
-                Attack(target.transform);
+                if(delayAtk <= 0)
+                    Attack(target.transform);
             }
         }
         else
@@ -116,15 +119,10 @@ public class TowerController : MonoBehaviour
 
     private void Attack(Transform tg)
     {
-        if(delayAtk > 0)
-            delayAtk -= Time.deltaTime;
-        else
-        {
-            var b = Instantiate(_dataConfig.bullet);
-            b.transform.position = firePos.position;
-            //b.transform.DOMove(tg.transform.position + new Vector3(0, 0, -0.5f), 0.7f);
-            b.GetComponent<Bullet>().Init(damage,tg);
-            delayAtk = atkSpeed;
-        }
+        var b = Instantiate(_dataConfig.bullet);
+        b.transform.position = firePos.position;
+        //b.transform.DOMove(tg.transform.position + new Vector3(0, 0, -0.5f), 0.7f);
+        b.GetComponent<Bullet>().Init(damage,tg);
+        delayAtk = atkSpeed;
     }
 }

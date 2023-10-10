@@ -17,10 +17,9 @@ namespace Funzilla
 		[SerializeField] bool isTest;
 		[SerializeField] string levelTest;
 		[SerializeField] private CinemachineVirtualCamera cam1;
-		[SerializeField] private CinemachineVirtualCamera cam2;
 		[SerializeField] private float countDown;
-		[SerializeField] private TextMeshProUGUI countDownTxt;
 		[SerializeField] private GameObject joy;
+		[SerializeField] private GameObject arrow;
 		private enum State
 		{
 			Init,
@@ -35,7 +34,7 @@ namespace Funzilla
 		internal Level Level { get; private set; }
 		internal static int CoinsEarned;
 		public DataConfigSO dataConfigSO;
-		public ItemCollection itemCollection;
+		public DataEnemySO dataEnemySO;
 		private void Init()
 		{
 			if (!needLoad)
@@ -60,7 +59,7 @@ namespace Funzilla
 			}
 			
 			// Hide splash screen after game is initialized
-			levelText.text = $"Level {Profile.Level}";
+			levelText.text = $"WORLD {Profile.Level}";
 			SceneManager.HideLoading();
 		}
 
@@ -107,15 +106,16 @@ namespace Funzilla
 				case State.Init:
 					break;
 				case State.Play:
-					cam2.gameObject.SetActive(true);
-					cam1.gameObject.SetActive(false);
-					joy.gameObject.SetActive(false);
-					DOVirtual.DelayedCall(5f, () =>
-					{
-						cam1.gameObject.SetActive(true);
-						cam2.gameObject.SetActive(false);
-						joy.gameObject.SetActive(true);
-					});
+					//arrow.SetActive(false);
+					// cam2.gameObject.SetActive(true);
+					// cam1.gameObject.SetActive(false);
+					// joy.gameObject.SetActive(false);
+					// DOVirtual.DelayedCall(5f, () =>
+					// {
+					// 	cam1.gameObject.SetActive(true);
+					// 	cam2.gameObject.SetActive(false);
+					// 	joy.gameObject.SetActive(true);
+					// });
 					//Analytics.LogLevelStartEvent();
 					break;
 				case State.Win:

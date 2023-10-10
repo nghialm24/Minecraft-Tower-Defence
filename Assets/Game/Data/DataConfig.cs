@@ -36,6 +36,7 @@ public class LevelData
 {
     public int levelID;
     public float delayPerWave = 15.0f;
+    public List<EnemyDelay> listEnemyDelay;
 }
 
 [System.Serializable]
@@ -45,4 +46,12 @@ public class TowerData
     public int damage;
     public float atkSpeed;
     public float range;
+}
+
+[System.Serializable]
+public class EnemyDelay
+{
+    public TypeEnemy typeEnemy;
+    public float timeDelay;
+    public int trans;
 }

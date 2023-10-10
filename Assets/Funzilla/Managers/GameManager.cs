@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 //using Facebook.Unity;
 using UnityEngine;
-using Firebase;
-using Firebase.Analytics;
+// using Firebase;
+// using Firebase.Analytics;
 using GameAnalyticsSDK;
 
 namespace Funzilla

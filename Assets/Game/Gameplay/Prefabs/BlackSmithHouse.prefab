@@ -576,6 +576,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: cdf1b7aa61d21ed4498ed590e86633a1, type: 3}
     - target: {fileID: 3100167236431457518, guid: b662ff5398e7f0e4e8e23e2985bde16d, type: 3}
+      propertyPath: typeProduct
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3100167236431457518, guid: b662ff5398e7f0e4e8e23e2985bde16d, type: 3}
       propertyPath: blackSmithController
       value: 
       objectReference: {fileID: 9196946283094468673}

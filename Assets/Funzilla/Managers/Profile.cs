@@ -28,7 +28,7 @@ namespace Funzilla
 			[SerializeField] internal int currentSkin;
 			
 			// 
-			[SerializeField] internal int round = 0;
+			[SerializeField] internal int round;
 		}
 
 		private UserData _data;
@@ -135,7 +135,7 @@ namespace Funzilla
 			}
 		}
 		
-		internal static int CurrentRounde
+		internal static int CurrentRound
 		{
 			get => Instance._data?.round ?? 0;
 			set

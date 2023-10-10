@@ -80,30 +80,24 @@ public class BeController : MonoBehaviour
         nameBuilding.transform.position = transform.position + Vector3.forward*4;
     }
     
-    public void BornTree(int id)
+    public void BornTree(int id, Transform pos)
     {
         if (id == 1)
         {
-            foreach (var pos in listPos1)
-            {
-                var tree = Instantiate(Tree);
-                tree.transform.parent = forest1;
-                tree.transform.position = pos.transform.position;
-                listTree1.Add(tree);
-                tree.Init(1,this);
-            }
+            var tree = Instantiate(Tree);
+            tree.transform.parent = forest1;
+            tree.transform.position = pos.transform.position;
+            listTree1.Add(tree);
+            tree.Init(1,this);
         }
         
         if (id == 2)
         {
-            foreach (var pos in listPos2)
-            {
-                var tree = Instantiate(Tree);
-                tree.transform.parent = forest2;
-                tree.transform.position = pos.transform.position;
-                listTree2.Add(tree);
-                tree.Init(2,this);
-            }
+            var tree = Instantiate(Tree);
+            tree.transform.parent = forest2;
+            tree.transform.position = pos.transform.position;
+            listTree2.Add(tree);
+            tree.Init(2,this);
         }
     }
 

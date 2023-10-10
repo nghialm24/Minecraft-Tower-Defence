@@ -609,7 +609,7 @@ MonoBehaviour:
   - {fileID: 7009308956260067779}
   blackSmithController: {fileID: 0}
   fusionHouseController: {fileID: 0}
-  delay: 5
+  delay: 0.2
   typeProduct: 0
 --- !u!1 &8516249237881092211
 GameObject:

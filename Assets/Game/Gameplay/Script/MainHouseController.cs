@@ -1,15 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class datacontroller : MonoBehaviour
+public class MainHouseController : MonoBehaviour
 {
-    internal static datacontroller Instance { get; private set; }
-
-    public DataConfigSO dataConfigSO;
+    [SerializeField] private GameObject canvasHP;
+    
     void Start()
     {
-        
+        canvasHP.SetActive(false);
     }
 
     // Update is called once per frame
@@ -17,4 +17,5 @@ public class datacontroller : MonoBehaviour
     {
         
     }
+
 }

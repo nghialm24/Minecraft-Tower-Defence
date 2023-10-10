@@ -16,7 +16,11 @@ public class UpgradesController : MonoBehaviour
     [SerializeField] private TextMeshPro nameBuilding;
     [SerializeField] float delay;
     public int id;
-    
+    [SerializeField] private bool quest3;
+    [SerializeField] private bool quest6;
+    [SerializeField] private bool quest8;
+    [SerializeField] private bool quest11;
+    [SerializeField] private bool quest13;
     public enum TypeBuilding
     {
         tower,
@@ -35,15 +39,41 @@ public class UpgradesController : MonoBehaviour
         {
             case TypeBuilding.tower:
                 towerController.UpdateTower(id);
+                if (quest3)
+                {
+                    Tutorial.Instance.Quest3();
+                    quest3 = false;
+                }
+                if (quest6)
+                {
+                    Tutorial.Instance.Quest6();
+                    quest6 = false;
+                }
+
+                if (quest13)
+                {
+                    Tutorial.Instance.Quest13();
+                    quest13 = false;
+                }
                 break;
             case TypeBuilding.be:
                 beController.UpdateBe();
                 break;
             case TypeBuilding.bsh:
                 blackSmithController.UpdateBlackSmith();
+                if (quest8)
+                {
+                    Tutorial.Instance.Quest8();
+                    quest8 = false;
+                }
                 break;
             case TypeBuilding.fh:
                 fusionHouseController.UpdateFusionHouse();
+                if (quest11)
+                {
+                    Tutorial.Instance.Quest11();
+                    quest11 = false;
+                }
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -69,6 +99,7 @@ public class UpgradesController : MonoBehaviour
                                     other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.wood, transform);
                                     ing.amount -= 1;
                                     delay = 0.2f;
+                                    ing.UpdateAmount();
                                 }
                             }
                             break;
@@ -82,6 +113,7 @@ public class UpgradesController : MonoBehaviour
                                     other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.stone, transform);
                                     ing.amount -= 1;
                                     delay = 0.2f;
+                                    ing.UpdateAmount();
                                 }
                             }
                             break;
@@ -95,6 +127,7 @@ public class UpgradesController : MonoBehaviour
                                     other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.skin, transform);
                                     ing.amount -= 1;
                                     delay = 0.2f;
+                                    ing.UpdateAmount();
                                 }
                             }
                             break;
@@ -108,6 +141,7 @@ public class UpgradesController : MonoBehaviour
                                     other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.iron, transform);
                                     ing.amount -= 1;
                                     delay = 0.2f;
+                                    ing.UpdateAmount();
                                 }
                             }
                             break;
@@ -121,6 +155,7 @@ public class UpgradesController : MonoBehaviour
                                     other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.diamond, transform);
                                     ing.amount -= 1;
                                     delay = 0.2f;
+                                    ing.UpdateAmount();
                                 }
                             }
                             break;
@@ -134,6 +169,7 @@ public class UpgradesController : MonoBehaviour
                                     other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.woodVip, transform);
                                     ing.amount -= 1;
                                     delay = 0.2f;
+                                    ing.UpdateAmount();
                                 }
                             }
                             break;                        
@@ -145,9 +181,9 @@ public class UpgradesController : MonoBehaviour
                                 else
                                 {
                                     other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.ironVip, transform);
-
                                     ing.amount -= 1;
                                     delay = 0.2f;
+                                    ing.UpdateAmount();
                                 }
                             }
                             break;                        
@@ -159,9 +195,9 @@ public class UpgradesController : MonoBehaviour
                                 else
                                 {
                                     other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.skinArmor, transform);
-
                                     ing.amount -= 1;
                                     delay = 0.2f;
+                                    ing.UpdateAmount();
                                 }
                             }
                             break;                        
@@ -175,6 +211,7 @@ public class UpgradesController : MonoBehaviour
                                     other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.ironArmor, transform);
                                     ing.amount -= 1;
                                     delay = 0.2f;
+                                    ing.UpdateAmount();
                                 }
                             }
                             break;

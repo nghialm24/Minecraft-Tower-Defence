@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
         {
             if(!target.gameObject.activeSelf)
                 gameObject.SetActive(false);
-            transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime*5);
+            transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime*25);
         }else gameObject.SetActive(false);
     }
 

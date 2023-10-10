@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public bool isFull;
     [SerializeField] private TextMeshProUGUI current;
     [SerializeField] private TextMeshProUGUI amount;
+    [SerializeField] private Tutorial Tuto;
+    public bool tutorial;
     public enum PlayerState
     {
         Idle,
@@ -132,6 +134,7 @@ public class PlayerController : MonoBehaviour
     
     private void Farm()
     {
+        anim.SetTrigger("Mining");
     }
     
     private void Attack()
@@ -195,14 +198,7 @@ public class PlayerController : MonoBehaviour
         {
             if(listBlock.Count > 0)
             {
-                //listBlock[^1].transform.position = Vector3.Lerp(transform.position, other.transform.position, Time.deltaTime);
                 RemoveBlock(listBlock[^1]._typeItem, other.transform);
-                // listBlock[^1].transform.DOMove(other.transform.position, 0.5f).OnComplete(() =>
-                // {
-                //     listBlock[^1].gameObject.SetActive(false);
-                //     listBlock.Remove(listBlock[^1]);
-                //     ReSort();
-                // });
             }
         }
     }
@@ -234,6 +230,10 @@ public class PlayerController : MonoBehaviour
                 block.transform.localEulerAngles = Vector3.zero;
                 listBlock.Add(block);
                 current.text = listBlock.Count.ToString();
+                if (tutorial)
+                {
+                    Tuto.UpItem(block._typeItem);
+                }
             });
             s.isBusy = true;
             break;

@@ -37,7 +37,7 @@ public class BlackSmithController : MonoBehaviour
         nameBuilding.transform.position = transform.position + Vector3.forward*4;
     }
 
-    public void ProduceWoodArmor()
+    public void ProduceSkinArmor()
     {
         var sA = Instantiate(skinArmor);
         sA.transform.position = pos1.position;

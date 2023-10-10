@@ -94,15 +94,19 @@ public class SlaveController : MonoBehaviour
         {
             case 1:
             {
-                if (beController.listTree1.Count == 0)
-                    beController.BornTree(1);
-                else target = beController.listTree1[0];
+                // if (beController.listTree1.Count == 0)
+                //     beController.BornTree(1);
+                // else target = beController.listTree1[0];
+                if (target != null)
+                    target = beController.listTree1[0];
                 break;
             }
             case 2:
-                if (beController.listTree2.Count == 0)
-                    beController.BornTree(2);
-                else target = beController.listTree2[0];
+                // if (beController.listTree2.Count == 0)
+                //     beController.BornTree(2);
+                // else target = beController.listTree2[0];
+                if (target != null)
+                    target = beController.listTree2[0];
                 break;
         }
 

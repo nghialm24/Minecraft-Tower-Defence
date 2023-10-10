@@ -29,13 +29,19 @@ public class Ingredient : MonoBehaviour
 
     private void Start()
     {
+        current = amount;
         amountTxt.text = amount + "x";
         var sp = _dataConfig.ingredientData.First(x => x.type == type);
         sprite.sprite = sp.avatar;
     }
 
     // Update is called once per frame
-    private void Update()
+    // private void Update()
+    // {
+    //     amountTxt.text = amount + "x";
+    // }
+
+    public void UpdateAmount()
     {
         amountTxt.text = amount + "x";
     }

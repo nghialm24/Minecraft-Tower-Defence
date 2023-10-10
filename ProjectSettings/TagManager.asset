@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Start
   - Sell
+  - MainHouse
   layers:
   - Default
   - TransparentFX

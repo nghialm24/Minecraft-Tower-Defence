@@ -1,103 +1,205 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Dreamteck.Splines;
 using Funzilla;
 using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    [SerializeField] private EnemyController enemy;
+    private DataConfig dataConfig => Gameplay.Instance.dataConfigSO.DataConfig;
+    [SerializeField] private Row row;
     [SerializeField] List<SplineComputer> listSplineComputer;
-    public List<EnemyController> listEnemy1;
-    public List<EnemyController> listEnemy2;
-    [SerializeField] private float countDownSpawn;
-    [SerializeField] private float countDownPerWay;
+    [SerializeField] private List<Row> listRow;
+    [SerializeField] private List<Row> listRow2;
     [SerializeField] private bool isx2;
-    private int currentWave;
-    [SerializeField] private List<int> wave;
     [SerializeField] private GameObject start;
     [SerializeField] private float startTime;
+    private int round;
+    private float delaySpawn;
+    private float delaySpawn2;
+    private int index;
+    private int index2;
+    private bool isSpawn;
+    private bool isSpawn2;
+    [SerializeField] private bool quest4;
+    [SerializeField] private bool quest7;
+    
     void Start()
     {
-        //SpawnEnemy();
+        
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (startTime > 0) return;
-        if (wave[currentWave] > 0)
+        if (!isSpawn)
         {
-            if(isx2)
+            if(!isx2)
             {
-                if (countDownSpawn > 0)
-                    countDownSpawn -= Time.deltaTime;
-                else
+
+                if (listRow.Count <= 0 && index != 0)
                 {
-                    countDownSpawn = 5;
-                    SpawnEnemy1();
-                    SpawnEnemy2();
-                    wave[currentWave] -= 1;
+                    SetupNextRound();
                 }
             }
             else
             {
-                if (countDownSpawn > 0)
-                    countDownSpawn -= Time.deltaTime;
-                else
+                if (listRow.Count <= 0 && index != 0 && listRow2.Count <= 0 && index2 != 0)
                 {
-                    countDownSpawn = 5;
-                    SpawnEnemy1();
-                    wave[currentWave] -= 1;
+                    SetupNextRound();
                 }
             }
         }
         else
         {
-            if(currentWave < wave.Count - 1)
+            if(!isx2)
             {
-                if (countDownPerWay > 0)
-                    countDownPerWay -= Time.deltaTime;
+                if (delaySpawn > 0)
+                    delaySpawn -= Time.deltaTime;
                 else
                 {
-                    currentWave++;
-                    countDownPerWay = 15;
+                    SpawnEnemy1();
                 }
-            }else Gameplay.Instance.Win();
+            }
+            else
+            {
+                if(isSpawn)
+                {
+                    if (delaySpawn > 0)
+                        delaySpawn -= Time.deltaTime;
+                    else
+                    {
+                        SpawnEnemy1();
+                    }
+                }
+
+                if (isSpawn2)
+                {
+                    if (delaySpawn2 > 0)
+                        delaySpawn2 -= Time.deltaTime;
+                    else
+                    {
+                        SpawnEnemy2();
+                    }
+                }
+            }
         }
-    }
+    } 
 
     private void SpawnEnemy1()
     {
-        var e = Instantiate(enemy);
-        e.transform.parent = transform;
-        e.transform.position = transform.position;
-        e.Init(listSplineComputer[0]);
-        listEnemy1.Add(e);
-    }    
+        var r = Instantiate(row,transform.position,Quaternion.identity);
+        r.transform.parent = Gameplay.Instance.transform;
+        listRow.Add(r);
+        var e = dataConfig.worldData[Profile.Level - 1].levelData[round].listEnemyDelay[index];
+        r.Init(listSplineComputer[0], e.typeEnemy, e.trans, this, 1);
+        if (index < dataConfig.worldData[Profile.Level - 1].levelData[round].listEnemyDelay.Count - 1)
+        {
+            index++;
+        }
+        else
+        {
+            index = 1;
+            isSpawn = false;
+        }
+        delaySpawn = e.timeDelay;
+    }
     
     private void SpawnEnemy2()
     {
-        var e = Instantiate(enemy);
-        e.transform.parent = transform;
-        e.transform.position = transform.position;
-        e.Init(listSplineComputer[1]);
-        listEnemy2.Add(e);
+        var r = Instantiate(row,transform.position,Quaternion.identity);
+        r.transform.parent = Gameplay.Instance.transform;
+        listRow2.Add(r);
+        var e = dataConfig.worldData[Profile.Level].levelData[round].listEnemyDelay[index2];
+        r.Init(listSplineComputer[1], e.typeEnemy, e.trans, this, 2);
+        if (index2 < dataConfig.worldData[Profile.Level].levelData[round].listEnemyDelay.Count - 1)
+        {
+            index2++;
+        }
+        else
+        {
+            index2 = 1;
+            isSpawn2 = false;
+        }
+        delaySpawn2 = e.timeDelay;
     }
 
+    private void SetupSpawn()
+    {
+        isSpawn = true;
+        isSpawn2 = true;
+        index = 0;
+        index2 = 0;
+        //round = dataConfig.worldData[Profile.Level-1].levelData.Count;
+        if(!isx2)
+        {
+            if (dataConfig.worldData[Profile.Level - 1].levelData.Count != 0)
+            {
+                delaySpawn = 1;
+            }
+        }
+        else
+        {
+            if (dataConfig.worldData[Profile.Level - 1].levelData.Count != 0)
+            {
+                delaySpawn = 1;
+            }
+            if (dataConfig.worldData[Profile.Level].levelData.Count != 0)
+            {
+                delaySpawn = 1;
+            }
+        }
+    }
+
+    private void SetupNextRound()
+    {
+        if (quest4)
+        {
+            if (round == 0)
+            {
+                Tutorial.Instance.Quest4();
+                quest4 = false;
+            }
+        }
+        
+        if(quest7)
+        {
+            if (round == 1)
+            {
+                Tutorial.Instance.Quest7();
+                quest7 = false;
+            }
+        }
+        start.SetActive(true);
+        GetComponent<BoxCollider>().enabled = true;
+        startTime = 3;
+        round++;
+        index = 0;
+        index2 = 0;
+        if(round >=  dataConfig.worldData[Profile.Level - 1].levelData.Count)
+            Gameplay.Instance.Win();
+    }
+
+    public void RemoveFormList(Row r, int id)
+    {
+        if(id == 1)
+            listRow.Remove(r);
+        else if(id == 2) listRow2.Remove(r);
+    }
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player")) return;
+        if(startTime > 0)
+            startTime -= Time.deltaTime;
+        else
         {
-            if(startTime > 0)
-                startTime -= Time.deltaTime;
-            else
-            {
-                
-                start.SetActive(false);
-                GetComponent<BoxCollider>().enabled = false;
-            }
+            SetupSpawn();
+            start.SetActive(false);
+            GetComponent<BoxCollider>().enabled = false;
+            Gameplay.Instance.Play();
         }
     }
 }

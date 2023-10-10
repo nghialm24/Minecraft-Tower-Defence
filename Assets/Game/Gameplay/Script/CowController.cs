@@ -40,6 +40,7 @@ public class CowController : MonoBehaviour
         {
             if(count == 1)
             {
+                other.GetComponent<PlayerController>().ChangeState(PlayerController.PlayerState.Idle);
                 gameObject.SetActive(false);
             }
 
