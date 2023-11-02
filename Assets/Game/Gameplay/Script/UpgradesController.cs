@@ -19,8 +19,7 @@ public class UpgradesController : MonoBehaviour
     [SerializeField] private bool quest3;
     [SerializeField] private bool quest6;
     [SerializeField] private bool quest8;
-    [SerializeField] private bool quest11;
-    [SerializeField] private bool quest13;
+    [SerializeField] private bool quest10;
     public enum TypeBuilding
     {
         tower,
@@ -49,11 +48,10 @@ public class UpgradesController : MonoBehaviour
                     Tutorial.Instance.Quest6();
                     quest6 = false;
                 }
-
-                if (quest13)
+                if (quest10)
                 {
-                    Tutorial.Instance.Quest13();
-                    quest13 = false;
+                    Tutorial.Instance.Quest10();
+                    quest10 = false;
                 }
                 break;
             case TypeBuilding.be:
@@ -61,18 +59,13 @@ public class UpgradesController : MonoBehaviour
                 break;
             case TypeBuilding.bsh:
                 blackSmithController.UpdateBlackSmith();
+                break;
+            case TypeBuilding.fh:
+                fusionHouseController.UpdateFusionHouse();
                 if (quest8)
                 {
                     Tutorial.Instance.Quest8();
                     quest8 = false;
-                }
-                break;
-            case TypeBuilding.fh:
-                fusionHouseController.UpdateFusionHouse();
-                if (quest11)
-                {
-                    Tutorial.Instance.Quest11();
-                    quest11 = false;
                 }
                 break;
             default:
@@ -83,11 +76,156 @@ public class UpgradesController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            foreach (var ing in listIngredient)
+            for (int i = 0; i < listIngredient.Count; i++)
             {
-                if (ing.amount > 0)
+                if (listIngredient[i].amount > 0)
                 {
-                    switch (ing.type)
+                    if (listIngredient[i].type == Ingredient.TypeItem.wood)
+                    {
+                        if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.wood) >= 1)
+                        {
+                            if (delay > 0)
+                                delay -= Time.deltaTime;
+                            else
+                            {
+                                other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.wood, transform);
+                                listIngredient[i].amount -= 1;
+                                delay = 0.2f;
+                                listIngredient[i].UpdateAmount();
+                            }
+                        }
+                        else continue;
+                    }
+                    if (listIngredient[i].type == Ingredient.TypeItem.stone)
+                    {
+                        if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.stone) >= 1)
+                        {
+                            if (delay > 0)
+                                delay -= Time.deltaTime;
+                            else
+                            {
+                                other.GetComponent<PlayerController>()
+                                    .RemoveBlock(CollectedItem.TypeItem.stone, transform);
+                                listIngredient[i].amount -= 1;
+                                delay = 0.2f;
+                                listIngredient[i].UpdateAmount();
+                            }
+                        }
+                        else continue;
+                    }
+                    if (listIngredient[i].type == Ingredient.TypeItem.skin)
+                    {
+                        if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.skin) >= 1)
+                        {
+                            if (delay > 0)
+                                delay -= Time.deltaTime;
+                            else
+                            {
+                                other.GetComponent<PlayerController>()
+                                    .RemoveBlock(CollectedItem.TypeItem.skin, transform);
+                                listIngredient[i].amount -= 1;
+                                delay = 0.2f;
+                                listIngredient[i].UpdateAmount();
+                            }
+                        }
+                        else continue;
+                    }
+                    if (listIngredient[i].type == Ingredient.TypeItem.iron)
+                    {
+                        if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.iron) >= 1)
+                        {
+                            if (delay > 0)
+                                delay -= Time.deltaTime;
+                            else
+                            {
+                                other.GetComponent<PlayerController>()
+                                    .RemoveBlock(CollectedItem.TypeItem.iron, transform);
+                                listIngredient[i].amount -= 1;
+                                delay = 0.2f;
+                                listIngredient[i].UpdateAmount();
+                            }
+                        }
+                        else continue;
+                    }
+                    if (listIngredient[i].type == Ingredient.TypeItem.diamond)
+                    {
+                        if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.diamond) >= 1)
+                        {
+                            if (delay > 0)
+                                delay -= Time.deltaTime;
+                            else
+                            {
+                                other.GetComponent<PlayerController>()
+                                    .RemoveBlock(CollectedItem.TypeItem.diamond, transform);
+                                listIngredient[i].amount -= 1;
+                                delay = 0.2f;
+                                listIngredient[i].UpdateAmount();
+                            }
+                        }
+                        else continue;
+                    }
+                    if (listIngredient[i].type == Ingredient.TypeItem.woodVip)
+                    {
+                        if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.woodVip) >= 1)
+                        {
+                            if (delay > 0)
+                                delay -= Time.deltaTime;
+                            else
+                            {
+                                other.GetComponent<PlayerController>()
+                                    .RemoveBlock(CollectedItem.TypeItem.woodVip, transform);
+                                listIngredient[i].amount -= 1;
+                                delay = 0.2f;
+                                listIngredient[i].UpdateAmount();
+                            }
+                        }
+                        else continue;
+                    }
+                    if (listIngredient[i].type == Ingredient.TypeItem.stoneVip)
+                    {
+                        if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.stoneVip) >= 1)
+                        {
+                            if (delay > 0)
+                                delay -= Time.deltaTime;
+                            else
+                            {
+                                other.GetComponent<PlayerController>()
+                                    .RemoveBlock(CollectedItem.TypeItem.stoneVip, transform);
+                                listIngredient[i].amount -= 1;
+                                delay = 0.2f;
+                                listIngredient[i].UpdateAmount();
+                            }
+                        }
+                        else continue;
+                    }
+                    if (listIngredient[i].type == Ingredient.TypeItem.woodVip2)
+                    {
+                        if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.woodVip2) >= 1)
+                        {
+                            if (delay > 0)
+                                delay -= Time.deltaTime;
+                            else
+                            {
+                                other.GetComponent<PlayerController>()
+                                    .RemoveBlock(CollectedItem.TypeItem.woodVip2, transform);
+                                listIngredient[i].amount -= 1;
+                                delay = 0.2f;
+                                listIngredient[i].UpdateAmount();
+                            }
+                        }
+                        else continue;
+                    }
+                    break;
+                }
+                listIngredient[i].gameObject.SetActive(false);
+                listIngredient.Remove(listIngredient[i]);
+                CheckUpdate();
+            }
+        }
+    }
+}
+/*
+ switch (ing.type)
                     {
                         case Ingredient.TypeItem.wood:
                             if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.wood) >= 1)
@@ -173,42 +311,28 @@ public class UpgradesController : MonoBehaviour
                                 }
                             }
                             break;                        
-                        case Ingredient.TypeItem.ironVip:
-                            if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.ironVip) >= 1)
+                        case Ingredient.TypeItem.stoneVip:
+                            if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.stoneVip) >= 1)
                             {
                                 if (delay > 0)
                                     delay -= Time.deltaTime;
                                 else
                                 {
-                                    other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.ironVip, transform);
+                                    other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.stoneVip, transform);
                                     ing.amount -= 1;
                                     delay = 0.2f;
                                     ing.UpdateAmount();
                                 }
                             }
                             break;                        
-                        case Ingredient.TypeItem.skinArmor:
-                            if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.skinArmor) >= 1)
+                        case Ingredient.TypeItem.woodVip2:
+                            if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.woodVip2) >= 1)
                             {
                                 if (delay > 0)
                                     delay -= Time.deltaTime;
                                 else
                                 {
-                                    other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.skinArmor, transform);
-                                    ing.amount -= 1;
-                                    delay = 0.2f;
-                                    ing.UpdateAmount();
-                                }
-                            }
-                            break;                        
-                        case Ingredient.TypeItem.ironArmor:
-                            if (other.GetComponent<PlayerController>().CountItem(CollectedItem.TypeItem.ironArmor) >= 1)
-                            {
-                                if (delay > 0)
-                                    delay -= Time.deltaTime;
-                                else
-                                {
-                                    other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.ironArmor, transform);
+                                    other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.woodVip2, transform);
                                     ing.amount -= 1;
                                     delay = 0.2f;
                                     ing.UpdateAmount();
@@ -217,16 +341,4 @@ public class UpgradesController : MonoBehaviour
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();
-                    }
-                }
-                else
-                {
-                    ing.gameObject.SetActive(false);
-                    listIngredient.Remove(ing);
-                    CheckUpdate();
-                    break;
-                }
-            }
-        }
-    }
-}
+*/

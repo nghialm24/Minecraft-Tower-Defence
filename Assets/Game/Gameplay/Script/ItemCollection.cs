@@ -23,11 +23,9 @@ public class ItemCollection : MonoBehaviour
                 break;
             case 5: typeItem = CollectedItem.TypeItem.woodVip;
                 break;
-            case 6: typeItem = CollectedItem.TypeItem.ironVip;
+            case 6: typeItem = CollectedItem.TypeItem.stoneVip;
                 break;
-            case 7: typeItem = CollectedItem.TypeItem.skinArmor;
-                break;
-            case 8: typeItem = CollectedItem.TypeItem.ironArmor;
+            case 7: typeItem = CollectedItem.TypeItem.woodVip2;
                 break;
         }
     }
@@ -63,7 +61,6 @@ public class ItemCollection : MonoBehaviour
     // public int skinArmor;
     // [SerializeField] private TextMeshProUGUI skinArmorTxt;    
     // //--------------
-    [SerializeField] private GameObject ironArmorUI;
     // public int ironArmor;
     // [SerializeField] private TextMeshProUGUI ironArmorTxt;
     // private void Start()
@@ -172,27 +169,20 @@ public class ItemCollection : MonoBehaviour
                 w.GetComponent<CollectedItem>().Init(CollectedItem.TypeItem.woodVip);
 
             }
-        }else if (typeItem == CollectedItem.TypeItem.ironVip)
+        }else if (typeItem == CollectedItem.TypeItem.stoneVip)
         {
             for (int i = 0; i < 10; i++)
             {
                 var w = Instantiate(ironVipUI,Gameplay.Instance.transform);                
-                w.GetComponent<CollectedItem>().Init(CollectedItem.TypeItem.ironVip);
+                w.GetComponent<CollectedItem>().Init(CollectedItem.TypeItem.stoneVip);
 
             }
-        }else if (typeItem == CollectedItem.TypeItem.skinArmor)
+        }else if (typeItem == CollectedItem.TypeItem.woodVip2)
         {
             for (int i = 0; i < 10; i++)
             {
                 var w = Instantiate(skinArmorUI,Gameplay.Instance.transform);
-                w.GetComponent<CollectedItem>().Init(CollectedItem.TypeItem.skinArmor);
-            }
-        }else if (typeItem == CollectedItem.TypeItem.ironArmor)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                var w = Instantiate(ironArmorUI,Gameplay.Instance.transform);
-                w.GetComponent<CollectedItem>().Init(CollectedItem.TypeItem.ironArmor);
+                w.GetComponent<CollectedItem>().Init(CollectedItem.TypeItem.woodVip2);
             }
         }
     }

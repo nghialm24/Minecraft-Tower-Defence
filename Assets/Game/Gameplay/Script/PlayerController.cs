@@ -113,8 +113,8 @@ public class PlayerController : MonoBehaviour
 
     private void Idle()
     {
-        anim.SetTrigger("Idle");
         GetComponent<SphereCollider>().isTrigger = true;
+        anim.SetTrigger("Idle");
     }
 
     private void Run()
@@ -175,6 +175,7 @@ public class PlayerController : MonoBehaviour
             transform.LookAt(other.transform);
             ChangeState(PlayerState.Farm);
             TypeFarm(0);
+            Debug.Log("stone");
         }
         
         if (other.CompareTag("Tree"))
@@ -185,6 +186,30 @@ public class PlayerController : MonoBehaviour
         }
         
         if (other.CompareTag("Cow"))
+        {
+            transform.LookAt(other.transform);
+            ChangeState(PlayerState.Farm);
+            TypeFarm(0);
+        }
+    }
+    
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.CompareTag("StoneMineral"))
+        {
+            transform.LookAt(other.transform);
+            ChangeState(PlayerState.Farm);
+            TypeFarm(0);
+        }
+        
+        if (other.collider.CompareTag("Tree"))
+        {
+            transform.LookAt(other.transform);
+            ChangeState(PlayerState.Farm);
+            TypeFarm(1);
+        }
+        
+        if (other.collider.CompareTag("Cow"))
         {
             transform.LookAt(other.transform);
             ChangeState(PlayerState.Farm);

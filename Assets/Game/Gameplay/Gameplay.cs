@@ -104,6 +104,10 @@ namespace Funzilla
 			switch (_state)
 			{
 				case State.Init:
+					if (Profile.Tutorial)
+					{
+						Profile.Tutorial = false;
+					}
 					break;
 				case State.Play:
 					//arrow.SetActive(false);
@@ -121,6 +125,7 @@ namespace Funzilla
 				case State.Win:
 					//Analytics.LogLevelCompleteEvent();
 					SceneManager.OpenScene(SceneID.WinUI);
+					Profile.ListSaveBuilding.Clear();
 					Profile.Level++;
 					break;
 				case State.Lose:

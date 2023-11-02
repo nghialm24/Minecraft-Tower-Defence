@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Funzilla;
 using TMPro;
 using UnityEngine;
 
@@ -8,14 +9,23 @@ public class FusionHouseController : MonoBehaviour
     private int fhLevel;
     [SerializeField] private List<GameObject> listFhLevel;
     [SerializeField] private CollectedItem woodVip;
-    [SerializeField] private CollectedItem ironVip;
+    [SerializeField] private CollectedItem woodVip2;
     [SerializeField] private Transform pos1;
     [SerializeField] private Transform pos2;
     [SerializeField] private TextMeshPro nameBuilding;
+    [SerializeField] private GameObject upgrade1;
 
-    void Start()
+    private void Start()
     {
-        
+        foreach (var t in Profile.ListSaveBuilding)
+        {
+            if (t.indexSlot == GetComponent<SaveBuilding>().index)
+            {
+                fhLevel = (int) t.currentLevel - 1;
+                upgrade1.SetActive(false);
+                UpdateFusionHouse();
+            }
+        }
     }
 
     // Update is called once per frame
@@ -38,6 +48,8 @@ public class FusionHouseController : MonoBehaviour
 
         nameBuilding.text = "Fusion House " + fhLevel;
         nameBuilding.transform.position = transform.position + Vector3.forward*4;
+        
+        Profile.SaveBuilding(GetComponent<SaveBuilding>().index, fhLevel);
     }
     
     public void ProduceWoodVip()
@@ -47,10 +59,10 @@ public class FusionHouseController : MonoBehaviour
         wV.Init(CollectedItem.TypeItem.woodVip);
     }
 
-    public void ProduceIronVip()
+    public void ProduceWoodVip2()
     {
-        var wI = Instantiate(ironVip);
+        var wI = Instantiate(woodVip2);
         wI.transform.position = pos2.position;
-        wI.Init(CollectedItem.TypeItem.ironVip);
+        wI.Init(CollectedItem.TypeItem.woodVip2);
     }
 }

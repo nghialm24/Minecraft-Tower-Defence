@@ -17,14 +17,25 @@ public class TowerController : MonoBehaviour
     [SerializeField] private EnemyController target;
     [SerializeField] private Transform firePos;
     [SerializeField] private GameObject sprite;
+    [SerializeField] private GameObject upgrade1;
     private float distance;
     private int damage;
     private float atkSpeed;
     private float delayAtk;
     private float range;
     private List<TowerData> _towerdata => _dataConfig.towerData;
+
     private void Start()
     {
+        foreach (var t in Profile.ListSaveBuilding)
+        {
+            if (t.indexSlot == GetComponent<SaveBuilding>().index)
+            {
+                towerLevel = (int) t.currentLevel - 1;
+                upgrade1.SetActive(false);
+                UpdateTower(0);
+            }
+        }
         for (int i = 0; i < listUp4.Count; i++)
         {
             listUp4[i].id = i;
@@ -106,6 +117,7 @@ public class TowerController : MonoBehaviour
             sprite.transform.localScale = new Vector3(tD.range*2,tD.range*2,tD.range*2);
             
         }
+        Profile.SaveBuilding(GetComponent<SaveBuilding>().index, towerLevel);
     }
 
     private void OnTriggerStay(Collider other)

@@ -58,7 +58,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     { 
         if(hp > 0)
-            currentHp.fillAmount = (float) hp / baseHp;
+            currentHp.fillAmount = hp / baseHp;
         else
         {
             //Destroy(gameObject);

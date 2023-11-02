@@ -14,6 +14,7 @@ public class Tutorial : MonoBehaviour
     private int countWood;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Image img;
+    [SerializeField] private Image iconItem;
 
     internal static Tutorial Instance;
     [SerializeField] private TextMeshProUGUI mission;
@@ -34,6 +35,10 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Transform posPlayer;
     [SerializeField] private GameObject text24;
     [SerializeField] private PlayerController playerController;
+    [SerializeField] private List<Sprite> listIcon;
+    private bool quest1;
+    private bool quest4;
+    private bool quest8;
     //[SerializeField] private GameObject arrow;
      private void Awake()
     {
@@ -49,18 +54,37 @@ public class Tutorial : MonoBehaviour
         this.bsh = bsh;
         this.fsh = fsh;
         this.allUpgrades = allUpgrades;
+        if (Profile.Tutorial)
+        {
+            allTower.SetActive(true);
+            bsh.SetActive(true);
+            fsh.SetActive(true);
+            playerController.tutorial = false;
+            panel.SetActive(false);
+            start.SetActive(true);
+            other.SetActive(true);
+            foreach (var u in allUpgrades)
+            {
+                u.SetActive(true);
+            }
+            gameObject.SetActive(false);
+        }
     }
     private void Start()
     {
+        Debug.Log(Profile.Tutorial);
         countWood = 0;
         img.fillAmount = (float)countWood / 10;
         text.text = countWood+"/10";
         if (Profile.Level == 1)
         {
-            DOVirtual.DelayedCall(2f, ()=>hand.SetActive(true));
-            panel.SetActive(true);
-            joy.SetActive(false);
-            playerController.tutorial = true;
+            if (!Profile.Tutorial)
+            {
+                DOVirtual.DelayedCall(2f, () => hand.SetActive(true));
+                panel.SetActive(true);
+                joy.SetActive(false);
+                playerController.tutorial = true;
+            }
         }else
         {
             playerController.tutorial = false;
@@ -70,34 +94,10 @@ public class Tutorial : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
-    {
-        // if(isDone)
-        // {
-        //     arrow.transform.LookAt(target);
-        // }
-        // else
-        // {
-        //     if (tree == null)
-        //         return;
-        //     if (tree.gameObject.activeSelf)
-        //     {
-        //         arrow.transform.LookAt(tree);
-        //     } 
-        //     else if (tree2.gameObject.activeSelf)
-        //     {
-        //         arrow.transform.LookAt(tree2);
-        //     }
-        //     else if (tree3.gameObject.activeSelf)
-        //     {
-        //         arrow.transform.LookAt(tree3);
-        //     }
-        // }
-    }
-    
+
     public void UpItem(CollectedItem.TypeItem type)
     {
-        if(type == CollectedItem.TypeItem.wood)
+        if(type == CollectedItem.TypeItem.wood && quest1)
         {
             if (countWood < 10)
             {
@@ -107,10 +107,11 @@ public class Tutorial : MonoBehaviour
                 if (countWood == 10)
                 {
                     Quest2();
+                    quest1 = false;
                 }
             }
         }
-        if(type == CollectedItem.TypeItem.stone)
+        if(type == CollectedItem.TypeItem.stone && quest4)
         {
             if (countWood < 10)
             {
@@ -120,45 +121,21 @@ public class Tutorial : MonoBehaviour
                 if (countWood == 10)
                 {
                     Quest5();
-                }
-            }
-        }        
-        if(type == CollectedItem.TypeItem.skin)
-        {
-            if (countWood < 8)
-            {
-                countWood++;
-                img.fillAmount = (float) countWood / 8;
-                text.text = countWood+"/8";
-                if (countWood == 8)
-                {
-                    Quest9();
-                }
-            }
-        }        
-        if(type == CollectedItem.TypeItem.skinArmor)
-        {
-            if (countWood < 1)
-            {
-                countWood++;
-                img.fillAmount = (float) countWood / 1;
-                text.text = countWood+"/1";
-                if (countWood == 1)
-                {
-                    Quest10();
+                    quest4 = false;
                 }
             }
         }
-        if(type == CollectedItem.TypeItem.woodVip)
+        if(type == CollectedItem.TypeItem.woodVip  && quest8)
         {
-            if (countWood < 10)
+            if (countWood < 5)
             {
                 countWood++;
-                img.fillAmount = (float) countWood / 10;
-                text.text = countWood+"/10";
-                if (countWood == 10)
+                img.fillAmount = (float) countWood / 5;
+                text.text = countWood+"/5";
+                if (countWood == 5)
                 {
-                    Quest12();
+                    Quest9();
+                    quest8 = false;
                 }
             }
         }   
@@ -186,6 +163,7 @@ public class Tutorial : MonoBehaviour
             });
         });
         mission.text = QuestText(2);
+        Profile.Tutorial = true;
     }
     
     public void Quest1()
@@ -222,6 +200,7 @@ public class Tutorial : MonoBehaviour
                     });
                 });
             });
+        quest1 = true;
     }
 
     public void Quest3()
@@ -252,6 +231,7 @@ public class Tutorial : MonoBehaviour
 
     public void Quest4()
     {
+        iconItem.sprite = listIcon[0];
         countWood = 0;
         img.fillAmount = (float) countWood / 10;
         text.text = countWood+"/10";
@@ -276,6 +256,7 @@ public class Tutorial : MonoBehaviour
             });
         });
         mission.text = QuestText(4);
+        quest4 = true;
     }
 
     private void Quest5()
@@ -311,7 +292,7 @@ public class Tutorial : MonoBehaviour
 
     public void Quest7()
     {
-        bsh.gameObject.SetActive(true);
+        fsh.gameObject.SetActive(true);
         text24.SetActive(false);
         cam2.transform.position = cam1.transform.position;
         joy.SetActive(false);
@@ -337,91 +318,31 @@ public class Tutorial : MonoBehaviour
 
     public void Quest8()
     {
+        iconItem.sprite = listIcon[1];
         countWood = 0;
-        img.fillAmount = (float) countWood / 8;
-        text.text = countWood+"/8";
-        text24.SetActive(false);
-        cam2.transform.position = cam1.transform.position;
-        joy.SetActive(false);
-        cam1.gameObject.SetActive(false);
-        cam2.gameObject.SetActive(true);
-        //arrow.transform.position = pos[6].position+ new Vector3(0, -8, +25);
-        cam2.transform.DOMove(pos[6].position, 3f).OnComplete(() =>
-        {
-            DOVirtual.DelayedCall(2f,() =>
-            {
-                cam2.transform.DOMove(posPlayer.position, 3f).OnComplete(() =>
-                {
-                    text24.SetActive(true);
-                    cam1.gameObject.SetActive(true);
-                    cam2.gameObject.SetActive(false);
-                    joy.SetActive(true);
-                });
-            });
-        });
+        img.fillAmount = (float) countWood / 5;
+        text.text = countWood+"/5";
         mission.text = QuestText(8);
+        quest8 = true;
     }
 
-    private void Quest9()
+    public void Quest9()
     {
-        text24.SetActive(false);
-        cam2.transform.position = cam1.transform.position;
-        joy.SetActive(false);
-        cam1.gameObject.SetActive(false);
-        cam2.gameObject.SetActive(true);
-        //arrow.transform.position = pos[5].position+ new Vector3(0, -8, +25);
-        cam2.transform.DOMove(pos[5].position, 3f).OnComplete(() =>
-        {
-            DOVirtual.DelayedCall(2f,() =>
-            {
-                cam2.transform.DOMove(posPlayer.position, 3f).OnComplete(() =>
-                {
-                    text24.SetActive(true);
-                    cam1.gameObject.SetActive(true);
-                    cam2.gameObject.SetActive(false);
-                    joy.SetActive(true);
-                });
-            });
-        });
-        countWood = 0;
-        img.fillAmount = (float) countWood / 1;
-        text.text = countWood+"/1";
         mission.text = QuestText(9);
-    }
-
-    public void Quest10()
-    {
-        fsh.SetActive(true);
-        countWood = 10;
-        img.fillAmount = 1;
-        text.text = "";
-        mission.text = QuestText(10);
-    }
-
-    public void Quest11()
-    {
-        countWood = 0;
-        img.fillAmount = (float) countWood / 10;
-        text.text = countWood+"/10";
-        mission.text = QuestText(11);
-    }
-    
-    public void Quest12()
-    {
-        mission.text = QuestText(12);
         foreach (var u in allUpgrades)
         {
             u.SetActive(true);
         }
     }
-
-    public void Quest13()
+    
+    public void Quest10()
     {
+        bsh.SetActive(true);
         other.SetActive(true);
         img.gameObject.SetActive(false);
         text.gameObject.SetActive(false);
-        mission.text = QuestText(13);
-        mission.transform.position += Vector3.up*3;
+        mission.text = QuestText(10);
+        mission.transform.position += Vector3.up*35;
     }
     private string QuestText(int index)
     {
@@ -430,16 +351,13 @@ public class Tutorial : MonoBehaviour
             1 => "Collect 10 woods",
             2 => "Build your first tower",
             3 => "Start level 1",
-            4 => "Collect 10 stones",
+            4 => "Collect 10 cobblestones",
             5 => "Build your next tower",
             6 => "Finish level 2",
-            7 => "Build your blacksmith",
-            8 => "Collect 8 leathers",
-            9 => "Craft 1 leather armour",
-            10 => "Build your fusion house",
-            11 => "Collect 10 planks",
-            12 => "Update your tower",
-            13 => "Defend this world",
+            7 => "Build your Fusion house",
+            8 => "Collect 5 planks",
+            9 => "Update your tower",
+            10 => "Defend this world",
             _ => null
         };
         return s;

@@ -77,6 +77,7 @@ public class TreeController : MonoBehaviour
         {
             isDead = false;
             var t = Instantiate(tree);
+            t.GetComponent<TreeController>().Init(num, _beController);
             t.transform.parent = Gameplay.Instance.transform;
             t.transform.position = transform.position;
             gameObject.SetActive(false);

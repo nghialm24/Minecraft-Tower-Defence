@@ -19,9 +19,8 @@ public class CollectedItem : MonoBehaviour
         iron,
         diamond,
         woodVip,
-        ironVip,
-        skinArmor,
-        ironArmor
+        stoneVip,
+        woodVip2
     }
 
     public TypeItem _typeItem;

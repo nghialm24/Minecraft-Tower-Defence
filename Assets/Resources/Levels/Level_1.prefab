@@ -1410,7 +1410,7 @@ Transform:
   m_GameObject: {fileID: 3206090668413474992}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.99, y: 23.5, z: -21.99}
+  m_LocalPosition: {x: 16.94, y: 23.5, z: -21.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1451,40 +1451,7 @@ Transform:
   - {fileID: 2790192713874490268}
   - {fileID: 6354184751153006815}
   - {fileID: 7202230675116681605}
-  - {fileID: 9183535982672292738}
-  - {fileID: 2623226927155454897}
   m_Father: {fileID: 7947145422903124062}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5990284249297751551
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2623226927155454897}
-  m_Layer: 0
-  m_Name: 8
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2623226927155454897
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5990284249297751551}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.99, y: 23.5, z: -21.99}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1045399563827471224}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6582617231069995760
 GameObject:
@@ -1873,37 +1840,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1045399563827471224}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &9118716407997527672
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9183535982672292738}
-  m_Layer: 0
-  m_Name: 7
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9183535982672292738
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9118716407997527672}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18, y: 23.5, z: -5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1045399563827471224}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9146080485187590256
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,8 +1893,6 @@ MonoBehaviour:
   - {fileID: 2790192713874490268}
   - {fileID: 6354184751153006815}
   - {fileID: 7202230675116681605}
-  - {fileID: 9183535982672292738}
-  - {fileID: 2623226927155454897}
   allTower: {fileID: 7819459980387062200}
   bsh: {fileID: 8412912351129602041}
   fsh: {fileID: 6524302232193352848}
@@ -2364,6 +2298,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3300811353607676620, guid: 19acf7d9b777ceb4494437af851d369b, type: 3}
+      propertyPath: towerIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5103458529073321404, guid: 19acf7d9b777ceb4494437af851d369b, type: 3}
+      propertyPath: index
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6524085715419803041, guid: 19acf7d9b777ceb4494437af851d369b, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2417,7 +2359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4017790151815826053, guid: 12166193f319fa041bc6f81e6b4cd04f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.58
+      value: -14.94
       objectReference: {fileID: 0}
     - target: {fileID: 4017790151815826053, guid: 12166193f319fa041bc6f81e6b4cd04f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3143,9 +3085,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4549098167950426984, guid: 19acf7d9b777ceb4494437af851d369b, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 3300811353607676620, guid: 19acf7d9b777ceb4494437af851d369b, type: 3}
+      propertyPath: towerIndex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5103458529073321404, guid: 19acf7d9b777ceb4494437af851d369b, type: 3}
+      propertyPath: index
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5567606636375515755, guid: 19acf7d9b777ceb4494437af851d369b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6524085715419803041, guid: 19acf7d9b777ceb4494437af851d369b, type: 3}
       propertyPath: m_IsActive
@@ -3159,9 +3109,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -9.4
       objectReference: {fileID: 0}
+    - target: {fileID: 7442085692119049390, guid: 19acf7d9b777ceb4494437af851d369b, type: 3}
+      propertyPath: quest10
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9129790949660243980, guid: 19acf7d9b777ceb4494437af851d369b, type: 3}
       propertyPath: m_Name
       value: Tower (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129790949660243980, guid: 19acf7d9b777ceb4494437af851d369b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4070,6 +4028,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1477783707991482256, guid: 322fab6e5dcf9394c8f4774e0e5dc5db, type: 3}
+      propertyPath: quest8
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477783707991482256, guid: 322fab6e5dcf9394c8f4774e0e5dc5db, type: 3}
       propertyPath: quest11
       value: 1
       objectReference: {fileID: 0}
@@ -4217,12 +4179,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7442085692119049390, guid: 19acf7d9b777ceb4494437af851d369b, type: 3}
+      propertyPath: quest10
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442085692119049390, guid: 19acf7d9b777ceb4494437af851d369b, type: 3}
       propertyPath: quest13
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9129790949660243980, guid: 19acf7d9b777ceb4494437af851d369b, type: 3}
       propertyPath: m_Name
       value: Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129790949660243980, guid: 19acf7d9b777ceb4494437af851d369b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

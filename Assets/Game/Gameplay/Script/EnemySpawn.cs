@@ -140,6 +140,7 @@ public class EnemySpawn : MonoBehaviour
             {
                 delaySpawn = 1;
             }
+            //LevelProcess.Instance.SetEnemyAmount(dataConfig.worldData[Profile.Level - 1].levelData[round].listEnemyDelay.Count);
         }
         else
         {
@@ -151,6 +152,7 @@ public class EnemySpawn : MonoBehaviour
             {
                 delaySpawn = 1;
             }
+            //LevelProcess.Instance.SetEnemyAmount(dataConfig.worldData[Profile.Level].levelData[round].listEnemyDelay.Count+dataConfig.worldData[Profile.Level - 1].levelData[round].listEnemyDelay.Count);
         }
     }
 

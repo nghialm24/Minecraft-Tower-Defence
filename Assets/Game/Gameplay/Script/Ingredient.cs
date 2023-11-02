@@ -4,6 +4,7 @@ using System.Linq;
 using Funzilla;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ingredient : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class Ingredient : MonoBehaviour
     [SerializeField] private TextMeshPro amountTxt;
     [SerializeField] private SpriteRenderer sprite;
     public TypeItem type;
-    
     public enum TypeItem
     {
        stone,
@@ -22,9 +22,8 @@ public class Ingredient : MonoBehaviour
        iron,
        diamond,
        woodVip,
-       ironVip,
-       skinArmor,
-       ironArmor
+       stoneVip,
+       woodVip2
     }
 
     private void Start()

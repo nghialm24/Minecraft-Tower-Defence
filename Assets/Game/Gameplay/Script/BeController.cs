@@ -26,8 +26,24 @@ public class BeController : MonoBehaviour
     [SerializeField] private List<CollectedItem> listWood;
     public bool isFull;
     private float delayCollect;
+    [SerializeField] private GameObject upgrade1;
+
+    private void Awake()
+    {
+   
+    }
+
     private void Start()
     {
+        foreach (var t in Profile.ListSaveBuilding)
+        {
+            if (t.indexSlot == GetComponent<SaveBuilding>().index)
+            {
+                beLevel = (int) t.currentLevel-1;
+                upgrade1.SetActive(false);
+                UpdateBe();
+            }
+        }
         listTree1 = forest1.GetComponentsInChildren<TreeController>().ToList();
         listTree2 = forest2.GetComponentsInChildren<TreeController>().ToList();        
         listPos1 = forest1.GetComponentsInChildren<TreeController>().ToList();
@@ -78,6 +94,8 @@ public class BeController : MonoBehaviour
 
         nameBuilding.text = "BE " + beLevel;
         nameBuilding.transform.position = transform.position + Vector3.forward*4;
+        
+        Profile.SaveBuilding(GetComponent<SaveBuilding>().index, beLevel);
     }
     
     public void BornTree(int id, Transform pos)

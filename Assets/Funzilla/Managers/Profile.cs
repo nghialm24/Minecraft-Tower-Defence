@@ -19,6 +19,7 @@ namespace Funzilla
 
 			// Level
 			[SerializeField] internal int level = 1;
+			[SerializeField] internal bool tutorial;
 			[SerializeField] internal int playCount;
 
 			// First open time
@@ -29,8 +30,20 @@ namespace Funzilla
 			
 			// 
 			[SerializeField] internal int round;
+			[SerializeField] internal List<SaveHouseData> listHouse = new List<SaveHouseData>();
 		}
 
+		[Serializable]
+		internal class SaveHouseData
+		{
+			public int indexSlot;
+			public long currentLevel;
+			public SaveHouseData(int index, long level)
+			{
+				indexSlot = index;
+				currentLevel = level;
+			}
+		}
 		private UserData _data;
 		private bool _vip;
 
@@ -48,7 +61,17 @@ namespace Funzilla
 				EventManager.Annouce(EventType.VipChanged);
 			}
 		}
-
+		
+		internal static bool Tutorial
+		{
+			get => Instance._data?.tutorial ?? false;
+			set
+			{
+				Instance._data.tutorial = value;
+				RequestSave();
+			}
+		}
+		
 		private void Awake()
 		{
 			Initialize();
@@ -225,7 +248,33 @@ namespace Funzilla
 			_modifed = false;
 			SaveLocal();
 		}
-
+		internal static List<SaveHouseData> ListSaveBuilding
+		{
+			get=> Instance._data?.listHouse;
+		}
+		internal static void SaveBuilding(int index, int level)
+		{
+			var list = Instance._data.listHouse;
+			if(index!=null)
+			{
+				if(list.Count == 0) list.Add(new SaveHouseData(index, level));
+				else
+				{
+					foreach (var item in list)
+					{
+						if (item.indexSlot != index)
+						{
+							list.Add(new SaveHouseData(index, level));
+						}
+						else
+						{
+							item.currentLevel = level;
+						}
+					}
+				}
+			}
+			RequestSave();
+		}
 		private void SaveLocal()
 		{
 			try

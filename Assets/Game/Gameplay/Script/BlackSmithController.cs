@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Funzilla;
 using TMPro;
 using UnityEngine;
 
@@ -7,13 +8,23 @@ public class BlackSmithController : MonoBehaviour
 {
     private int bshLevel;
     [SerializeField] private List<GameObject> listBshLevel;
-    [SerializeField] private CollectedItem skinArmor;
-    [SerializeField] private CollectedItem ironArmor;
+    [SerializeField] private CollectedItem stoneVip;
     [SerializeField] private Transform pos1;
-    [SerializeField] private Transform pos2;
     [SerializeField] private TextMeshPro nameBuilding;
-    void Start()
+    
+    [SerializeField] private GameObject upgrade1;
+
+    private void Start()
     {
+        foreach (var t in Profile.ListSaveBuilding)
+        {
+            if (t.indexSlot == GetComponent<SaveBuilding>().index)
+            {
+                bshLevel = (int) t.currentLevel - 1;
+                upgrade1.SetActive(false);
+                UpdateBlackSmith();
+            }
+        }
     }
 
     // Update is called once per frame
@@ -33,21 +44,17 @@ public class BlackSmithController : MonoBehaviour
             listBshLevel[bshLevel].SetActive(true);
             bshLevel++;
         }
-        nameBuilding.text = "Black Smith House " + bshLevel;
+        nameBuilding.text = "Black Smith House";
         nameBuilding.transform.position = transform.position + Vector3.forward*4;
+        
+        Profile.SaveBuilding(GetComponent<SaveBuilding>().index, bshLevel);
+
     }
 
-    public void ProduceSkinArmor()
+    public void ProduceStoneVip()
     {
-        var sA = Instantiate(skinArmor);
+        var sA = Instantiate(stoneVip);
         sA.transform.position = pos1.position;
-        sA.Init(CollectedItem.TypeItem.skinArmor);
-    }
-
-    public void ProduceIronArmor()
-    {
-        var iA = Instantiate(ironArmor);
-        iA.transform.position = pos2.position;
-        iA.Init(CollectedItem.TypeItem.ironArmor);
+        sA.Init(CollectedItem.TypeItem.stoneVip);
     }
 }
