@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Funzilla;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BlackSmithController : MonoBehaviour
 {
@@ -10,13 +11,13 @@ public class BlackSmithController : MonoBehaviour
     [SerializeField] private List<GameObject> listBshLevel;
     [SerializeField] private CollectedItem stoneVip;
     [SerializeField] private Transform pos1;
-    [SerializeField] private TextMeshPro nameBuilding;
+    [SerializeField] private Text nameBuilding;
     
     [SerializeField] private GameObject upgrade1;
 
     private void Start()
     {
-        foreach (var t in Profile.ListSaveBuilding)
+        foreach (var t in Profile.ListSaveBuilding.ToList())
         {
             if (t.indexSlot == GetComponent<SaveBuilding>().index)
             {
@@ -35,7 +36,7 @@ public class BlackSmithController : MonoBehaviour
 
     public void UpdateBlackSmith()
     {
-        if (bshLevel < 2)
+        if (bshLevel < 1)
         {
             foreach (var t in listBshLevel)
             {
@@ -44,9 +45,9 @@ public class BlackSmithController : MonoBehaviour
             listBshLevel[bshLevel].SetActive(true);
             bshLevel++;
         }
+        if (bshLevel == 1) nameBuilding.transform.position += new Vector3(0, 0, 4.5f);
+
         nameBuilding.text = "Black Smith House";
-        nameBuilding.transform.position = transform.position + Vector3.forward*4;
-        
         Profile.SaveBuilding(GetComponent<SaveBuilding>().index, bshLevel);
 
     }

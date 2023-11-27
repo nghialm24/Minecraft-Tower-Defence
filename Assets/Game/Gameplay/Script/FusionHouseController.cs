@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Funzilla;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FusionHouseController : MonoBehaviour
 {
@@ -12,12 +13,12 @@ public class FusionHouseController : MonoBehaviour
     [SerializeField] private CollectedItem woodVip2;
     [SerializeField] private Transform pos1;
     [SerializeField] private Transform pos2;
-    [SerializeField] private TextMeshPro nameBuilding;
+    [SerializeField] private Text nameBuilding;
     [SerializeField] private GameObject upgrade1;
 
     private void Start()
     {
-        foreach (var t in Profile.ListSaveBuilding)
+        foreach (var t in Profile.ListSaveBuilding.ToList())
         {
             if (t.indexSlot == GetComponent<SaveBuilding>().index)
             {
@@ -45,10 +46,9 @@ public class FusionHouseController : MonoBehaviour
             listFhLevel[fhLevel].SetActive(true);
             fhLevel++;
         }
+        if (fhLevel == 2) nameBuilding.transform.position += new Vector3(0, 0, 4.5f);
 
         nameBuilding.text = "Fusion House " + fhLevel;
-        nameBuilding.transform.position = transform.position + Vector3.forward*4;
-        
         Profile.SaveBuilding(GetComponent<SaveBuilding>().index, fhLevel);
     }
     

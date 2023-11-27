@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Funzilla;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +10,7 @@ public class Ingredient : MonoBehaviour
     private DataConfig _dataConfig => Gameplay.Instance.dataConfigSO.DataConfig;
     public int current;
     public int amount;
-    [SerializeField] private TextMeshPro amountTxt;
+    [SerializeField] private Text amountTxt;
     [SerializeField] private SpriteRenderer sprite;
     public TypeItem type;
     public enum TypeItem

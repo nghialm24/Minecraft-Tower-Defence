@@ -3,34 +3,79 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Funzilla;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CowController : MonoBehaviour
 {
     [SerializeField] private CollectedItem cowSkin;
-    //private float delay2;
-    //[SerializeField] private float timeDelay;
+    private Transform cage;
     [SerializeField] private int count;
     private bool run;
     [SerializeField] float speed;
-    void Start()
+    [SerializeField] private Animator anim;
+    private float timeAuto;
+    private float t;
+    private AllCowController _allCowController;
+    private void Start()
     {
-        
+        t = Random.Range(1, 10);
+        timeAuto = 15 + t;
     }
 
-    // Update is called once per frame
+    public void Init(Transform c, AllCowController allc)
+    {
+        cage = c;
+        _allCowController = allc;
+    }
     void Update()
     {
         if (!run)
-            return;
-        if (speed > 0)
         {
-            speed -= Time.deltaTime;
-            GetComponent<Rigidbody>().velocity = transform.forward * 5;
+            if(timeAuto > -5)
+            {
+                timeAuto -= Time.deltaTime;
+                if (timeAuto < 0)
+                {
+                    transform.position += t/(t+1) * transform.forward * Time.deltaTime;
+                    if (timeAuto < 0 && timeAuto > -0.1f)
+                    {
+                        anim.SetTrigger("walk");
+                    }
+                }
+            }
+            else
+            {
+                AutoMove();
+                t = Random.Range(1, 10);
+                timeAuto = 15 + t;
+            }
         }
         else
         {
-            GetComponent<Rigidbody>().velocity = transform.forward * 0;
-            run = false;
+            if (speed > 0)
+            {
+                speed -= Time.deltaTime;
+                transform.position += transform.forward * Time.deltaTime * 5f;
+                GetComponent<BoxCollider>().enabled = false;
+            }
+            else
+            {
+                anim.SetTrigger("eat");
+                GetComponent<BoxCollider>().enabled = true;
+                run = false;
+            }
+        }
+    }
+
+    private void AutoMove()
+    {
+        anim.SetTrigger("eat");
+        if (transform.position.x > cage.position.x + 7 
+            || transform.position.x < cage.position.x - 7
+            || transform.position.z > cage.position.z + 7
+            || transform.position.z < cage.position.z - 7)
+        {
+            transform.eulerAngles += new Vector3(0,180,0);
         }
     }
     
@@ -42,9 +87,11 @@ public class CowController : MonoBehaviour
             {
                 other.GetComponent<PlayerController>().ChangeState(PlayerController.PlayerState.Idle);
                 gameObject.SetActive(false);
+                _allCowController.BornCow();
             }
-
+            
             if (count <= 0) return;
+            anim.SetTrigger("run");
             var w = Instantiate(cowSkin,Gameplay.Instance.transform);
             w.transform.position = transform.position;
             w.Init(CollectedItem.TypeItem.skin);

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using Funzilla;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class BeController : MonoBehaviour
@@ -18,7 +18,7 @@ public class BeController : MonoBehaviour
     public List<TreeController> listTree2;
     private List<TreeController> listPos1;
     private List<TreeController> listPos2;
-    [SerializeField] private TextMeshPro nameBuilding;
+    [SerializeField] private Text nameBuilding;
     public int beLevel;
     [SerializeField] private List<GameObject> listBeLevel;
     [SerializeField] private Transform wareSlot;
@@ -27,15 +27,15 @@ public class BeController : MonoBehaviour
     public bool isFull;
     private float delayCollect;
     [SerializeField] private GameObject upgrade1;
-
+    public static BeController Instance;
     private void Awake()
     {
-   
+        Instance = this;
     }
 
     private void Start()
     {
-        foreach (var t in Profile.ListSaveBuilding)
+        foreach (var t in Profile.ListSaveBuilding.ToList())
         {
             if (t.indexSlot == GetComponent<SaveBuilding>().index)
             {
@@ -91,10 +91,10 @@ public class BeController : MonoBehaviour
             if(beLevel == 2)
                 s.Init(beLevel,listTree2[0], this);
         }
+        if (beLevel == 2) nameBuilding.transform.position += new Vector3(0, 0, 4.5f);
 
         nameBuilding.text = "BE " + beLevel;
-        nameBuilding.transform.position = transform.position + Vector3.forward*4;
-        
+
         Profile.SaveBuilding(GetComponent<SaveBuilding>().index, beLevel);
     }
     

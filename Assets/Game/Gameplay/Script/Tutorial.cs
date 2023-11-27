@@ -72,7 +72,6 @@ public class Tutorial : MonoBehaviour
     }
     private void Start()
     {
-        Debug.Log(Profile.Tutorial);
         countWood = 0;
         img.fillAmount = (float)countWood / 10;
         text.text = countWood+"/10";
@@ -231,6 +230,7 @@ public class Tutorial : MonoBehaviour
 
     public void Quest4()
     {
+        start.SetActive(false);
         iconItem.sprite = listIcon[0];
         countWood = 0;
         img.fillAmount = (float) countWood / 10;
@@ -287,11 +287,13 @@ public class Tutorial : MonoBehaviour
     public void Quest6()
     {
         //arrow.SetActive(false);
+        start.SetActive(true);
         mission.text = QuestText(6);
     }
 
     public void Quest7()
     {
+        start.SetActive(false);
         fsh.gameObject.SetActive(true);
         text24.SetActive(false);
         cam2.transform.position = cam1.transform.position;
@@ -337,6 +339,7 @@ public class Tutorial : MonoBehaviour
     
     public void Quest10()
     {
+        start.SetActive(true);
         bsh.SetActive(true);
         other.SetActive(true);
         img.gameObject.SetActive(false);

@@ -59,7 +59,9 @@ public class SlaveController : MonoBehaviour
                     ChangeState(PlayerState.Idle);
                     return;
                 }
-                if (target.gameObject.activeSelf)
+                if (target == null)
+                    return;
+                if (!target.isDead)
                     return;
                 Farm();
                 break;
@@ -79,8 +81,13 @@ public class SlaveController : MonoBehaviour
     {
         level = lv;
         target = tg;
-        beController = be;
+        //beController = be;
         Farm();
+    }
+
+    private void Awake()
+    {
+        beController = BeController.Instance;
     }
 
     private void Update()

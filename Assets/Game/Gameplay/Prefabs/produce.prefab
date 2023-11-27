@@ -611,9 +611,9 @@ MonoBehaviour:
   fusionHouseController: {fileID: 0}
   delay: 0.2
   img: {fileID: 0}
+  canvas: {fileID: 0}
   cdTime: 5
   currentTime: 5
-  text: {fileID: 0}
   typeProduct: 0
 --- !u!1 &8516249237881092211
 GameObject:
@@ -715,6 +715,10 @@ PrefabInstance:
     - target: {fileID: 1640296074975251531, guid: 7ad3d9dec579cf949bc9d7e184166254, type: 3}
       propertyPath: amount
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127252322585740634, guid: 7ad3d9dec579cf949bc9d7e184166254, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4172592787855029767, guid: 7ad3d9dec579cf949bc9d7e184166254, type: 3}
       propertyPath: m_IsActive

@@ -6,6 +6,7 @@ using System.Linq;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Debug = UnityEngine.Debug;
 using Image = UnityEngine.UI.Image;
@@ -18,10 +19,12 @@ public class PlayerController : MonoBehaviour
     private List<Slot> listSlot;
     public List<CollectedItem> listBlock;
     public bool isFull;
-    [SerializeField] private TextMeshProUGUI current;
-    [SerializeField] private TextMeshProUGUI amount;
+    [SerializeField] private Text current;
+    [SerializeField] private Text amount;
     [SerializeField] private Tutorial Tuto;
     public bool tutorial;
+    [SerializeField] private GameObject axe1;
+    [SerializeField] private GameObject axe2;
     public enum PlayerState
     {
         Idle,
@@ -61,6 +64,7 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Idle:
                 break;
             case PlayerState.Run:
+                //anim.SetTrigger("Idle");
                 break;
             case PlayerState.Farm:
                 delay = false;
@@ -105,16 +109,13 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         UpdateState();
-        if (!isFull)
-            return;
-        if (listBlock.Count < listSlot.Count)
-            isFull = false;
     }
 
     private void Idle()
-    {
+    {        
         GetComponent<SphereCollider>().isTrigger = true;
         anim.SetTrigger("Idle");
+
     }
 
     private void Run()
@@ -165,7 +166,9 @@ public class PlayerController : MonoBehaviour
         transform.position += new Vector3(xMovement, 0, zMovement)*10*Time.deltaTime;
         
         if(_joystick.Direction.x == 0 && _joystick.Direction.y == 0 && _currentState!= PlayerState.Farm)
+        {
             ChangeState(PlayerState.Idle);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -175,7 +178,7 @@ public class PlayerController : MonoBehaviour
             transform.LookAt(other.transform);
             ChangeState(PlayerState.Farm);
             TypeFarm(0);
-            Debug.Log("stone");
+            ChangeAxe(false);
         }
         
         if (other.CompareTag("Tree"))
@@ -183,6 +186,7 @@ public class PlayerController : MonoBehaviour
             transform.LookAt(other.transform);
             ChangeState(PlayerState.Farm);
             TypeFarm(1);
+            ChangeAxe(true);
         }
         
         if (other.CompareTag("Cow"))
@@ -190,30 +194,7 @@ public class PlayerController : MonoBehaviour
             transform.LookAt(other.transform);
             ChangeState(PlayerState.Farm);
             TypeFarm(0);
-        }
-    }
-    
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.collider.CompareTag("StoneMineral"))
-        {
-            transform.LookAt(other.transform);
-            ChangeState(PlayerState.Farm);
-            TypeFarm(0);
-        }
-        
-        if (other.collider.CompareTag("Tree"))
-        {
-            transform.LookAt(other.transform);
-            ChangeState(PlayerState.Farm);
-            TypeFarm(1);
-        }
-        
-        if (other.collider.CompareTag("Cow"))
-        {
-            transform.LookAt(other.transform);
-            ChangeState(PlayerState.Farm);
-            TypeFarm(0);
+            ChangeAxe(false);
         }
     }
 
@@ -246,22 +227,29 @@ public class PlayerController : MonoBehaviour
         foreach (var s in listSlot)
         {
             if (listSlot[^1].isBusy)
-                isFull = true;
-            if (s.isBusy) continue;
-            block.transform.DOMove(s.transform.position, 0.2f).OnComplete(() =>
             {
-                block.transform.parent = transform;
-                block.transform.position = s.transform.position;
-                block.transform.localEulerAngles = Vector3.zero;
-                listBlock.Add(block);
-                current.text = listBlock.Count.ToString();
-                if (tutorial)
+                isFull = true;
+            }else
+            {
+                if (s.isBusy) continue;
+                block.transform.DOMove(s.transform.position, 0.2f).OnComplete(() =>
                 {
-                    Tuto.UpItem(block._typeItem);
-                }
-            });
-            s.isBusy = true;
-            break;
+                    block.transform.parent = transform;
+                    block.transform.position = s.transform.position;
+                    block.transform.localEulerAngles = Vector3.zero;
+                    listBlock.Add(block);
+                    current.text = listBlock.Count.ToString();
+                    if (tutorial)
+                    {
+                        Tuto.UpItem(block._typeItem);
+                    }
+
+                    if (listBlock.Count >= listSlot.Count)
+                        isFull = true;
+                });
+                s.isBusy = true;
+                break;
+            }
         }
     }
 
@@ -291,6 +279,8 @@ public class PlayerController : MonoBehaviour
             }
         }
         current.text = listBlock.Count.ToString();
+        if (listBlock.Count < listSlot.Count)
+            isFull = false;
     }
 
     public int CountItem(CollectedItem.TypeItem type)
@@ -305,5 +295,11 @@ public class PlayerController : MonoBehaviour
         }
 
         return countItem;
+    }
+
+    private void ChangeAxe(bool isTree)
+    {
+        axe1.SetActive(isTree);
+        axe2.SetActive(!isTree);
     }
 }

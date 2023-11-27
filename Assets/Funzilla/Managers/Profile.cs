@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 namespace Funzilla
@@ -260,7 +261,7 @@ namespace Funzilla
 				if(list.Count == 0) list.Add(new SaveHouseData(index, level));
 				else
 				{
-					foreach (var item in list)
+					foreach (var item in list.ToList())
 					{
 						if (item.indexSlot != index)
 						{

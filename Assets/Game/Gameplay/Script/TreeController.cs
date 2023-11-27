@@ -20,18 +20,19 @@ public class TreeController : MonoBehaviour
     private int num;
     [SerializeField] private List<Transform> part;
     [SerializeField] private Transform model;
-    [SerializeField] private bool isDead;
+    public bool isDead;
     [SerializeField] private float reviveTime;
     [SerializeField] private GameObject tree;
     public void Init(int i, BeController be)
     {
         num = i;
-        _beController = be;
+        //_beController = be;
     }
     private void Start()
     {
         delay = timeDelay;
         delay2 = timeDelay;
+        _beController = BeController.Instance;
     }
 
     // Update is called once per frame

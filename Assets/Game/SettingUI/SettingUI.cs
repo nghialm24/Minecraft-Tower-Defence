@@ -9,7 +9,7 @@ namespace Funzilla
 #if UNITY_IOS
 		private const string TermsUrl = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/";
 #else
-		private const string TermsUrl = "https://funzilla.io/terms";
+		private const string TermsUrl = "";
 #endif
 		[SerializeField] private ToggleButton sfxToggle;
 		[SerializeField] private ToggleButton musicToggle;

@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Funzilla;
-using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class TowerController : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class TowerController : MonoBehaviour
     public int towerLevel;
     [SerializeField] private List<GameObject> listTowerLevel;
     [SerializeField] private List<UpgradesController> listUp4;
-    [SerializeField] private TextMeshPro nameBuilding;
+    [SerializeField] private Text nameBuilding;
     [SerializeField] private EnemyController target;
     [SerializeField] private Transform firePos;
     [SerializeField] private GameObject sprite;
@@ -27,7 +27,7 @@ public class TowerController : MonoBehaviour
 
     private void Start()
     {
-        foreach (var t in Profile.ListSaveBuilding)
+        foreach (var t in Profile.ListSaveBuilding.ToList())
         {
             if (t.indexSlot == GetComponent<SaveBuilding>().index)
             {
@@ -82,7 +82,6 @@ public class TowerController : MonoBehaviour
             listTowerLevel[towerLevel].SetActive(true);
             towerLevel++;
             nameBuilding.text = "Tower " + towerLevel;
-            nameBuilding.transform.position = transform.position + Vector3.forward*4;
             var tD = _towerdata.FirstOrDefault(x => x.level == towerLevel);
             GetComponent<SphereCollider>().enabled = true;
             if (tD == null) return;
@@ -104,7 +103,7 @@ public class TowerController : MonoBehaviour
             listTowerLevel[towerLevel].transform.GetChild(id).gameObject.SetActive(true);
             towerLevel++;
             nameBuilding.text = "Tower " + towerLevel;
-            nameBuilding.transform.position = transform.position + Vector3.forward*4;
+            nameBuilding.transform.position += new Vector3(0, 0, 4.5f);
             var tD = _towerdata.FirstOrDefault(x => x.level == towerLevel);
             GetComponent<SphereCollider>().enabled = true;
             if (tD == null) return;
