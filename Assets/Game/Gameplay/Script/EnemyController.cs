@@ -19,6 +19,8 @@ public class EnemyController : MonoBehaviour
     private float baseHp;
 
     [SerializeField] private GameObject canvasHP;
+    [SerializeField] private GameObject enemyDeath;
+    [SerializeField] private List<SkinnedMeshRenderer> listSkin;
     // public void Init(SplineComputer splineComputer)
     // {
     //     splineFollower = GetComponent<SplineFollower>();
@@ -63,6 +65,10 @@ public class EnemyController : MonoBehaviour
         {
             //Destroy(gameObject);
             row.Destroy();
+            var eD = Instantiate(enemyDeath, transform.position, Quaternion.identity);
+            eD.transform.eulerAngles = transform.eulerAngles;
+            eD.transform.GetChild(0).transform.GetChild(OutputTypeEnemy(typeEnemy)).gameObject.SetActive(true);
+            //listSkin[OutputTypeEnemy(typeEnemy)].material.color = Color.red);
         }
 
         if (hp >= baseHp) return;
@@ -76,13 +82,18 @@ public class EnemyController : MonoBehaviour
         {
             hp = 0;
             row.Destroy();
+            if (!Gameplay.Instance.isGameOver)
+            {
+                Gameplay.Instance.isGameOver = true;
+                Gameplay.Instance.Lose();
+            }
         }
         
-        if(other.CompareTag("Player"))
-        {
-            hp = 0;
-            row.Destroy();
-        }
+        // if(other.CompareTag("Player"))
+        // {
+        //     hp = 0;
+        //     row.Destroy();
+        // }
     }
 
     private int OutputTypeEnemy(TypeEnemy type)

@@ -68,6 +68,10 @@ namespace Funzilla
 			get => Instance._data?.tutorial ?? false;
 			set
 			{
+				if (Instance._data == null)
+				{
+					return;
+				}
 				Instance._data.tutorial = value;
 				RequestSave();
 			}

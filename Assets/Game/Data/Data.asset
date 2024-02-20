@@ -377,17 +377,17 @@ MonoBehaviour:
       atkSpeed: 2.5
       range: 4.5
     - level: 2
-      damage: 2
+      damage: 2.5
       atkSpeed: 1.5
       range: 5
     - level: 3
-      damage: 2
+      damage: 3.5
       atkSpeed: 0.75
-      range: 5
-    - level: 4
-      damage: 3
-      atkSpeed: 1
       range: 5.5
+    - level: 4
+      damage: 4
+      atkSpeed: 1
+      range: 6
     bullet: {fileID: 5106783021055957943, guid: 7cfa7d544d4ebae4bad30715523bf526, type: 3}
     ingredientData:
     - type: 0

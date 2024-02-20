@@ -9,6 +9,8 @@ public class DiamondController : MonoBehaviour
     [SerializeField] private CollectedItem diamond;
     private float delay2;
     [SerializeField] private float timeDelay;
+    [SerializeField] private float timeSound = 0.5f;
+
     void Start()
     {
         delay2 = timeDelay;
@@ -24,6 +26,15 @@ public class DiamondController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (timeSound > 0)
+            {
+                timeSound -= Time.deltaTime;
+            }
+            else
+            {
+                SoundManager.PlaySfx("iron");
+                timeSound = 0.5f;
+            }
             if(delay2 > 0)
                 delay2 -= Time.deltaTime;
             else
@@ -33,6 +44,7 @@ public class DiamondController : MonoBehaviour
                 //w.transform.DOMove(other.transform.position, 1f);
                 w.Init(CollectedItem.TypeItem.diamond);
                 delay2 = timeDelay;
+                SoundManager.PlaySfx("hit_ground");
             }
         }
     }

@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using DG.Tweening;
+using Funzilla;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 using Debug = UnityEngine.Debug;
 using Image = UnityEngine.UI.Image;
 
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private VariableJoystick _joystick;
     [SerializeField] private Animator anim;
+    [SerializeField] private Animator uiAnim;
     private bool delay;
     private List<Slot> listSlot;
     public List<CollectedItem> listBlock;
@@ -25,6 +28,10 @@ public class PlayerController : MonoBehaviour
     public bool tutorial;
     [SerializeField] private GameObject axe1;
     [SerializeField] private GameObject axe2;
+    public bool canBuildAll;
+    public GameObject start;
+    private float delayFootStep;
+    [SerializeField] private SphereCollider colliderAttack;
     public enum PlayerState
     {
         Idle,
@@ -64,7 +71,6 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Idle:
                 break;
             case PlayerState.Run:
-                //anim.SetTrigger("Idle");
                 break;
             case PlayerState.Farm:
                 delay = false;
@@ -83,6 +89,13 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Run:
                 Movement();
+                if (delayFootStep > 0)
+                    delayFootStep -= Time.deltaTime;
+                else
+                {
+                    SoundManager.PlaySfx("footstep01");
+                    delayFootStep = 0.5f;
+                }
                 break;
             case PlayerState.Farm:
                 if (_joystick.Direction.x <= 0.01f && _joystick.Direction.x >= -0.01f &&
@@ -115,7 +128,6 @@ public class PlayerController : MonoBehaviour
     {        
         GetComponent<SphereCollider>().isTrigger = true;
         anim.SetTrigger("Idle");
-
     }
 
     private void Run()
@@ -131,11 +143,14 @@ public class PlayerController : MonoBehaviour
         {
             listSlot[i].isBusy = true;
         }
+
+        uiAnim.Play(listBlock.Count >= 23 && listBlock.Count != 0 ? "UI_On" : "UI_Off");
     }
     
     private void Farm()
     {
         anim.SetTrigger("Mining");
+        uiAnim.Play("UI_On");
     }
     
     private void Attack()
@@ -152,6 +167,7 @@ public class PlayerController : MonoBehaviour
         listSlot = GetComponentsInChildren<Slot>().ToList();
         amount.text = "/" + listSlot.Count;
         current.text = listBlock.Count.ToString();
+        delayFootStep = 0.1f;
     }
 
     private void Movement()
@@ -170,7 +186,7 @@ public class PlayerController : MonoBehaviour
             ChangeState(PlayerState.Idle);
         }
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("StoneMineral"))
@@ -195,6 +211,11 @@ public class PlayerController : MonoBehaviour
             ChangeState(PlayerState.Farm);
             TypeFarm(0);
             ChangeAxe(false);
+        }
+        
+        if (other.CompareTag("Sell"))
+        {
+            uiAnim.Play("UI_On");
         }
     }
 
@@ -232,32 +253,44 @@ public class PlayerController : MonoBehaviour
             }else
             {
                 if (s.isBusy) continue;
-                block.transform.DOMove(s.transform.position, 0.2f).OnComplete(() =>
-                {
-                    block.transform.parent = transform;
-                    block.transform.position = s.transform.position;
-                    block.transform.localEulerAngles = Vector3.zero;
-                    listBlock.Add(block);
-                    current.text = listBlock.Count.ToString();
-                    if (tutorial)
-                    {
-                        Tuto.UpItem(block._typeItem);
-                    }
-
-                    if (listBlock.Count >= listSlot.Count)
-                        isFull = true;
-                });
-                s.isBusy = true;
                 break;
             }
         }
     }
 
+    public Transform ReturnSlot(CollectedItem block)
+    {
+        if (isFull) return null;
+        Transform temp = null;
+        foreach (var s in listSlot)
+        {
+            if (listSlot[^1].isBusy)
+            {
+                isFull = true;
+            }else
+            {
+                if (s.isBusy) continue;
+                temp = s.transform;
+                block.transform.parent = transform;
+                block.transform.localEulerAngles = Vector3.zero;
+                listBlock.Add(block);
+                current.text = listBlock.Count.ToString();
+                s.isBusy = true;
+                if (tutorial)
+                {
+                    Tuto.UpItem(block._typeItem);
+                }
+                break;
+            }
+        }
+        return temp;
+    }
     public void RemoveBlock(CollectedItem.TypeItem type, Transform pos)
     {
         foreach (var block in listBlock.Where(block => block._typeItem == type))
         {
-            block.transform.DOMove(pos.position, 0.2f).OnComplete(() =>
+            block.anim.Play("Collected");
+            block.transform.DOMove(pos.position, 0.3f).OnComplete(() =>
             {
                 block.gameObject.SetActive(false);
                 listBlock.Remove(block);
@@ -301,5 +334,23 @@ public class PlayerController : MonoBehaviour
     {
         axe1.SetActive(isTree);
         axe2.SetActive(!isTree);
+    }
+
+    public void Max(Text text)
+    {
+        canBuildAll = !canBuildAll;
+        text.text = canBuildAll.ToString();
+    }
+
+    public void StartRound()
+    {
+        EnemySpawn.Instance.SetupSpawn();
+        start.gameObject.SetActive(false);
+    }
+
+    public void CancelRunAnim()
+    {
+        _joystick.OnPointerUp(null);
+        ChangeState(PlayerState.Idle);
     }
 }

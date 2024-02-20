@@ -11,13 +11,20 @@ public class SlaveController : MonoBehaviour
     private Tween _tween1;
     [SerializeField] private BeController beController;
     private int level;
-    
+    private int indexTree;
     public enum PlayerState
     {
         Idle,
         Farm
     }
     private PlayerState _currentState;
+
+
+    private void Start()
+    {
+        beController = BeController.Instance;
+        Init(1, beController.listTree1[0], beController);
+    }
 
     private void EnterState()
     {
@@ -105,7 +112,18 @@ public class SlaveController : MonoBehaviour
                 //     beController.BornTree(1);
                 // else target = beController.listTree1[0];
                 if (target != null)
-                    target = beController.listTree1[0];
+                {
+                    if(indexTree < beController.listTree1.Count )
+                    {
+                        indexTree++;
+                        target = beController.listTree1[indexTree];
+                    }
+                    else
+                    {
+                        indexTree = 0;
+                        target = beController.listTree1[indexTree];
+                    }
+                }
                 break;
             }
             case 2:
@@ -113,7 +131,19 @@ public class SlaveController : MonoBehaviour
                 //     beController.BornTree(2);
                 // else target = beController.listTree2[0];
                 if (target != null)
-                    target = beController.listTree2[0];
+                {
+                    if(indexTree < beController.listTree2.Count )
+                    {
+
+                        indexTree++;
+                        target = beController.listTree2[indexTree];
+                    }
+                    else
+                    {
+                        indexTree = 0;
+                        target = beController.listTree2[indexTree];
+                    }
+                }
                 break;
         }
 

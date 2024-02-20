@@ -17,24 +17,24 @@ MonoBehaviour:
     - typeEnemy: 0
       hp: 1
       attackSpeed: 0
-      moveSpeed: 6
+      moveSpeed: 2.5
     - typeEnemy: 1
       hp: 2
       attackSpeed: 0
-      moveSpeed: 3
+      moveSpeed: 2
     - typeEnemy: 2
       hp: 3
       attackSpeed: 0
-      moveSpeed: 4.5
+      moveSpeed: 2.5
     - typeEnemy: 3
       hp: 5
       attackSpeed: 0
-      moveSpeed: 3
+      moveSpeed: 2.5
     - typeEnemy: 4
+      hp: 9
+      attackSpeed: 0
+      moveSpeed: 2
+    - typeEnemy: 5
       hp: 20
       attackSpeed: 0
-      moveSpeed: 3
-    - typeEnemy: 5
-      hp: 40
-      attackSpeed: 0
-      moveSpeed: 3
+      moveSpeed: 1

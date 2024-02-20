@@ -62,10 +62,10 @@ public class TreeController : MonoBehaviour
                 transform.GetChild(0).gameObject.SetActive(false);
                 GetComponent<BoxCollider>().enabled = false;
                 GetComponent<NavMeshObstacle>().enabled = false;
-                if(num == 1)
-                    _beController.listTree1.Remove(this);
-                if(num == 2)
-                    _beController.listTree2.Remove(this);
+                // if(num == 1)
+                //     _beController.listTree1.Remove(this);
+                // if(num == 2)
+                //     _beController.listTree2.Remove(this);
             }
         }
     }
@@ -109,10 +109,7 @@ public class TreeController : MonoBehaviour
                     GetComponent<BoxCollider>().enabled = false;
                     GetComponent<NavMeshObstacle>().enabled = false;
                     other.GetComponent<PlayerController>().ChangeState(PlayerController.PlayerState.Idle);
-                    if(num == 1)
-                        _beController.listTree1.Remove(this);
-                    if(num == 2)
-                        _beController.listTree2.Remove(this);                    
+                    SoundManager.PlaySfx("axe_chop_wood");
                 }
                 if (countWood > 0)
                 {
@@ -124,6 +121,7 @@ public class TreeController : MonoBehaviour
                     w.Init(CollectedItem.TypeItem.wood);
                     //transform.GetChild(0).transform.position += Vector3.down*1.2f;
                     delay2 = timeDelay;
+                    SoundManager.PlaySfx("axe_chop_wood");
                 }
             }
         }

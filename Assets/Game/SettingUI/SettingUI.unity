@@ -272,6 +272,7 @@ MonoBehaviour:
   button: {fileID: 89388841}
   image: {fileID: 89388842}
   grayscaleMaterial: {fileID: 2100000, guid: e01d621b8c0045a4d9d8b7cba2df1a5b, type: 2}
+  bgm: 0
 --- !u!114 &89388841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,6 +674,7 @@ MonoBehaviour:
   button: {fileID: 621573377}
   image: {fileID: 621573378}
   grayscaleMaterial: {fileID: 2100000, guid: e01d621b8c0045a4d9d8b7cba2df1a5b, type: 2}
+  bgm: 0
 --- !u!114 &621573377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1333,6 +1335,7 @@ MonoBehaviour:
   button: {fileID: 1792546736}
   image: {fileID: 1792546737}
   grayscaleMaterial: {fileID: 2100000, guid: e01d621b8c0045a4d9d8b7cba2df1a5b, type: 2}
+  bgm: 1
 --- !u!114 &1792546736
 MonoBehaviour:
   m_ObjectHideFlags: 0

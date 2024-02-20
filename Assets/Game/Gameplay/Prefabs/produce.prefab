@@ -609,7 +609,7 @@ MonoBehaviour:
   - {fileID: 7009308956260067779}
   blackSmithController: {fileID: 0}
   fusionHouseController: {fileID: 0}
-  delay: 0.2
+  delay: 0.3
   img: {fileID: 0}
   canvas: {fileID: 0}
   cdTime: 5

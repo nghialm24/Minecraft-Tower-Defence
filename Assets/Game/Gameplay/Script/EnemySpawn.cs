@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
+    public static EnemySpawn Instance;
     private DataConfig dataConfig => Gameplay.Instance.dataConfigSO.DataConfig;
     [SerializeField] private Row row;
     [SerializeField] List<SplineComputer> listSplineComputer;
@@ -15,7 +16,7 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private List<Row> listRow2;
     [SerializeField] private bool isx2;
     [SerializeField] private GameObject start;
-    [SerializeField] private float startTime;
+    [SerializeField] private bool startSpawn;
     private int round;
     private float delaySpawn;
     private float delaySpawn2;
@@ -25,16 +26,25 @@ public class EnemySpawn : MonoBehaviour
     private bool isSpawn2;
     [SerializeField] private bool quest4;
     [SerializeField] private bool quest7;
-    
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
-        
+        if (Profile.Tutorial && !Tutorial.Instance.tutorial)
+        {
+            quest4 = false;
+            quest7 = false;
+        }
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (startTime > 0) return;
+        if (!startSpawn) return;
         if (!isSpawn)
         {
             if(!isx2)
@@ -105,7 +115,7 @@ public class EnemySpawn : MonoBehaviour
             index = 1;
             isSpawn = false;
         }
-        delaySpawn = e.timeDelay;
+        delaySpawn = e.timeDelay-2;
     }
     
     private void SpawnEnemy2()
@@ -124,15 +134,20 @@ public class EnemySpawn : MonoBehaviour
             index2 = 1;
             isSpawn2 = false;
         }
-        delaySpawn2 = e.timeDelay;
+        delaySpawn2 = e.timeDelay-2;
     }
 
-    private void SetupSpawn()
+    public void SetupSpawn()
     {
+        startSpawn = true;
+        SoundManager.PlaySfx("roar1");
+        start.SetActive(false);
+        GetComponent<BoxCollider>().enabled = false;
         isSpawn = true;
         isSpawn2 = true;
         index = 0;
         index2 = 0;
+        Debug.Log("spawn");
         //round = dataConfig.worldData[Profile.Level-1].levelData.Count;
         if(!isx2)
         {
@@ -175,14 +190,20 @@ public class EnemySpawn : MonoBehaviour
                 quest7 = false;
             }
         }
+        startSpawn = false;
+        if (Gameplay.Instance.isGameOver)
+            return;
         start.SetActive(true);
+        SoundManager.PlaySfx("success");
         GetComponent<BoxCollider>().enabled = true;
-        startTime = 3;
         round++;
         index = 0;
         index2 = 0;
         if(round >=  dataConfig.worldData[Profile.Level - 1].levelData.Count)
+        {
             Gameplay.Instance.Win();
+            SoundManager.PlaySfx("level-win");
+        }
     }
 
     public void RemoveFormList(Row r, int id)
@@ -191,17 +212,15 @@ public class EnemySpawn : MonoBehaviour
             listRow.Remove(r);
         else if(id == 2) listRow2.Remove(r);
     }
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        if(startTime > 0)
-            startTime -= Time.deltaTime;
-        else
-        {
-            SetupSpawn();
-            start.SetActive(false);
-            GetComponent<BoxCollider>().enabled = false;
-            Gameplay.Instance.Play();
-        }
+        other.GetComponent<PlayerController>().start.gameObject.SetActive(true);
+    }
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag("Player")) return;
+        other.GetComponent<PlayerController>().start.gameObject.SetActive(false);
     }
 }

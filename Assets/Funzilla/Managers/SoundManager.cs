@@ -12,9 +12,9 @@ namespace Funzilla
 
 		[SerializeField] private List<AudioClip> clips;
 
-		private readonly LinkedList<AudioSource> _pendingPitchedSfxPlayers = new();
-		private readonly LinkedList<AudioSource> _playingPlayers = new();
-		private readonly Dictionary<string, AudioClip> _dict = new();
+		private readonly LinkedList<AudioSource> _pendingPitchedSfxPlayers = new LinkedList<AudioSource>();
+		private readonly LinkedList<AudioSource> _playingPlayers = new LinkedList<AudioSource>();
+		private readonly Dictionary<string, AudioClip> _dict = new Dictionary<string, AudioClip>();
 
 		private AudioClip GetAudioClip(string key)
 		{

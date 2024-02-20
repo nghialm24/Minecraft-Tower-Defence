@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private int damage;
+    private float damage;
     private Transform target;
-    public void Init(int dmg, Transform tg)
+    private int id;
+    public void Init(int i, float dmg, Transform tg)
     {
         damage = dmg;
         target = tg;
+        id = i;
     }
     void Start()
     {
-        
+        transform.GetChild(id).gameObject.SetActive(true);
     }
 
     // Update is called once per frame

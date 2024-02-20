@@ -15,6 +15,7 @@ public class UpgradesController : MonoBehaviour
     [SerializeField] private List<Ingredient> listIngredient;
     [SerializeField] private TextMeshPro nameBuilding;
     [SerializeField] float delay;
+    [SerializeField] float delay2 = 2;
     public int id;
     [SerializeField] private bool quest3;
     [SerializeField] private bool quest6;
@@ -29,6 +30,17 @@ public class UpgradesController : MonoBehaviour
     } 
 
     [SerializeField] private TypeBuilding typeBuilding;
+
+    private void Start()
+    {
+        if (Profile.Tutorial && !Tutorial.Instance.tutorial)
+        {
+            quest3 = false;
+            quest6 = false;
+            quest8 = false;
+            quest10 = false;
+        }
+    }
 
     private void CheckUpdate()
     {
@@ -68,14 +80,65 @@ public class UpgradesController : MonoBehaviour
                     quest8 = false;
                 }
                 break;
-            default:
-                throw new ArgumentOutOfRangeException();
         }
+        SoundManager.PlaySfx("building_upgrade");
+    }
+
+    private void CanBuildAll()
+    {
+        gameObject.SetActive(false);
+        switch (typeBuilding)
+        {
+            case TypeBuilding.tower:
+                towerController.UpdateTower(id);
+                if (quest3)
+                {
+                    Tutorial.Instance.Quest3();
+                    quest3 = false;
+                }
+                if (quest6)
+                {
+                    Tutorial.Instance.Quest6();
+                    quest6 = false;
+                }
+                if (quest10)
+                {
+                    Tutorial.Instance.Quest10();
+                    quest10 = false;
+                }
+                break;
+            case TypeBuilding.be:
+                beController.UpdateBe();
+                break;
+            case TypeBuilding.bsh:
+                blackSmithController.UpdateBlackSmith();
+                break;
+            case TypeBuilding.fh:
+                fusionHouseController.UpdateFusionHouse();
+                if (quest8)
+                {
+                    Tutorial.Instance.Quest8();
+                    quest8 = false;
+                }
+                break;
+        }
+        SoundManager.PlaySfx("building_upgrade");
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            if (other.GetComponent<PlayerController>().canBuildAll)
+            {
+                if (delay2 > 0)
+                    delay2 -= Time.deltaTime;
+                else
+                {
+                    CanBuildAll();
+                    delay2 = 2;
+                }
+            }
+            else
             for (int i = 0; i < listIngredient.Count; i++)
             {
                 if (listIngredient[i].amount > 0)
@@ -90,8 +153,9 @@ public class UpgradesController : MonoBehaviour
                             {
                                 other.GetComponent<PlayerController>().RemoveBlock(CollectedItem.TypeItem.wood, transform);
                                 listIngredient[i].amount -= 1;
-                                delay = 0.2f;
+                                delay = 0.3f;
                                 listIngredient[i].UpdateAmount();
+                                SoundManager.PlaySfx("drop2building");
                             }
                         }
                         else continue;
@@ -107,8 +171,9 @@ public class UpgradesController : MonoBehaviour
                                 other.GetComponent<PlayerController>()
                                     .RemoveBlock(CollectedItem.TypeItem.stone, transform);
                                 listIngredient[i].amount -= 1;
-                                delay = 0.2f;
+                                delay = 0.3f;
                                 listIngredient[i].UpdateAmount();
+                                SoundManager.PlaySfx("drop2building");
                             }
                         }
                         else continue;
@@ -124,8 +189,9 @@ public class UpgradesController : MonoBehaviour
                                 other.GetComponent<PlayerController>()
                                     .RemoveBlock(CollectedItem.TypeItem.skin, transform);
                                 listIngredient[i].amount -= 1;
-                                delay = 0.2f;
+                                delay = 0.3f;
                                 listIngredient[i].UpdateAmount();
+                                SoundManager.PlaySfx("drop2building");
                             }
                         }
                         else continue;
@@ -141,8 +207,9 @@ public class UpgradesController : MonoBehaviour
                                 other.GetComponent<PlayerController>()
                                     .RemoveBlock(CollectedItem.TypeItem.iron, transform);
                                 listIngredient[i].amount -= 1;
-                                delay = 0.2f;
+                                delay = 0.3f;
                                 listIngredient[i].UpdateAmount();
+                                SoundManager.PlaySfx("drop2building");
                             }
                         }
                         else continue;
@@ -158,8 +225,9 @@ public class UpgradesController : MonoBehaviour
                                 other.GetComponent<PlayerController>()
                                     .RemoveBlock(CollectedItem.TypeItem.diamond, transform);
                                 listIngredient[i].amount -= 1;
-                                delay = 0.2f;
+                                delay = 0.3f;
                                 listIngredient[i].UpdateAmount();
+                                SoundManager.PlaySfx("drop2building");
                             }
                         }
                         else continue;
@@ -175,8 +243,9 @@ public class UpgradesController : MonoBehaviour
                                 other.GetComponent<PlayerController>()
                                     .RemoveBlock(CollectedItem.TypeItem.woodVip, transform);
                                 listIngredient[i].amount -= 1;
-                                delay = 0.2f;
+                                delay = 0.3f;
                                 listIngredient[i].UpdateAmount();
+                                SoundManager.PlaySfx("drop2building");
                             }
                         }
                         else continue;
@@ -192,8 +261,9 @@ public class UpgradesController : MonoBehaviour
                                 other.GetComponent<PlayerController>()
                                     .RemoveBlock(CollectedItem.TypeItem.stoneVip, transform);
                                 listIngredient[i].amount -= 1;
-                                delay = 0.2f;
+                                delay = 0.3f;
                                 listIngredient[i].UpdateAmount();
+                                SoundManager.PlaySfx("drop2building");
                             }
                         }
                         else continue;
@@ -209,8 +279,9 @@ public class UpgradesController : MonoBehaviour
                                 other.GetComponent<PlayerController>()
                                     .RemoveBlock(CollectedItem.TypeItem.woodVip2, transform);
                                 listIngredient[i].amount -= 1;
-                                delay = 0.2f;
+                                delay = 0.3f;
                                 listIngredient[i].UpdateAmount();
+                                SoundManager.PlaySfx("drop2building");
                             }
                         }
                         else continue;

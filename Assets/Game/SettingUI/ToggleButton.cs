@@ -10,7 +10,7 @@ namespace Funzilla
 		[SerializeField] private Button button;
 		[SerializeField] private Image image;
 		[SerializeField] private Material grayscaleMaterial;
-
+		[SerializeField] private bool bgm;	
 		private bool _active;
 		private Action<bool> _toggle;
 		private Material _normalMaterial;
@@ -22,6 +22,8 @@ namespace Funzilla
 			button.onClick.AddListener(() =>
 			{
 				UpdateState(!_active);
+				if(bgm)
+					SoundManager.PlayMusic("Medieval_with_Nature_Sounds_music_only_-_AllenGrey");
 			});
 		}
 

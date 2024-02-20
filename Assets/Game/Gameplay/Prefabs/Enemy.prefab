@@ -306,6 +306,9 @@ MonoBehaviour:
   currentHp: {fileID: 735555363}
   hp: 1
   canvasHP: {fileID: 1081004952}
+  enemyDeath: {fileID: 373815210342233391, guid: 0a6a5af257c617b4d8d318f0cf76fa6e, type: 3}
+  listSkin:
+  - {fileID: 46199067106804305}
   typeEnemy: 0
 --- !u!65 &2342245746823076532
 BoxCollider:
@@ -1188,6 +1191,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3625236206093676835}
   m_SourcePrefab: {fileID: 100100000, guid: 3e0819cdddf1a144985133136927fe12, type: 3}
+--- !u!137 &46199067106804305 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5046002537186493500, guid: 3e0819cdddf1a144985133136927fe12, type: 3}
+  m_PrefabInstance: {fileID: 5089948683339007597}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4695451355720900998 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3e0819cdddf1a144985133136927fe12, type: 3}

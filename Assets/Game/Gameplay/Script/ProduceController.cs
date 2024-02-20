@@ -18,6 +18,8 @@ public class ProduceController : MonoBehaviour
     private bool locking;
     [SerializeField] private float cdTime;
     [SerializeField] private float currentTime;
+    [SerializeField] private float timeSound = 1f;
+
     public enum TypeItem
     {
         woodVip,
@@ -74,6 +76,15 @@ public class ProduceController : MonoBehaviour
         {
             currentTime -= Time.deltaTime;
             img.fillAmount = currentTime / cdTime;
+            if (timeSound > 0)
+            {
+                timeSound -= Time.deltaTime;
+            }
+            else
+            {
+                SoundManager.PlaySfx("produce");
+                timeSound = 1f;
+            }
         }      
         else
         {
@@ -82,6 +93,7 @@ public class ProduceController : MonoBehaviour
             GetComponent<BoxCollider>().enabled = true;
             currentTime = cdTime;
             locking = false;
+            SoundManager.PlaySfx("hit_ground");
         }
     }
     private void OnTriggerStay(Collider other)
@@ -106,6 +118,7 @@ public class ProduceController : MonoBehaviour
                                     ing.amount -= 1;
                                     delay = timeDelay;
                                     ing.UpdateAmount();
+                                    SoundManager.PlaySfx("drop2building");
                                 }
                             }
 
@@ -122,6 +135,7 @@ public class ProduceController : MonoBehaviour
                                     ing.amount -= 1;
                                     delay = timeDelay;
                                     ing.UpdateAmount();
+                                    SoundManager.PlaySfx("drop2building");
                                 }
                             }
 
@@ -138,6 +152,7 @@ public class ProduceController : MonoBehaviour
                                     ing.amount -= 1;
                                     delay = timeDelay;
                                     ing.UpdateAmount();
+                                    SoundManager.PlaySfx("drop2building");
                                 }
                             }
 
@@ -154,6 +169,7 @@ public class ProduceController : MonoBehaviour
                                     ing.amount -= 1;
                                     delay = timeDelay;
                                     ing.UpdateAmount();
+                                    SoundManager.PlaySfx("drop2building");
                                 }
                             }
 
@@ -170,6 +186,7 @@ public class ProduceController : MonoBehaviour
                                     ing.amount -= 1;
                                     delay = timeDelay;
                                     ing.UpdateAmount();
+                                    SoundManager.PlaySfx("drop2building");
                                 }
                             }
 
@@ -186,6 +203,7 @@ public class ProduceController : MonoBehaviour
                                     ing.amount -= 1;
                                     delay = timeDelay;
                                     ing.UpdateAmount();
+                                    SoundManager.PlaySfx("drop2building");
                                 }
                             }
 
@@ -202,6 +220,7 @@ public class ProduceController : MonoBehaviour
                                     ing.amount -= 1;
                                     delay = timeDelay;
                                     ing.UpdateAmount();
+                                    SoundManager.PlaySfx("drop2building");
                                 }
                             }
 
@@ -218,6 +237,7 @@ public class ProduceController : MonoBehaviour
                                     ing.amount -= 1;
                                     delay = timeDelay;
                                     ing.UpdateAmount();
+                                    SoundManager.PlaySfx("drop2building");
                                 }
                             }
 

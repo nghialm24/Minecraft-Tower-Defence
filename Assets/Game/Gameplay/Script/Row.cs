@@ -28,28 +28,28 @@ public class Row : MonoBehaviour
         switch (typeEnemy)
         {
             case TypeEnemy.ghast:
-                splineFollower.followSpeed = 2;
-                hp = 1;
+                splineFollower.followSpeed = enemyConfigs[0].moveSpeed;
+                hp = enemyConfigs[0].hp;
                 break;
             case TypeEnemy.zombie:
-                splineFollower.followSpeed = 2;
-                hp = 2;
+                splineFollower.followSpeed = enemyConfigs[1].moveSpeed;
+                hp = enemyConfigs[1].hp;
                 break;
             case TypeEnemy.skeleton:
-                splineFollower.followSpeed = 2f;
-                hp = 3;
+                splineFollower.followSpeed = enemyConfigs[2].moveSpeed;
+                hp = enemyConfigs[2].hp;
                 break;
             case TypeEnemy.enderman:
-                splineFollower.followSpeed = 2;
-                hp = 5;
+                splineFollower.followSpeed = enemyConfigs[3].moveSpeed;
+                hp = enemyConfigs[3].hp;
                 break;
             case TypeEnemy.thewither:
-                splineFollower.followSpeed = 2;
-                hp = 20;
+                splineFollower.followSpeed = enemyConfigs[4].moveSpeed;
+                hp = enemyConfigs[4].hp;
                 break;
             case TypeEnemy.enderdragon:
-                splineFollower.followSpeed = 2;
-                hp = 4;
+                splineFollower.followSpeed = enemyConfigs[5].moveSpeed;
+                hp = enemyConfigs[5].hp;
                 break;
         }
         enemy.Init(typeEnemy, x, hp);

@@ -19,7 +19,7 @@ public class TowerController : MonoBehaviour
     [SerializeField] private GameObject sprite;
     [SerializeField] private GameObject upgrade1;
     private float distance;
-    private int damage;
+    private float damage;
     private float atkSpeed;
     private float delayAtk;
     private float range;
@@ -130,10 +130,30 @@ public class TowerController : MonoBehaviour
 
     private void Attack(Transform tg)
     {
-        var b = Instantiate(_dataConfig.bullet);
-        b.transform.position = firePos.position;
-        //b.transform.DOMove(tg.transform.position + new Vector3(0, 0, -0.5f), 0.7f);
-        b.GetComponent<Bullet>().Init(damage,tg);
-        delayAtk = atkSpeed;
+        if(towerLevel == 2)
+        {
+            var b1 = Instantiate(_dataConfig.bullet);
+            var b2 = Instantiate(_dataConfig.bullet);
+            b1.transform.position = firePos.position + new Vector3(0, -1, 0);
+            b1.gameObject.transform.localScale += new Vector3(1, 1 , 1);
+            b2.transform.position = firePos.position + new Vector3(0, 1, 0);
+            b2.gameObject.transform.localScale += new Vector3(1, 1 , 1);;
+
+            //b.transform.DOMove(tg.transform.position + new Vector3(0, 0, -0.5f), 0.7f);
+            b1.GetComponent<Bullet>().Init(1,damage*0.5f, tg);
+            b2.GetComponent<Bullet>().Init(1,damage*0.5f, tg);
+            delayAtk = atkSpeed;
+        }
+        else
+        {
+            var b = Instantiate(_dataConfig.bullet);
+            b.transform.position = firePos.position;
+            //b.transform.DOMove(tg.transform.position + new Vector3(0, 0, -0.5f), 0.7f);
+            delayAtk = atkSpeed;
+            if(towerLevel == 3)
+                b.GetComponent<Bullet>().Init(2,damage, tg);
+            else b.GetComponent<Bullet>().Init(1,damage, tg);
+        }
+        SoundManager.PlaySfx("Tower_shot");
     }
 }

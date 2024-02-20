@@ -17,9 +17,9 @@ namespace Funzilla
 		[SerializeField] bool isTest;
 		[SerializeField] string levelTest;
 		[SerializeField] private CinemachineVirtualCamera cam1;
-		[SerializeField] private float countDown;
-		[SerializeField] private GameObject joy;
-		[SerializeField] private GameObject arrow;
+		public bool isGameOver;
+		[SerializeField] private float timeSound = 150f;
+
 		private enum State
 		{
 			Init,
@@ -89,6 +89,7 @@ namespace Funzilla
 			settingButton.onClick.AddListener(()=>SceneManager.OpenPopup(SceneID.SettingUI));
 			winButton.onClick.AddListener(Win);
 			loseButton.onClick.AddListener(Lose);
+			SoundManager.PlayMusic("Medieval_with_Nature_Sounds_music_only_-_AllenGrey");
 		}
 
 		private void ChangeState(State newState)
@@ -104,12 +105,9 @@ namespace Funzilla
 			switch (_state)
 			{
 				case State.Init:
-					if (Profile.Tutorial)
-					{
-						Profile.Tutorial = false;
-					}
 					break;
 				case State.Play:
+					
 					//arrow.SetActive(false);
 					// cam2.gameObject.SetActive(true);
 					// cam1.gameObject.SetActive(false);
@@ -121,6 +119,7 @@ namespace Funzilla
 					// 	joy.gameObject.SetActive(true);
 					// });
 					//Analytics.LogLevelStartEvent();
+
 					break;
 				case State.Win:
 					//Analytics.LogLevelCompleteEvent();
@@ -169,8 +168,18 @@ namespace Funzilla
 					// 	countDownTxt.gameObject.SetActive(false);
 					// 	Play();
 					// }
+					if (timeSound > 0)
+					{
+						timeSound -= Time.deltaTime;
+					}
+					else
+					{
+						SoundManager.PlayMusic("Medieval_with_Nature_Sounds_music_only_-_AllenGrey");
+						timeSound = 150f;
+					}
 					break;
 				case State.Play:
+
 					break;
 				case State.Win:
 					break;
@@ -179,6 +188,8 @@ namespace Funzilla
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
+			Debug.Log(_state);
+
 		}
 	}
 }

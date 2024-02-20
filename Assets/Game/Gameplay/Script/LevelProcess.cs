@@ -10,7 +10,7 @@ public class LevelProcess : MonoBehaviour
     [SerializeField] private List<Image> img;
     private int enemy;
     [SerializeField] private List<float> boss;
-    [SerializeField] private List<Animator> anim;
+    [SerializeField] private List<AnimUI> anim;
     internal static LevelProcess Instance;
     private int currentEnemy;
     private float currentBoss;
@@ -74,7 +74,7 @@ public class LevelProcess : MonoBehaviour
     {
         currentBoss -= damage; 
         img[1].fillAmount = currentBoss / boss[level];
-        if(currentBoss <= 0) anim[2].SetTrigger("anim");
+        //if(currentBoss <= 0) anim[2].SetTrigger("anim");
 
     }
 
@@ -86,12 +86,12 @@ public class LevelProcess : MonoBehaviour
             {
                 if (currentEnemy == 6)
                 {
-                    anim[0].SetTrigger("anim");
+                    //anim[0].SetTrigger("anim");
                 }
 
                 if (currentEnemy == 0)
                 {
-                    anim[1].SetTrigger("anim");
+                    //anim[1].SetTrigger("anim");
                 }
 
                 break;
@@ -100,12 +100,12 @@ public class LevelProcess : MonoBehaviour
             {
                 if (currentEnemy == 20)
                 {
-                    anim[0].SetTrigger("anim");
+                    //anim[0].SetTrigger("anim");
                 }
 
                 if (currentEnemy == 0)
                 {
-                    anim[1].SetTrigger("anim");
+                    //anim[1].SetTrigger("anim");
                 }
 
                 break;
@@ -114,12 +114,12 @@ public class LevelProcess : MonoBehaviour
             {
                 if (currentEnemy == 30)
                 {
-                    anim[0].SetTrigger("anim");
+                    //anim[0].SetTrigger("anim");
                 }
 
                 if (currentEnemy == 0)
                 {
-                    anim[1].SetTrigger("anim");
+                    //anim[1].SetTrigger("anim");
                 }
 
                 break;

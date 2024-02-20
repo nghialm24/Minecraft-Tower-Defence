@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 6114034905027309052}
+  enemySpawn: {fileID: 0}
 --- !u!114 &7268128333719337915
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -43,7 +43,7 @@ public class LevelData
 public class TowerData
 {
     public int level;
-    public int damage;
+    public float damage;
     public float atkSpeed;
     public float range;
 }

@@ -15,11 +15,12 @@ public class CowController : MonoBehaviour
     [SerializeField] private Animator anim;
     private float timeAuto;
     private float t;
-    private AllCowController _allCowController;
+    [SerializeField] private AllCowController _allCowController;
     private void Start()
     {
         t = Random.Range(1, 10);
         timeAuto = 15 + t;
+        cage = _allCowController.transform;
     }
 
     public void Init(Transform c, AllCowController allc)
