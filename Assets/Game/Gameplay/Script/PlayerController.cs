@@ -16,6 +16,7 @@ using Image = UnityEngine.UI.Image;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private VariableJoystick _joystick;
+    [SerializeField] private PlayerAttack playerAttack;
     [SerializeField] private Animator anim;
     [SerializeField] private Animator uiAnim;
     private bool delay;
@@ -31,7 +32,10 @@ public class PlayerController : MonoBehaviour
     public bool canBuildAll;
     public GameObject start;
     private float delayFootStep;
+    [SerializeField] private SphereCollider playerCollider;
     [SerializeField] private SphereCollider colliderAttack;
+    public bool canAttack;
+    [SerializeField] private Transform bag;
     public enum PlayerState
     {
         Idle,
@@ -83,6 +87,7 @@ public class PlayerController : MonoBehaviour
         switch (_currentState)
         {
             case PlayerState.Idle:
+                if(canAttack) ChangeState(PlayerState.Attack);
                 if(_joystick.Direction.x == 0 && _joystick.Direction.y == 0)
                     return;
                 ChangeState(PlayerState.Run);
@@ -106,6 +111,14 @@ public class PlayerController : MonoBehaviour
                         _joystick.Direction.y >= 0.7f || _joystick.Direction.y <= -0.7f)
                         ChangeState(PlayerState.Run);
                 break;
+            case PlayerState.Attack:
+                playerAttack.Proc();
+                if(!canAttack)
+                    ChangeState(PlayerState.Idle);
+                if (_joystick.Direction.x >= 0.7f || _joystick.Direction.x <= -0.7f ||
+                    _joystick.Direction.y >= 0.7f || _joystick.Direction.y <= -0.7f)
+                    ChangeState(PlayerState.Run);
+                break;
         }
     }
     
@@ -126,13 +139,15 @@ public class PlayerController : MonoBehaviour
 
     private void Idle()
     {        
-        GetComponent<SphereCollider>().isTrigger = true;
+        playerCollider.isTrigger = true;
         anim.SetTrigger("Idle");
     }
 
     private void Run()
     {
-        GetComponent<SphereCollider>().isTrigger = false;
+        //bag.gameObject.SetActive(true);
+        playerCollider.isTrigger = false;
+        colliderAttack.enabled = true;
         anim.SetTrigger("Run");
         foreach (var slot in listSlot)
         {
@@ -155,7 +170,9 @@ public class PlayerController : MonoBehaviour
     
     private void Attack()
     {
-        
+        //bag.gameObject.SetActive(false);
+        //anim.SetTrigger("Mining");
+        //uiAnim.Play("UI_Off");
     }
     private void Die()
     {
@@ -164,6 +181,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        playerCollider = GetComponent<SphereCollider>();
         listSlot = GetComponentsInChildren<Slot>().ToList();
         amount.text = "/" + listSlot.Count;
         current.text = listBlock.Count.ToString();
@@ -217,6 +235,12 @@ public class PlayerController : MonoBehaviour
         {
             uiAnim.Play("UI_On");
         }
+        //
+        // if (other.CompareTag("Upgrade"))
+        // {
+        //     colliderAttack.enabled = false;
+        //     Debug.Log("false");
+        // }
     }
 
     private void OnTriggerStay(Collider other)
@@ -228,6 +252,15 @@ public class PlayerController : MonoBehaviour
                 RemoveBlock(listBlock[^1]._typeItem, other.transform);
             }
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // if (other.CompareTag("Upgrade"))
+        // {
+        //     colliderAttack.enabled = true;
+        //     Debug.Log("true");
+        // }
     }
 
     private void TypeFarm(int index)
@@ -271,7 +304,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (s.isBusy) continue;
                 temp = s.transform;
-                block.transform.parent = transform;
+                block.transform.parent = bag;
                 block.transform.localEulerAngles = Vector3.zero;
                 listBlock.Add(block);
                 current.text = listBlock.Count.ToString();

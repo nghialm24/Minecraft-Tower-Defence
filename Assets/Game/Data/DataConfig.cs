@@ -14,6 +14,10 @@ public class DataConfig
     public Bullet bullet;
     public List<IngredientData> ingredientData;
 
+    [Header("=======Tower========")] 
+    public float playerDamage;
+    public float playerAtkSpeed;
+    public float playerRange;
 }
 
 [System.Serializable]

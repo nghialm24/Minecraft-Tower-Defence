@@ -188,8 +188,6 @@ namespace Funzilla
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
-			Debug.Log(_state);
-
 		}
 	}
 }
