@@ -407,5 +407,5 @@ MonoBehaviour:
     - type: 7
       avatar: {fileID: 21300000, guid: b3c1f817d174beb4f927afd8249a0f85, type: 3}
     playerDamage: 0.1
-    playerAtkSpeed: 0.5
-    playerRange: 6
+    playerAtkSpeed: 3
+    playerRange: 15
