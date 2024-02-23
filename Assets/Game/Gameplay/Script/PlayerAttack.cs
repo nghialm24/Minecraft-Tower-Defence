@@ -27,6 +27,7 @@ public class PlayerAttack : MonoBehaviour
         atkSpeed = _dataConfig.playerAtkSpeed;
         range = _dataConfig.playerRange;
         rangeObj.localScale = Vector3.one*range*2;
+        colliderAttack.radius = range;
     }
 
     // Update is called once per frame
