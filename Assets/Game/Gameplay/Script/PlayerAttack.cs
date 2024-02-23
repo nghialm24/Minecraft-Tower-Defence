@@ -65,6 +65,7 @@ public class PlayerAttack : MonoBehaviour
     private void Attack(Transform tg)
     {
         Debug.Log("attack");
+        playerController.transform.LookAt(target.transform);
         var b1 = Instantiate(_dataConfig.bullet, transform.position, Quaternion.identity);
         b1.GetComponent<Bullet>().Init(1,damage, tg);
         delayAtk = atkSpeed;
