@@ -32,9 +32,6 @@ MonoBehaviour:
         - typeEnemy: 0
           timeDelay: 5
           trans: 0
-        - typeEnemy: 0
-          timeDelay: 5
-          trans: 0
       - levelID: 2
         delayPerWave: 15
         listEnemyDelay:
@@ -56,12 +53,6 @@ MonoBehaviour:
         - typeEnemy: 1
           timeDelay: 0
           trans: 1
-      - levelID: 3
-        delayPerWave: 15
-        listEnemyDelay:
-        - typeEnemy: 4
-          timeDelay: 5
-          trans: 0
     - id: 1
       delayPerLevel: 25
       levelData:
@@ -76,15 +67,9 @@ MonoBehaviour:
           trans: 0
         - typeEnemy: 0
           timeDelay: 5
-          trans: 0
-        - typeEnemy: 0
-          timeDelay: 5
-          trans: 0
-        - typeEnemy: 0
-          timeDelay: 0
           trans: -1
         - typeEnemy: 0
-          timeDelay: 0
+          timeDelay: 5
           trans: 1
       - levelID: 5
         delayPerWave: 0
@@ -93,9 +78,6 @@ MonoBehaviour:
           timeDelay: 5
           trans: 0
         - typeEnemy: 1
-          timeDelay: 5
-          trans: 0
-        - typeEnemy: 1
           timeDelay: 0
           trans: -1
         - typeEnemy: 1
@@ -104,18 +86,9 @@ MonoBehaviour:
         - typeEnemy: 1
           timeDelay: 5
           trans: 0
-        - typeEnemy: 1
-          timeDelay: 5
-          trans: 0
       - levelID: 6
         delayPerWave: 0
         listEnemyDelay:
-        - typeEnemy: 2
-          timeDelay: 5
-          trans: 0
-        - typeEnemy: 2
-          timeDelay: 5
-          trans: 0
         - typeEnemy: 2
           timeDelay: 5
           trans: 0
@@ -146,30 +119,9 @@ MonoBehaviour:
         - typeEnemy: 0
           timeDelay: 5
           trans: 1
-        - typeEnemy: 1
-          timeDelay: 0
-          trans: -1
-        - typeEnemy: 1
-          timeDelay: 5
-          trans: 1
-        - typeEnemy: 1
-          timeDelay: 5
-          trans: 0
-        - typeEnemy: 1
-          timeDelay: 5
-          trans: 0
         - typeEnemy: 2
           timeDelay: 0
           trans: -1
-        - typeEnemy: 2
-          timeDelay: 5
-          trans: 1
-        - typeEnemy: 2
-          timeDelay: 0
-          trans: -1
-        - typeEnemy: 2
-          timeDelay: 5
-          trans: 0
         - typeEnemy: 2
           timeDelay: 5
           trans: 1
@@ -407,5 +359,5 @@ MonoBehaviour:
     - type: 7
       avatar: {fileID: 21300000, guid: b3c1f817d174beb4f927afd8249a0f85, type: 3}
     playerDamage: 0.1
-    playerAtkSpeed: 3
+    playerAtkSpeed: 0.1
     playerRange: 15
