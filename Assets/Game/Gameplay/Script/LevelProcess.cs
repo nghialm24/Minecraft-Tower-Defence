@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class LevelProcess : MonoBehaviour
 {
-    [SerializeField] private List<Image> img;
     private int enemy;
     [SerializeField] private List<float> boss;
     [SerializeField] private List<AnimUI> anim;
@@ -54,30 +53,6 @@ public class LevelProcess : MonoBehaviour
         return enemy;
     }
     
-    public void EnemyProcess()
-    {
-        currentEnemy -= 1;
-        img[0].fillAmount = (float)currentEnemy / enemy;
-        // if (currentEnemy == 4 ||
-        //     currentEnemy == 10 ||
-        //     currentEnemy == 12 ||
-        //     currentEnemy == 32 ||
-        //     currentEnemy == 16 ||
-        //     currentEnemy == 46)
-        // {
-        //     Milestone();
-        // }
-        Milestone();
-    }
-
-    public void BossProcess(float damage)
-    {
-        currentBoss -= damage; 
-        img[1].fillAmount = currentBoss / boss[level];
-        //if(currentBoss <= 0) anim[2].SetTrigger("anim");
-
-    }
-
     private void Milestone()
     {
         switch (level)

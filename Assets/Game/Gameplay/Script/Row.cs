@@ -61,7 +61,7 @@ public class Row : MonoBehaviour
     {
         Destroy(gameObject);
         enemySpawn.RemoveFormList(this, idRow);
-        LevelProcess.Instance.EnemyProcess();
+        AnimUI.Instance.EnemyProcess();
     }
     // Update is called once per frame
     void Update()

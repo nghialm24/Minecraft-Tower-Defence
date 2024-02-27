@@ -38,11 +38,8 @@ public class PlayerAttack : MonoBehaviour
         if (target != null)
         {
             distance = Vector3.Distance(target.transform.position, transform.position);
-            Debug.Log(distance);
-
             if (distance > range)
             {
-                Debug.Log("out");
                 colliderAttack.enabled = true;
                 playerController.canAttack = false;
                 target = null;
@@ -65,7 +62,6 @@ public class PlayerAttack : MonoBehaviour
     
     private void Attack(Transform tg)
     {
-        Debug.Log("attack");
         var b1 = Instantiate(_dataConfig.bullet, transform.position, Quaternion.identity);
         b1.GetComponent<Bullet>().Init(1,damage, tg);
         delayAtk = atkSpeed;
@@ -78,7 +74,6 @@ public class PlayerAttack : MonoBehaviour
             colliderAttack.enabled = false;
             playerController.canAttack = true;
             target = other.GetComponent<EnemyController>();
-            Debug.Log("ênmy");
         }
     }
 }

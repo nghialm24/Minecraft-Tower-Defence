@@ -39,6 +39,8 @@ public class EnemySpawn : MonoBehaviour
             quest4 = false;
             quest7 = false;
         }
+
+        round = 2;
     }
 
     // Update is called once per frame
@@ -199,8 +201,11 @@ public class EnemySpawn : MonoBehaviour
         round++;
         index = 0;
         index2 = 0;
+        Profile.CurrentRound = round;
+        Debug.Log(Profile.CurrentRound);
         if(round >=  dataConfig.worldData[Profile.Level - 1].levelData.Count)
         {
+            Profile.CurrentRound = 0;
             Gameplay.Instance.Win();
             SoundManager.PlaySfx("level-win");
         }
