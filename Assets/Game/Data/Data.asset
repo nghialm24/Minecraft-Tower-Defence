@@ -148,22 +148,10 @@ MonoBehaviour:
           trans: 0
       - levelID: 10
         delayPerWave: 0
-        listEnemyDelay:
-        - typeEnemy: 0
-          timeDelay: 5
-          trans: 0
+        listEnemyDelay: []
       - levelID: 11
         delayPerWave: 0
         listEnemyDelay:
-        - typeEnemy: 0
-          timeDelay: 5
-          trans: 0
-        - typeEnemy: 0
-          timeDelay: 5
-          trans: 0
-        - typeEnemy: 2
-          timeDelay: 5
-          trans: 0
         - typeEnemy: 2
           timeDelay: 5
           trans: 0
@@ -226,10 +214,7 @@ MonoBehaviour:
       levelData:
       - levelID: 9
         delayPerWave: 0
-        listEnemyDelay:
-        - typeEnemy: 0
-          timeDelay: 5
-          trans: 0
+        listEnemyDelay: []
       - levelID: 10
         delayPerWave: 0
         listEnemyDelay:
@@ -242,9 +227,6 @@ MonoBehaviour:
       - levelID: 11
         delayPerWave: 0
         listEnemyDelay:
-        - typeEnemy: 1
-          timeDelay: 5
-          trans: 0
         - typeEnemy: 1
           timeDelay: 5
           trans: 0
