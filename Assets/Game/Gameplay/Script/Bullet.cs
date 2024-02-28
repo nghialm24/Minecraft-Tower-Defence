@@ -8,11 +8,22 @@ public class Bullet : MonoBehaviour
     private float damage;
     private Transform target;
     private int id;
-    public void Init(int i, float dmg, Transform tg)
+    [SerializeField] private Transform effectPar;
+    public void Init(int i, float dmg, Transform tg,int idEff)
     {
         damage = dmg;
         target = tg;
         id = i;
+        if(idEff>=effectPar.childCount)
+            return;
+        for (int j = 0; j < effectPar.childCount; j++)
+        {
+            effectPar.GetChild(i).gameObject.SetActive(false);
+            if (j == idEff)
+            {
+                effectPar.GetChild(j).gameObject.SetActive(true);
+            }
+        }
     }
     void Start()
     {
@@ -27,6 +38,8 @@ public class Bullet : MonoBehaviour
             if(!target.gameObject.activeSelf)
                 gameObject.SetActive(false);
             transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime*25);
+            transform.LookAt(target);
+
         }else gameObject.SetActive(false);
     }
 
@@ -40,6 +53,7 @@ public class Bullet : MonoBehaviour
                 AnimUI.Instance.BossProcess(damage);
             }
             e.hp -= damage;
+            e.ShowEff();
             gameObject.SetActive(false);
         }
     }

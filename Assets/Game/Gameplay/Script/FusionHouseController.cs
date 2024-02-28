@@ -15,7 +15,8 @@ public class FusionHouseController : MonoBehaviour
     [SerializeField] private Transform pos2;
     [SerializeField] private Text nameBuilding;
     [SerializeField] private GameObject upgrade1;
-
+    [SerializeField] private GameObject effectCom;
+    [SerializeField] private GameObject effectUpgr;
     private void Start()
     {
         foreach (var t in Profile.ListSaveBuilding.ToList())
@@ -37,6 +38,16 @@ public class FusionHouseController : MonoBehaviour
 
     public void UpdateFusionHouse()
     {
+        if (fhLevel < 1)
+        {
+            effectCom.SetActive(true);
+            effectUpgr.SetActive(false);
+        }
+        else
+        {
+            effectUpgr.SetActive(true);
+            effectCom.SetActive(false);
+        }
         if (fhLevel < 2)
         {
             foreach (var t in listFhLevel)

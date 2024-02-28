@@ -4247,9 +4247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354491eba7fbca84c97bab8c35c6efc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  img:
-  - {fileID: 432585461}
-  - {fileID: 1353254587}
   boss:
   - 20
   - 40
@@ -10775,9 +10772,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41992abce26d6f49b63d37ddc2427e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataEnemy:
+    listEnemyConfig: []
   anim: []
-  enemy: {fileID: 0}
-  boss: {fileID: 0}
+  enemyBar: {fileID: 432585461}
+  bossBar: {fileID: 1353254587}
 --- !u!1001 &1633317990
 PrefabInstance:
   m_ObjectHideFlags: 0

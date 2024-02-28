@@ -24,7 +24,8 @@ public class TowerController : MonoBehaviour
     private float delayAtk;
     private float range;
     private List<TowerData> _towerdata => _dataConfig.towerData;
-
+    [SerializeField] private GameObject effectCom;
+    [SerializeField] private GameObject effectUpgr;
     private void Start()
     {
         foreach (var t in Profile.ListSaveBuilding.ToList())
@@ -71,8 +72,19 @@ public class TowerController : MonoBehaviour
         }
     }
 
+    private int idTowerLv4;
     public void UpdateTower(int id)
     {
+        if (towerLevel < 1)
+        {
+            effectCom.SetActive(true);
+            effectUpgr.SetActive(false);
+        }
+        else
+        {
+            effectUpgr.SetActive(true);
+            effectCom.SetActive(false);
+        }
         if (towerLevel < 3)
         {
             foreach (var t in listTowerLevel)
@@ -117,6 +129,7 @@ public class TowerController : MonoBehaviour
             
         }
         Profile.SaveBuilding(GetComponent<SaveBuilding>().index, towerLevel);
+        idTowerLv4 = id;
     }
 
     private void OnTriggerStay(Collider other)
@@ -140,8 +153,8 @@ public class TowerController : MonoBehaviour
             b2.gameObject.transform.localScale += new Vector3(1, 1 , 1);;
 
             //b.transform.DOMove(tg.transform.position + new Vector3(0, 0, -0.5f), 0.7f);
-            b1.GetComponent<Bullet>().Init(1,damage*0.5f, tg);
-            b2.GetComponent<Bullet>().Init(1,damage*0.5f, tg);
+            b1.GetComponent<Bullet>().Init(1,damage*0.5f, tg,1);
+            b2.GetComponent<Bullet>().Init(1,damage*0.5f, tg,1);
             delayAtk = atkSpeed;
         }
         else
@@ -151,8 +164,15 @@ public class TowerController : MonoBehaviour
             //b.transform.DOMove(tg.transform.position + new Vector3(0, 0, -0.5f), 0.7f);
             delayAtk = atkSpeed;
             if(towerLevel == 3)
-                b.GetComponent<Bullet>().Init(2,damage, tg);
-            else b.GetComponent<Bullet>().Init(1,damage, tg);
+                b.GetComponent<Bullet>().Init(2,damage, tg,2);
+            else if (towerLevel == 1)
+            {
+                b.GetComponent<Bullet>().Init(1,damage, tg,0);
+            }
+            else
+            {
+                b.GetComponent<Bullet>().Init(1,damage, tg,3+idTowerLv4);
+            }
         }
         SoundManager.PlaySfx("Tower_shot");
     }
