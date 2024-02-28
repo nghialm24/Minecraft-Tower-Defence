@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
             var e = other.GetComponent<EnemyController>();
             if (e.typeEnemy == TypeEnemy.thewither || e.typeEnemy == TypeEnemy.enderdragon)
             {
-                LevelProcess.Instance.BossProcess(damage);
+                AnimUI.Instance.BossProcess(damage);
             }
             e.hp -= damage;
             gameObject.SetActive(false);
