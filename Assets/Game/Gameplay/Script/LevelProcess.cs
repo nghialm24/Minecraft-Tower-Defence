@@ -7,12 +7,11 @@ using UnityEngine.UI;
 
 public class LevelProcess : MonoBehaviour
 {
+    public static LevelProcess Instance;
     private int enemy;
     [SerializeField] private List<float> boss;
-    [SerializeField] private List<AnimUI> anim;
-    internal static LevelProcess Instance;
-    private int currentEnemy;
-    private float currentBoss;
+    [SerializeField] private List<AnimUI> listAnimUi;
+    private int currentBoss;
     private int level;
     private void Awake()
     {
@@ -21,20 +20,15 @@ public class LevelProcess : MonoBehaviour
 
     private void Start()
     {
-        // foreach (var m in milestones)
-        // {
-        //     m.SetActive(false);
-        // }
-        currentEnemy = SetEnemyAmount();
         enemy = SetEnemyAmount();
         level = Profile.Level-1;
-        currentBoss = boss[Profile.Level-1];
-    }
+        currentBoss = (int)boss[Profile.Level-1];
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        listAnimUi[level].SetData(enemy, currentBoss);
+        for (int i = 0; i < listAnimUi.Count; i++)
+        {
+            listAnimUi[i].gameObject.SetActive(level == i);
+        }
     }
 
     private int SetEnemyAmount()
@@ -42,63 +36,14 @@ public class LevelProcess : MonoBehaviour
         enemy = 0;
         switch (Profile.Level)
         {
-            case 1: enemy = 11;
+            case 1: enemy = 10;
                 break;
-            case 2: enemy = 32;
+            case 2: enemy = 19;
                 break;
-            case 3: enemy = 46;
+            case 3: enemy = 32;
                 break;
                 
         }
         return enemy;
-    }
-    
-    private void Milestone()
-    {
-        switch (level)
-        {
-            case 0:
-            {
-                if (currentEnemy == 6)
-                {
-                    //anim[0].SetTrigger("anim");
-                }
-
-                if (currentEnemy == 0)
-                {
-                    //anim[1].SetTrigger("anim");
-                }
-
-                break;
-            }
-            case 1:
-            {
-                if (currentEnemy == 20)
-                {
-                    //anim[0].SetTrigger("anim");
-                }
-
-                if (currentEnemy == 0)
-                {
-                    //anim[1].SetTrigger("anim");
-                }
-
-                break;
-            }
-            case 2:
-            {
-                if (currentEnemy == 30)
-                {
-                    //anim[0].SetTrigger("anim");
-                }
-
-                if (currentEnemy == 0)
-                {
-                    //anim[1].SetTrigger("anim");
-                }
-
-                break;
-            }
-        }
     }
 }

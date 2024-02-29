@@ -4189,10 +4189,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7947145422903124062}
     m_Modifications:
-    - target: {fileID: 672134684490516368, guid: c2174794c2099294fbce962b67538c11, type: 3}
-      propertyPath: m_Center.z
-      value: -22
-      objectReference: {fileID: 0}
     - target: {fileID: 2889923036924341723, guid: c2174794c2099294fbce962b67538c11, type: 3}
       propertyPath: m_Name
       value: EnemySpawn
