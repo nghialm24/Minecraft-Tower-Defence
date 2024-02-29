@@ -13,7 +13,6 @@ public class Bullet : MonoBehaviour
     {
         damage = dmg;
         target = tg;
-        damage = 0;
         id = i;
         if(idEff>=effectPar.childCount)
             return;
@@ -55,6 +54,7 @@ public class Bullet : MonoBehaviour
             }
             e.hp -= damage;
             e.ShowEff();
+            Debug.Log(damage);
             gameObject.SetActive(false);
         }
     }
