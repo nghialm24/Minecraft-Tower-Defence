@@ -28,6 +28,8 @@ public class BeController : MonoBehaviour
     private float delayCollect;
     [SerializeField] private GameObject upgrade1;
     public static BeController Instance;
+    [SerializeField] private GameObject effectCom;
+    [SerializeField] private GameObject effectUpgr;
     private void Awake()
     {
         Instance = this;
@@ -75,6 +77,16 @@ public class BeController : MonoBehaviour
     
     public void UpdateBe()
     {
+        if (beLevel < 1)
+        {
+            effectCom.SetActive(true);
+            effectUpgr.SetActive(false);
+        }
+        else
+        {
+            effectUpgr.SetActive(true);
+            effectCom.SetActive(false);
+        }
         if (beLevel < 2)
         {
             foreach (var t in listBeLevel)

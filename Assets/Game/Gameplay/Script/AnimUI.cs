@@ -26,10 +26,10 @@ public class AnimUI : MonoBehaviour
 
     private void CheckRound()
     {
-        for (int i = 0; i < _dataConfig.; i++)
-        {
-            
-        }
+        // for (int i = 0; i < _dataConfig.; i++)
+        // {
+        //     
+        // }
     }
     
     public void SetData(int e, int b)

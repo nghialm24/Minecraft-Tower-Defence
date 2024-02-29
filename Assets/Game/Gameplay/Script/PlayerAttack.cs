@@ -63,7 +63,7 @@ public class PlayerAttack : MonoBehaviour
     private void Attack(Transform tg)
     {
         var b1 = Instantiate(_dataConfig.bullet, transform.position, Quaternion.identity);
-        b1.GetComponent<Bullet>().Init(1,damage, tg);
+        b1.GetComponent<Bullet>().Init(1,damage, tg,6);
         delayAtk = atkSpeed;
     }
     

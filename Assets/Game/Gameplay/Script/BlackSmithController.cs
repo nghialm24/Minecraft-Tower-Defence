@@ -14,6 +14,8 @@ public class BlackSmithController : MonoBehaviour
     [SerializeField] private Text nameBuilding;
     
     [SerializeField] private GameObject upgrade1;
+    [SerializeField] private GameObject effectCom;
+    [SerializeField] private GameObject effectUpgr;
 
     private void Start()
     {
@@ -36,6 +38,16 @@ public class BlackSmithController : MonoBehaviour
 
     public void UpdateBlackSmith()
     {
+        if (bshLevel < 1)
+        {
+            effectCom.SetActive(true);
+            effectUpgr.SetActive(false);
+        }
+        else
+        {
+            effectUpgr.SetActive(true);
+            effectCom.SetActive(false);
+        }
         if (bshLevel < 1)
         {
             foreach (var t in listBshLevel)

@@ -21,6 +21,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private GameObject canvasHP;
     [SerializeField] private GameObject enemyDeath;
     [SerializeField] private List<SkinnedMeshRenderer> listSkin;
+
+    [SerializeField] private GameObject bloodFX;
     // public void Init(SplineComputer splineComputer)
     // {
     //     splineFollower = GetComponent<SplineFollower>();
@@ -124,6 +126,12 @@ public class EnemyController : MonoBehaviour
         }
 
         return i;
+    }
+
+    public void ShowEff()
+    {
+        bloodFX.SetActive(true);
+        bloodFX.GetComponent<ParticleSystem>().Play();
     }
 }
 public enum TypeEnemy
