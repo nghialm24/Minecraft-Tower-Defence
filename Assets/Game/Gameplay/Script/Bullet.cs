@@ -13,12 +13,13 @@ public class Bullet : MonoBehaviour
     {
         damage = dmg;
         target = tg;
+        damage = 0;
         id = i;
         if(idEff>=effectPar.childCount)
             return;
         for (int j = 0; j < effectPar.childCount; j++)
         {
-            effectPar.GetChild(i).gameObject.SetActive(false);
+            effectPar.GetChild(j).gameObject.SetActive(false);
             if (j == idEff)
             {
                 effectPar.GetChild(j).gameObject.SetActive(true);
