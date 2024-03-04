@@ -45,7 +45,7 @@ MonoBehaviour:
           timeDelay: 5
           trans: 0
         - typeEnemy: 1
-          timeDelay: 5
+          timeDelay: 8
           trans: 0
         - typeEnemy: 1
           timeDelay: 0

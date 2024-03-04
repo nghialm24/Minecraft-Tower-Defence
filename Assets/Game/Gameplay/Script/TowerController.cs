@@ -148,9 +148,7 @@ public class TowerController : MonoBehaviour
             var b1 = Instantiate(_dataConfig.bullet);
             var b2 = Instantiate(_dataConfig.bullet);
             b1.transform.position = firePos.position + new Vector3(0, -1, 0);
-            b1.gameObject.transform.localScale += new Vector3(1, 1 , 1);
             b2.transform.position = firePos.position + new Vector3(0, 1, 0);
-            b2.gameObject.transform.localScale += new Vector3(1, 1 , 1);;
 
             //b.transform.DOMove(tg.transform.position + new Vector3(0, 0, -0.5f), 0.7f);
             b1.GetComponent<Bullet>().Init(1,damage*0.5f, tg,1);

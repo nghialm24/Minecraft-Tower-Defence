@@ -29,11 +29,11 @@ public class PlayerController : MonoBehaviour
     public bool tutorial;
     [SerializeField] private GameObject axe1;
     [SerializeField] private GameObject axe2;
+    [SerializeField] private GameObject bow;
     public bool canBuildAll;
     public GameObject start;
     private float delayFootStep;
     [SerializeField] private SphereCollider playerCollider;
-    [SerializeField] private SphereCollider colliderAttack;
     public bool canAttack;
     [SerializeField] private Transform bag;
     public enum PlayerState
@@ -79,6 +79,8 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Farm:
                 delay = false;
                 break;
+            case PlayerState.Attack:
+                break;
         }
     }
 
@@ -120,6 +122,7 @@ public class PlayerController : MonoBehaviour
                     ChangeState(PlayerState.Run);
                 break;
         }
+        Debug.Log(_currentState);
     }
     
     public void ChangeState(PlayerState newState)
@@ -138,7 +141,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Idle()
-    {        
+    {     
+        playerAttack.ResetTarget();
         playerCollider.isTrigger = true;
         anim.SetTrigger("Idle");
     }
@@ -147,7 +151,7 @@ public class PlayerController : MonoBehaviour
     {
         //bag.gameObject.SetActive(true);
         playerCollider.isTrigger = false;
-        colliderAttack.enabled = true;
+        //playerAttack.ResetTarget();
         anim.SetTrigger("Run");
         foreach (var slot in listSlot)
         {
@@ -171,7 +175,8 @@ public class PlayerController : MonoBehaviour
     private void Attack()
     {
         //bag.gameObject.SetActive(false);
-        //anim.SetTrigger("Mining");
+        anim.SetTrigger("Attack");
+        ChangeBow(true);
         //uiAnim.Play("UI_Off");
     }
     private void Die()
@@ -213,6 +218,7 @@ public class PlayerController : MonoBehaviour
             ChangeState(PlayerState.Farm);
             TypeFarm(0);
             ChangeAxe(false);
+            ChangeBow(false);
         }
         
         if (other.CompareTag("Tree"))
@@ -221,6 +227,7 @@ public class PlayerController : MonoBehaviour
             ChangeState(PlayerState.Farm);
             TypeFarm(1);
             ChangeAxe(true);
+            ChangeBow(false);
         }
         
         if (other.CompareTag("Cow"))
@@ -229,6 +236,7 @@ public class PlayerController : MonoBehaviour
             ChangeState(PlayerState.Farm);
             TypeFarm(0);
             ChangeAxe(false);
+            ChangeBow(false);
         }
         
         if (other.CompareTag("Sell"))
@@ -369,6 +377,12 @@ public class PlayerController : MonoBehaviour
         axe2.SetActive(!isTree);
     }
 
+    private void ChangeBow(bool isBow)
+    {
+        axe1.SetActive(!isBow);
+        axe2.SetActive(!isBow);
+        bow.SetActive(isBow);
+    }
     public void Max(Text text)
     {
         canBuildAll = !canBuildAll;

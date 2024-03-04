@@ -16,6 +16,8 @@ public class PlayerAttack : MonoBehaviour
     private float damage;
     private float atkSpeed;
     private float range;
+    private float delayCollider;
+    
     private void Awake()
     {
         colliderAttack = GetComponent<SphereCollider>();
@@ -40,9 +42,7 @@ public class PlayerAttack : MonoBehaviour
             distance = Vector3.Distance(target.transform.position, transform.position);
             if (distance > range)
             {
-                colliderAttack.enabled = true;
                 playerController.canAttack = false;
-                target = null;
             }
             else
             {
@@ -53,13 +53,16 @@ public class PlayerAttack : MonoBehaviour
         }
         else
         {
-            playerController.canAttack = false;
-            if(colliderAttack.enabled)
-                return;
-            colliderAttack.enabled = true;
+            ResetTarget();
         }
     }
-    
+
+    public void ResetTarget()
+    {
+        colliderAttack.enabled = true;
+        playerController.canAttack = false;
+        target = null;
+    }
     private void Attack(Transform tg)
     {
         var b1 = Instantiate(_dataConfig.bullet, transform.position+new Vector3(0,2,0), Quaternion.identity);
@@ -71,9 +74,9 @@ public class PlayerAttack : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            target = other.GetComponent<EnemyController>();
             colliderAttack.enabled = false;
             playerController.canAttack = true;
-            target = other.GetComponent<EnemyController>();
         }
     }
 }

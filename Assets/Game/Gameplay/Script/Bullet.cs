@@ -54,7 +54,6 @@ public class Bullet : MonoBehaviour
             }
             e.hp -= damage;
             e.ShowEff();
-            Debug.Log(damage);
             gameObject.SetActive(false);
         }
     }

@@ -234,11 +234,12 @@ public class EnemySpawn : MonoBehaviour
         GetComponent<BoxCollider>().enabled = true;
         round++;
         Profile.CurrentRound = round;
-        Debug.Log(round);
+        Profile.CurrentEnemy = AnimUI.Instance.enemyKilled;
         if(round >=  dataConfig.worldData[Profile.Level - 1].levelData.Count)
         {
             Gameplay.Instance.Win();
             Profile.CurrentRound = 0;
+            Profile.CurrentEnemy = 0;
             SoundManager.PlaySfx("level-win");
             return;
         }
