@@ -13,6 +13,8 @@ public class CollectedItem : MonoBehaviour
     private Transform slot;
     public bool haveAnim;
     public bool fly;
+    [SerializeField] private Material matChange;
+    [SerializeField] private MeshRenderer renderer;
     public enum TypeItem
     {
         stone,
@@ -73,6 +75,8 @@ public class CollectedItem : MonoBehaviour
             //other.GetComponent<PlayerController>().Stack(this);
             slot = other.GetComponent<PlayerController>().ReturnSlot(this);
             anim.Play("Fly");
+            if(slot!=null)
+                renderer.material = matChange;
             PlaySound();
         }
     }

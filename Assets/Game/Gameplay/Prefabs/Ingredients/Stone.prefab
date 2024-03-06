@@ -83,6 +83,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   haveAnim: 1
   fly: 0
+  matChange: {fileID: 2100000, guid: 3b52f708d68d41b4aa2a507d6fbb4bc7, type: 2}
+  renderer: {fileID: 5221667170841437125}
   _typeItem: 0
 --- !u!65 &4303148621591548031
 BoxCollider:
@@ -226,6 +228,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffd41c9fce8fccd428a027ee9d464d22, type: 3}
+--- !u!23 &5221667170841437125 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: ffd41c9fce8fccd428a027ee9d464d22, type: 3}
+  m_PrefabInstance: {fileID: 6896843921963368257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6358021082373249194 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ffd41c9fce8fccd428a027ee9d464d22, type: 3}
