@@ -7,13 +7,13 @@ public class Bullet : MonoBehaviour
 {
     private float damage;
     private Transform target;
-    private int id;
+    //private int id;
     [SerializeField] private Transform effectPar;
-    public void Init(int i, float dmg, Transform tg,int idEff)
+    public void Init(float dmg, Transform tg,int idEff)
     {
         damage = dmg;
         target = tg;
-        id = i;
+        //id = i;
         if(idEff>=effectPar.childCount)
             return;
         for (int j = 0; j < effectPar.childCount; j++)
@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
     }
     void Start()
     {
-        transform.GetChild(id).gameObject.SetActive(true);
+        //transform.GetChild(id).gameObject.SetActive(true);
     }
 
     // Update is called once per frame

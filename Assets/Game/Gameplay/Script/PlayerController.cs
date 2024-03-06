@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SphereCollider playerCollider;
     public bool canAttack;
     [SerializeField] private Transform bag;
+    public float collecting = 0.5f;
+    
     public enum PlayerState
     {
         Idle,
@@ -122,7 +124,6 @@ public class PlayerController : MonoBehaviour
                     ChangeState(PlayerState.Run);
                 break;
         }
-        Debug.Log(_currentState);
     }
     
     public void ChangeState(PlayerState newState)
@@ -138,6 +139,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         UpdateState();
+        if(collecting > 0)
+            collecting -= Time.deltaTime;
     }
 
     private void Idle()
