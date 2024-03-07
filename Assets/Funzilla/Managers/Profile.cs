@@ -31,6 +31,7 @@ namespace Funzilla
 			
 			// 
 			[SerializeField] internal int round;
+			[SerializeField] internal int currentEnemy;
 			[SerializeField] internal List<SaveHouseData> listHouse = new List<SaveHouseData>();
 		}
 
@@ -170,6 +171,17 @@ namespace Funzilla
 			{
 				if (Instance._data == null) return;
 				Instance._data.round = value < 0 ? 0 : value;
+				RequestSave();
+			}
+		}
+		
+		internal static int CurrentEnemy
+		{
+			get => Instance._data?.currentEnemy ?? 0;
+			set
+			{
+				if (Instance._data == null) return;
+				Instance._data.currentEnemy = value < 0 ? 0 : value;
 				RequestSave();
 			}
 		}

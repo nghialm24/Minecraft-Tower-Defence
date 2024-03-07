@@ -18,24 +18,22 @@ public class AnimUI : MonoBehaviour
     private float bossHp;
     private float currentBoss;
     private int level;
-
+    public int enemyKilled;
     private void Awake()
     {
         Instance = this;
     }
 
-    private void CheckRound()
+    private void Start()
     {
-        // for (int i = 0; i < _dataConfig.; i++)
-        // {
-        //     
-        // }
+        enemyBar.fillAmount = (float)currentEnemy / enemyHp;
+        Milestone();
     }
-    
+
     public void SetData(int e, int b)
     {
         enemyHp = e;
-        currentEnemy = e;
+        currentEnemy = e - Profile.CurrentEnemy;
         level = Profile.Level-1;
         currentBoss = b;
         bossHp = b;
@@ -43,6 +41,7 @@ public class AnimUI : MonoBehaviour
 
     public void EnemyProcess()
     {
+        enemyKilled++;
         currentEnemy -= 1;
         enemyBar.fillAmount = (float)currentEnemy / enemyHp;
         Milestone();

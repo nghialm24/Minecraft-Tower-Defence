@@ -100,6 +100,7 @@ public class ProduceController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (other.GetComponent<PlayerController>().collecting > 0) return;
             foreach (var ing in listIngredient)
             {
                 if (ing.amount > 0)

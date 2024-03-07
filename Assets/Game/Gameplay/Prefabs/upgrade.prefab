@@ -361,7 +361,8 @@ MonoBehaviour:
   - {fileID: 3291725579184632287}
   - {fileID: 2492210668540666379}
   nameBuilding: {fileID: 6751947462269137804}
-  delay: 1
+  delay: 0.3
+  delay2: 2
   id: 0
   quest3: 0
   quest6: 0

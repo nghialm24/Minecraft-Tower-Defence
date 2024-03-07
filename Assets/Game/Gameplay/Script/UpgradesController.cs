@@ -128,6 +128,7 @@ public class UpgradesController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (other.GetComponent<PlayerController>().collecting > 0) return;
             if (other.GetComponent<PlayerController>().canBuildAll)
             {
                 if (delay2 > 0)

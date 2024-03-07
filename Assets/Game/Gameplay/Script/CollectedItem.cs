@@ -70,6 +70,7 @@ public class CollectedItem : MonoBehaviour
         {
             haveAnim = false;
             if (other.GetComponent<PlayerController>().isFull) return;
+            other.GetComponent<PlayerController>().collecting = 1f;
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<Rigidbody>().isKinematic = true;
             //other.GetComponent<PlayerController>().Stack(this);
