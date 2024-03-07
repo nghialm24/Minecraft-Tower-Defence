@@ -10,6 +10,7 @@ public class StoneController : MonoBehaviour
     private float delay2;
     [SerializeField] private float timeDelay;
     [SerializeField] private float timeSound;
+    [SerializeField] private Animator anim;
     void Start()
     {
         delay2 = timeDelay;
@@ -32,6 +33,7 @@ public class StoneController : MonoBehaviour
             }
             else
             {
+                anim.Play("Hited");
                 SoundManager.PlaySfx("rock");
                 timeSound = 0.5f;
             }
