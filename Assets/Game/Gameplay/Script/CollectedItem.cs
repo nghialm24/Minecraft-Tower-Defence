@@ -69,13 +69,16 @@ public class CollectedItem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             haveAnim = false;
-            if (other.GetComponent<PlayerController>().isFull) return;
-            other.GetComponent<PlayerController>().collecting = 1f;
+            if (other.GetComponent<PlayerController>().stock >= 24) return;
+            //other.GetComponent<PlayerController>().collecting = 1f;
             GetComponent<BoxCollider>().enabled = false;
             GetComponent<Rigidbody>().isKinematic = true;
             //other.GetComponent<PlayerController>().Stack(this);
+            //slot = other.GetComponent<PlayerController>().ReturnSlot(this);
             slot = other.GetComponent<PlayerController>().ReturnSlot(this);
+            
             anim.Play("Fly");
+
             if(slot!=null)
                 renderer.material = matChange;
             PlaySound();

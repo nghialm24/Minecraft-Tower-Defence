@@ -23,9 +23,11 @@ public class TreeController : MonoBehaviour
     public bool isDead;
     [SerializeField] private float reviveTime;
     [SerializeField] private GameObject tree;
+    [SerializeField] private Animator anim;
     public void Init(int i, BeController be)
     {
         num = i;
+        anim.Play("In");
         //_beController = be;
     }
     private void Start()

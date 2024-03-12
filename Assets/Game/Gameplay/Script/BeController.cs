@@ -145,7 +145,7 @@ public class BeController : MonoBehaviour
             w.transform.position = t.transform.position;
             w.GetComponent<BoxCollider>().enabled = false;
             listWood.Add(w);
-            t.isBusy = true;
+            //t.isBusy = true;
             break;
         }
     }
@@ -154,7 +154,7 @@ public class BeController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (!other.GetComponent<PlayerController>().isFull)
+            if (other.GetComponent<PlayerController>().stock > 0)
             {
                 if(listWood.Count > 0)
                 {

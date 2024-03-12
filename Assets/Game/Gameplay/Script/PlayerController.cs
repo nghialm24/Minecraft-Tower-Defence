@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private bool delay;
     private List<Slot> listSlot;
     public List<CollectedItem> listBlock;
-    public bool isFull;
+    //public bool isFull;
     [SerializeField] private Text current;
     [SerializeField] private Text amount;
     [SerializeField] private Tutorial Tuto;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     public bool canAttack;
     [SerializeField] private Transform bag;
     public float collecting = 0.5f;
-    
+    public int stock;
     public enum PlayerState
     {
         Idle,
@@ -156,15 +156,6 @@ public class PlayerController : MonoBehaviour
         playerCollider.isTrigger = false;
         //playerAttack.ResetTarget();
         anim.SetTrigger("Run");
-        foreach (var slot in listSlot)
-        {
-            slot.isBusy = false;
-        }
-
-        for (int i = 0; i < listBlock.Count; i++)
-        {
-            listSlot[i].isBusy = true;
-        }
 
         uiAnim.Play(listBlock.Count >= 23 && listBlock.Count != 0 ? "UI_On" : "UI_Off");
     }
@@ -246,12 +237,7 @@ public class PlayerController : MonoBehaviour
         {
             uiAnim.Play("UI_On");
         }
-        //
-        // if (other.CompareTag("Upgrade"))
-        // {
-        //     colliderAttack.enabled = false;
-        //     Debug.Log("false");
-        // }
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -260,7 +246,7 @@ public class PlayerController : MonoBehaviour
         {
             if(listBlock.Count > 0)
             {
-                RemoveBlock(listBlock[^1]._typeItem, other.transform);
+                RemoveBlock(listBlock[0]._typeItem, other.transform);
             }
         }
     }
@@ -288,47 +274,36 @@ public class PlayerController : MonoBehaviour
 
     public void Stack(CollectedItem block)
     {
-        if (isFull) return;
-        foreach (var s in listSlot)
-        {
-            if (listSlot[^1].isBusy)
-            {
-                isFull = true;
-            }else
-            {
-                if (s.isBusy) continue;
-                break;
-            }
-        }
+        // if (stock >= 24) return;
+        // foreach (var s in listSlot)
+        // {
+        //     if (listSlot[^1].isBusy)
+        //     {
+        //         isFull = true;
+        //     }else
+        //     {
+        //         if (s.isBusy) continue;
+        //         break;
+        //     }
+        // }
     }
 
     public Transform ReturnSlot(CollectedItem block)
     {
-        if (isFull) return null;
         Transform temp = null;
-        foreach (var s in listSlot)
+        block.transform.position = listSlot[stock].transform.position; 
+        block.transform.parent = bag;
+        block.transform.localEulerAngles = Vector3.zero;
+        listBlock.Add(block);
+        stock++;
+        current.text = stock.ToString();
+        if (tutorial)
         {
-            if (listSlot[^1].isBusy)
-            {
-                isFull = true;
-            }else
-            {
-                if (s.isBusy) continue;
-                temp = s.transform;
-                block.transform.parent = bag;
-                block.transform.localEulerAngles = Vector3.zero;
-                listBlock.Add(block);
-                current.text = listBlock.Count.ToString();
-                s.isBusy = true;
-                if (tutorial)
-                {
-                    Tuto.UpItem(block._typeItem);
-                }
-                break;
-            }
+            Tuto.UpItem(block._typeItem);
         }
         return temp;
     }
+    
     public void RemoveBlock(CollectedItem.TypeItem type, Transform pos)
     {
         foreach (var block in listBlock.Where(block => block._typeItem == type))
@@ -336,7 +311,8 @@ public class PlayerController : MonoBehaviour
             block.anim.Play("Collected");
             block.transform.DOMove(pos.position, 0.3f).OnComplete(() =>
             {
-                block.gameObject.SetActive(false);
+                //block.gameObject.SetActive(false);
+                //block.transform.
                 listBlock.Remove(block);
                 ReSort();
             });
@@ -350,14 +326,16 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < listBlock.Count; i++)
         {
             listBlock[i].transform.position = listSlot[i].transform.position;
-            if (i + 1 > listBlock.Count)
-            {
-                listSlot[i].isBusy = false;
-            }
+            // if (i + 1 > listBlock.Count)
+            // {
+            //     stock = listBlock.Count;
+            // }
+
         }
+        stock = listBlock.Count;
         current.text = listBlock.Count.ToString();
-        if (listBlock.Count < listSlot.Count)
-            isFull = false;
+        //if (listBlock.Count < listSlot.Count)
+            //isFull = false;
     }
 
     public int CountItem(CollectedItem.TypeItem type)
