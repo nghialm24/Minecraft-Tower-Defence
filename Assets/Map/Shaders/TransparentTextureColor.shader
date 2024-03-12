@@ -12,6 +12,9 @@ Shader "Unlit/TransparentTextureColor"
 
         Blend One OneMinusSrcAlpha
 
+        ZTest Lequal
+        ZWrite Off
+
         Pass
         {
             CGPROGRAM

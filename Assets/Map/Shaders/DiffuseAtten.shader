@@ -3,11 +3,13 @@ Shader "Unlit/DiffuseAtten"
     
     Properties {
     _MainTex ("Base (RGB)", 2D) = "white" {}
-    _Atten("Atten", Range(1, 2)) = 1
+    _Atten("Atten", Range(0, 2)) = 1
 }
 SubShader {
     Tags { "RenderType"="Opaque" }
     LOD 150
+
+    Cull Off
 
 CGPROGRAM
 #pragma surface surf Lambert noforwardadd
