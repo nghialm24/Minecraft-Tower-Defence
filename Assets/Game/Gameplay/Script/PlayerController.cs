@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     SoundManager.PlaySfx("footstep01");
-                    delayFootStep = 0.5f;
+                    delayFootStep = 0.35f;
                 }
                 break;
             case PlayerState.Farm:

@@ -23,6 +23,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private List<SkinnedMeshRenderer> listSkin;
 
     [SerializeField] private GameObject bloodFX;
+    [SerializeField] private Animator anim;
     // public void Init(SplineComputer splineComputer)
     // {
     //     splineFollower = GetComponent<SplineFollower>();
@@ -91,11 +92,10 @@ public class EnemyController : MonoBehaviour
             }
         }
         
-        // if(other.CompareTag("Player"))
-        // {
-        //     hp = 0;
-        //     row.Destroy();
-        // }
+        if(other.CompareTag("Bullet"))
+        {
+            anim.Play("Hited");
+        }
     }
 
     private int OutputTypeEnemy(TypeEnemy type)

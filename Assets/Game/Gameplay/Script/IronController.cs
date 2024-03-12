@@ -10,6 +10,7 @@ public class IronController : MonoBehaviour
     private float delay2;
     [SerializeField] private float timeDelay;
     [SerializeField] private float timeSound = 0.5f;
+    [SerializeField] private Animator anim;
     void Start()
     {
         delay2 = timeDelay;
@@ -32,6 +33,7 @@ public class IronController : MonoBehaviour
             }
             else
             {
+                anim.Play("Hited");
                 SoundManager.PlaySfx("iron");
                 timeSound = 0.5f;
             }

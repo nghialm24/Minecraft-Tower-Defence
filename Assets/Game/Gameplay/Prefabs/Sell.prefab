@@ -176,13 +176,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5046638511050257937}
     m_Modifications:
+    - target: {fileID: 761393881053524226, guid: e6763186728dc864c99a2fabb9854654, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 761393881053524226, guid: e6763186728dc864c99a2fabb9854654, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 761393881053524226, guid: e6763186728dc864c99a2fabb9854654, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 761393881053524226, guid: e6763186728dc864c99a2fabb9854654, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 761393881053524226, guid: e6763186728dc864c99a2fabb9854654, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 761393881053524226, guid: e6763186728dc864c99a2fabb9854654, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3568392240964179895, guid: e6763186728dc864c99a2fabb9854654, type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 5570148120325806007, guid: e6763186728dc864c99a2fabb9854654, type: 3}
       propertyPath: m_Text
-      value: sell
+      value: Discard
       objectReference: {fileID: 0}
     - target: {fileID: 5570148120325806007, guid: e6763186728dc864c99a2fabb9854654, type: 3}
       propertyPath: m_Color.b
@@ -196,9 +220,17 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5570148120325806007, guid: e6763186728dc864c99a2fabb9854654, type: 3}
+      propertyPath: m_FontData.m_RichText
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6196739260687090152, guid: e6763186728dc864c99a2fabb9854654, type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196739260687090152, guid: e6763186728dc864c99a2fabb9854654, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6936891120341054238, guid: e6763186728dc864c99a2fabb9854654, type: 3}
       propertyPath: m_Pivot.x
