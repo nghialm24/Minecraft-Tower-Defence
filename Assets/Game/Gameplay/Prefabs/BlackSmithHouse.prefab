@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4282380811972137295
 Transform:
   m_ObjectHideFlags: 0
@@ -479,6 +479,7 @@ MonoBehaviour:
   - {fileID: 4982754835313747261}
   stoneVip: {fileID: 5633550435740021910, guid: a29ba63246584ee4ab8d9b2609aa8b0b, type: 3}
   pos1: {fileID: 342122374210792420}
+  canvas: {fileID: 6402332829324054397}
   nameBuilding: {fileID: 8489366958117465044}
   upgrade1: {fileID: 5300131950979651234}
   effectCom: {fileID: 8486306337498964277}
@@ -502,6 +503,8 @@ MonoBehaviour:
   - {fileID: 2649656977535939516}
   - {fileID: 6943121924927193007}
   listItem: []
+  produceController: {fileID: 1792560010832213155}
+  count: 0
 --- !u!114 &5230524001694894871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,6 +825,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5f129f2d3ec29540877d307afc96556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1792560010832213155 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3100167236431457518, guid: b662ff5398e7f0e4e8e23e2985bde16d, type: 3}
+  m_PrefabInstance: {fileID: 3739802400499980365}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43519f5afe03f6a4c84fd916309c6998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2332365834782576101 stripped

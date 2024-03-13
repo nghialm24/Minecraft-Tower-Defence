@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ public class FusionHouseController : MonoBehaviour
     [SerializeField] private CollectedItem woodVip2;
     [SerializeField] private Transform pos1;
     [SerializeField] private Transform pos2;
+    [SerializeField] private RectTransform canvas;
     [SerializeField] private Text nameBuilding;
     [SerializeField] private GameObject upgrade1;
     [SerializeField] private GameObject effectCom;
@@ -21,10 +23,16 @@ public class FusionHouseController : MonoBehaviour
     [SerializeField] private Transform wareHouse1;
     [SerializeField] private List<Slot> listSlot1;
     [SerializeField] private List<Transform> listItem1;
+    [SerializeField] private ProduceController produceController1;
+    public int count1;
     
     [SerializeField] private Transform wareHouse2;
     [SerializeField] private List<Slot> listSlot2;
     [SerializeField] private List<Transform> listItem2;
+    [SerializeField] private ProduceController produceController2;
+    public int count2;
+
+    [SerializeField] private GameObject lockLv1;
     private void Start()
     {
         foreach (var t in Profile.ListSaveBuilding.ToList())
@@ -38,10 +46,25 @@ public class FusionHouseController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        if (count1 >= 16)
+        {
+            if (wareHouse1.childCount < 16)
+            {
+                produceController1.stop = false;
+                count1 = wareHouse1.childCount;
+            }
+        }        
         
+        if (count2 >= 16)
+        {
+            if (wareHouse2.childCount < 16)
+            {
+                produceController2.stop = false;
+                count2 = wareHouse1.childCount;
+            }
+        }
     }
 
     public void UpdateFusionHouse()
@@ -63,9 +86,11 @@ public class FusionHouseController : MonoBehaviour
                 t.SetActive(false);
             }
             listFhLevel[fhLevel].SetActive(true);
+            lockLv1.SetActive(false);
+            produceController1.gameObject.SetActive(true);
             fhLevel++;
         }
-        if (fhLevel == 2) nameBuilding.transform.position += new Vector3(0, 0, 4.5f);
+        if (fhLevel == 2) canvas.position += new Vector3(0, 0, 2);
 
         nameBuilding.text = "Fusion House " + fhLevel;
         Profile.SaveBuilding(GetComponent<SaveBuilding>().index, fhLevel);
@@ -82,7 +107,6 @@ public class FusionHouseController : MonoBehaviour
     public void ProduceWoodVip2()
     {
         var wI = Instantiate(woodVip2, transform.position, Quaternion.identity, wareHouse2);
-        wI.transform.position = pos2.position;
         wI.Init(CollectedItem.TypeItem.woodVip2);
         listItem2.Clear();
         Resort2();

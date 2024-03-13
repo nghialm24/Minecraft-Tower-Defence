@@ -11,14 +11,19 @@ public class BlackSmithController : MonoBehaviour
     [SerializeField] private List<GameObject> listBshLevel;
     [SerializeField] private CollectedItem stoneVip;
     [SerializeField] private Transform pos1;
+    [SerializeField] private RectTransform canvas;
     [SerializeField] private Text nameBuilding;
     
     [SerializeField] private GameObject upgrade1;
     [SerializeField] private GameObject effectCom;
     [SerializeField] private GameObject effectUpgr;
+    
     [SerializeField] private Transform wareHouse;
     [SerializeField] private List<Slot> listSlot;
     [SerializeField] private List<Transform> listItem;
+
+    [SerializeField] private ProduceController produceController;
+    public int count;
     private void Start()
     {
         foreach (var t in Profile.ListSaveBuilding.ToList())
@@ -35,7 +40,12 @@ public class BlackSmithController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (count < 16) return;
+        if (wareHouse.childCount < 16)
+        {
+            produceController.stop = false;
+            count = wareHouse.childCount;
+        }
     }
 
     public void UpdateBlackSmith()
@@ -59,7 +69,7 @@ public class BlackSmithController : MonoBehaviour
             listBshLevel[bshLevel].SetActive(true);
             bshLevel++;
         }
-        if (bshLevel == 1) nameBuilding.transform.position += new Vector3(0, 0, 4.5f);
+        if (bshLevel == 1) canvas.position += new Vector3(0, 0, 2);
 
         nameBuilding.text = "Black Smith House";
         Profile.SaveBuilding(GetComponent<SaveBuilding>().index, bshLevel);
@@ -81,5 +91,8 @@ public class BlackSmithController : MonoBehaviour
             listItem.Add(wareHouse.GetChild(i));
             listItem[i].position = listSlot[i].transform.position;
         }
+
+        count = listItem.Count;
+        if(count == 16) produceController.stop = true;
     }
 }

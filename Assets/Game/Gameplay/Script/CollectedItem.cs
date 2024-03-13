@@ -79,8 +79,8 @@ public class CollectedItem : MonoBehaviour
             
             anim.Play("Fly");
 
-            if(slot!=null)
-                renderer.material = matChange;
+            //if(slot!=null)
+            renderer.material = matChange;
             PlaySound();
         }
     }
