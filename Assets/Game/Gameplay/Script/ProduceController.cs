@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Funzilla;
 using TMPro;
-using UnityEditorInternal.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,9 +20,9 @@ public class ProduceController : MonoBehaviour
     [SerializeField] private float cdTime;
     [SerializeField] private float currentTime;
     [SerializeField] private float timeSound = 1f;
-    public int stock;
     [SerializeField] private Transform bag;
-    private List<Slot> listSlot;
+    [SerializeField] private List<Slot> listSlot;
+    private int stock;
     public enum TypeItem
     {
         woodVip,
@@ -35,7 +34,6 @@ public class ProduceController : MonoBehaviour
 
     private void Start()
     {
-        listSlot = bag.GetComponentsInChildren<Slot>().ToList();
         timeDelay = delay;
     }
 
@@ -121,8 +119,6 @@ public class ProduceController : MonoBehaviour
                                     other.GetComponent<PlayerController>()
                                         .RemoveBlock(CollectedItem.TypeItem.wood, listSlot[stock].transform);
                                     ing.amount -= 1;
-                                    stock++;
-                                    
                                     delay = timeDelay;
                                     ing.UpdateAmount();
                                     SoundManager.PlaySfx("drop2building");

@@ -16,7 +16,9 @@ public class BlackSmithController : MonoBehaviour
     [SerializeField] private GameObject upgrade1;
     [SerializeField] private GameObject effectCom;
     [SerializeField] private GameObject effectUpgr;
-
+    [SerializeField] private Transform wareHouse;
+    [SerializeField] private List<Slot> listSlot;
+    [SerializeField] private List<Transform> listItem;
     private void Start()
     {
         foreach (var t in Profile.ListSaveBuilding.ToList())
@@ -66,8 +68,18 @@ public class BlackSmithController : MonoBehaviour
 
     public void ProduceStoneVip()
     {
-        var sA = Instantiate(stoneVip);
-        sA.transform.position = pos1.position;
+        var sA = Instantiate(stoneVip, transform.position, Quaternion.identity, wareHouse);
         sA.Init(CollectedItem.TypeItem.stoneVip);
+        listItem.Clear();
+        Resort();
+    }
+
+    private void Resort()
+    {
+        for (int i = 0; i < wareHouse.childCount; i++)
+        {
+            listItem.Add(wareHouse.GetChild(i));
+            listItem[i].position = listSlot[i].transform.position;
+        }
     }
 }

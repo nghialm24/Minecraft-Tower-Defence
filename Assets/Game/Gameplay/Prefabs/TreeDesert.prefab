@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 6076613299647211019}
   - component: {fileID: 4164633751287724888}
   - component: {fileID: 4386654466437353828}
+  - component: {fileID: 8677882452119416193}
   m_Layer: 8
   m_Name: TreeDesert
   m_TagString: Tree
@@ -227,6 +228,7 @@ MonoBehaviour:
   isDead: 0
   reviveTime: 0
   tree: {fileID: 8671250858490578420, guid: f53038dc9799ba549b9663ce8b1b9296, type: 3}
+  anim: {fileID: 8677882452119416193}
 --- !u!208 &4386654466437353828
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -243,6 +245,27 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1, z: 0}
   m_TimeToStationary: 0.5
+--- !u!95 &8677882452119416193
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8671250858490578420}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bca0dff635dd7c54a88f173707a7b336, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1957082013004047980
 PrefabInstance:
   m_ObjectHideFlags: 0

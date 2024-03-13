@@ -4497,7 +4497,6 @@ MonoBehaviour:
   anim: {fileID: 1070662687}
   uiAnim: {fileID: 1028963980}
   listBlock: []
-  isFull: 0
   current: {fileID: 895250880}
   amount: {fileID: 2081035870}
   Tuto: {fileID: 50310371}
@@ -4511,6 +4510,7 @@ MonoBehaviour:
   canAttack: 0
   bag: {fileID: 1904668200}
   collecting: 0.5
+  stock: 0
 --- !u!195 &585074263
 NavMeshAgent:
   m_ObjectHideFlags: 0

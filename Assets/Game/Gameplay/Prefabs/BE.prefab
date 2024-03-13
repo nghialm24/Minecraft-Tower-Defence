@@ -1568,6 +1568,18 @@ PrefabInstance:
       propertyPath: m_Text
       value: be
       objectReference: {fileID: 0}
+    - target: {fileID: 5570148120325806007, guid: e6763186728dc864c99a2fabb9854654, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570148120325806007, guid: e6763186728dc864c99a2fabb9854654, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570148120325806007, guid: e6763186728dc864c99a2fabb9854654, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6936891120341054238, guid: e6763186728dc864c99a2fabb9854654, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

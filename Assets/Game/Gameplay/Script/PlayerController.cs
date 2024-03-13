@@ -311,8 +311,7 @@ public class PlayerController : MonoBehaviour
             block.anim.Play("Collected");
             block.transform.DOMove(pos.position, 0.3f).OnComplete(() =>
             {
-                //block.gameObject.SetActive(false);
-                //block.transform.
+                block.gameObject.SetActive(false);
                 listBlock.Remove(block);
                 ReSort();
             });
