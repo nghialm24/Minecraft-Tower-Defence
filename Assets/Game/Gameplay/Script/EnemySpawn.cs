@@ -108,18 +108,18 @@ public class EnemySpawn : MonoBehaviour
 
     private void SpawnEnemy1()
     {
-        if (dataConfig.worldData[Profile.Level - 1].levelData[round].listEnemyDelay.Count == 0)
+        if (dataConfig.worldData[(Profile.Level - 1) % LevelManager.Levels.Count].levelData[round].listEnemyDelay.Count == 0)
         {
             return;
         }
         // else
         {
-            var e = dataConfig.worldData[Profile.Level - 1].levelData[round].listEnemyDelay[index];
+            var e = dataConfig.worldData[(Profile.Level - 1) % LevelManager.Levels.Count].levelData[round].listEnemyDelay[index];
             var r = Instantiate(row, transform.position, Quaternion.identity);
             r.transform.parent = Gameplay.Instance.transform;
             listRow.Add(r);
             r.Init(listSplineComputer[0], e.typeEnemy, e.trans, this, 1);
-            if (index < dataConfig.worldData[Profile.Level - 1].levelData[round].listEnemyDelay.Count - 1)
+            if (index < dataConfig.worldData[(Profile.Level - 1) % LevelManager.Levels.Count].levelData[round].listEnemyDelay.Count - 1)
             {
                 index++;
             }
@@ -135,12 +135,12 @@ public class EnemySpawn : MonoBehaviour
     
     private void SpawnEnemy2()
     {
-        var e = dataConfig.worldData[Profile.Level].levelData[round].listEnemyDelay[index2];
+        var e = dataConfig.worldData[(Profile.Level) % LevelManager.Levels.Count].levelData[round].listEnemyDelay[index2];
         var r = Instantiate(row, transform.position, Quaternion.identity);
         r.transform.parent = Gameplay.Instance.transform;
         listRow2.Add(r);
         r.Init(listSplineComputer[1], e.typeEnemy, e.trans, this, 2);
-        if (index2 < dataConfig.worldData[Profile.Level].levelData[round].listEnemyDelay.Count - 1)
+        if (index2 < dataConfig.worldData[Profile.Level % LevelManager.Levels.Count].levelData[round].listEnemyDelay.Count - 1)
         {
             index2++;
         }
@@ -159,7 +159,7 @@ public class EnemySpawn : MonoBehaviour
         SoundManager.PlaySfx("roar1");
         start.SetActive(false);
         GetComponent<BoxCollider>().enabled = false;
-        if(dataConfig.worldData[Profile.Level - 1].levelData[round].listEnemyDelay.Count != 0)
+        if(dataConfig.worldData[(Profile.Level - 1) % LevelManager.Levels.Count].levelData[round].listEnemyDelay.Count != 0)
         {
             isSpawn1 = true;
             index = 0;
@@ -168,7 +168,7 @@ public class EnemySpawn : MonoBehaviour
         {
             index = 1;
         }
-        if(dataConfig.worldData[Profile.Level].levelData[round].listEnemyDelay.Count != 0)
+        if(dataConfig.worldData[Profile.Level % LevelManager.Levels.Count].levelData[round].listEnemyDelay.Count != 0)
         {
             isSpawn2 = true;
             index2 = 0;
@@ -185,7 +185,7 @@ public class EnemySpawn : MonoBehaviour
         //round = dataConfig.worldData[Profile.Level-1].levelData.Count;
         if(!isx2)
         {
-            if (dataConfig.worldData[Profile.Level - 1].levelData.Count != 0)
+            if (dataConfig.worldData[(Profile.Level - 1) % LevelManager.Levels.Count].levelData.Count != 0)
             {
                 delaySpawn = 1;
             }
@@ -193,11 +193,11 @@ public class EnemySpawn : MonoBehaviour
         }
         else
         {
-            if (dataConfig.worldData[Profile.Level - 1].levelData.Count != 0)
+            if (dataConfig.worldData[(Profile.Level - 1) % LevelManager.Levels.Count].levelData.Count != 0)
             {
                 delaySpawn = 1;
             }
-            if (dataConfig.worldData[Profile.Level].levelData.Count != 0)
+            if (dataConfig.worldData[(Profile.Level) % LevelManager.Levels.Count].levelData.Count != 0)
             {
                 delaySpawn = 1;
             }
@@ -235,7 +235,7 @@ public class EnemySpawn : MonoBehaviour
         round++;
         Profile.CurrentRound = round;
         Profile.CurrentEnemy = AnimUI.Instance.enemyKilled;
-        if(round >=  dataConfig.worldData[Profile.Level - 1].levelData.Count)
+        if(round >=  dataConfig.worldData[(Profile.Level - 1) % LevelManager.Levels.Count].levelData.Count)
         {
             Gameplay.Instance.Win();
             Profile.CurrentRound = 0;
@@ -243,7 +243,7 @@ public class EnemySpawn : MonoBehaviour
             SoundManager.PlaySfx("level-win");
             return;
         }
-        if(dataConfig.worldData[Profile.Level - 1].levelData[round].listEnemyDelay.Count != 0)
+        if(dataConfig.worldData[(Profile.Level - 1) % LevelManager.Levels.Count].levelData[round].listEnemyDelay.Count != 0)
         {
             delaySpawn = 1;
             isSpawn1 = true;
@@ -252,7 +252,7 @@ public class EnemySpawn : MonoBehaviour
         {
             index = 1;
         }
-        if(dataConfig.worldData[Profile.Level].levelData[round].listEnemyDelay.Count != 0)
+        if(dataConfig.worldData[(Profile.Level) % LevelManager.Levels.Count].levelData[round].listEnemyDelay.Count != 0)
         {
             isSpawn2 = true;
             delaySpawn2 = 1;

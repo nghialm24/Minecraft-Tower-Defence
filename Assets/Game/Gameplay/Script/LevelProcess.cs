@@ -22,9 +22,10 @@ public class LevelProcess : MonoBehaviour
     {
         enemy = SetEnemyAmount();
         level = Profile.Level-1;
-        currentBoss = (int)boss[Profile.Level-1];
+        var lvId = (Profile.Level - 1) % LevelManager.Levels.Count;
+        currentBoss = (int) boss[lvId];
 
-        listAnimUi[level].SetData(enemy, currentBoss);
+        listAnimUi[lvId].SetData(enemy, currentBoss);
         for (int i = 0; i < listAnimUi.Count; i++)
         {
             listAnimUi[i].gameObject.SetActive(level == i);

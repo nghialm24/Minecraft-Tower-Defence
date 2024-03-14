@@ -34,7 +34,7 @@ public class AnimUI : MonoBehaviour
     {
         enemyHp = e;
         currentEnemy = e - Profile.CurrentEnemy;
-        level = Profile.Level-1;
+        level = (Profile.Level - 1) % LevelManager.Levels.Count;
         currentBoss = b;
         bossHp = b;
     }
