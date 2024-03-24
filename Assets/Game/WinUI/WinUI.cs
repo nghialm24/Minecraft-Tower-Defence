@@ -10,7 +10,7 @@ namespace Funzilla
 
 		private void Awake()
 		{
-			watchAdButton.transform.HeartBeat(1.1f);
+			//watchAdButton.transform.HeartBeat(1.1f);
 			watchAdButton.onClick.AddListener(() =>
 			{
 				Profile.CoinAmount += Gameplay.CoinsEarned * 3;

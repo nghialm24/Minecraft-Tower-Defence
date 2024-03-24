@@ -107,19 +107,6 @@ namespace Funzilla
 				case State.Init:
 					break;
 				case State.Play:
-					
-					//arrow.SetActive(false);
-					// cam2.gameObject.SetActive(true);
-					// cam1.gameObject.SetActive(false);
-					// joy.gameObject.SetActive(false);
-					// DOVirtual.DelayedCall(5f, () =>
-					// {
-					// 	cam1.gameObject.SetActive(true);
-					// 	cam2.gameObject.SetActive(false);
-					// 	joy.gameObject.SetActive(true);
-					// });
-					//Analytics.LogLevelStartEvent();
-
 					break;
 				case State.Win:
 					//Analytics.LogLevelCompleteEvent();
@@ -158,16 +145,6 @@ namespace Funzilla
 			switch (_state)
 			{
 				case State.Init:
-					// if(countDown > 0)
-					// {
-					// 	countDown -= Time.deltaTime;
-					// 	countDownTxt.text = ((int)countDown).ToString();
-					// }
-					// else
-					// {
-					// 	countDownTxt.gameObject.SetActive(false);
-					// 	Play();
-					// }
 					if (timeSound > 0)
 					{
 						timeSound -= Time.deltaTime;
@@ -188,6 +165,14 @@ namespace Funzilla
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
+		}
+
+		public void Openads()
+		{
+			AdsUtility.ShowInterstitialAds("noads",() =>
+			{
+				Debug.Log("ads");
+			});
 		}
 	}
 }

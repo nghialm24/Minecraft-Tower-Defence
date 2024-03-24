@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using UnityEngine;
 // using Firebase;
 // using Firebase.Analytics;
-using GameAnalyticsSDK;
+//using GameAnalyticsSDK;
 
 namespace Funzilla
 {
 	internal class GameManager : Singleton<GameManager>
 	{
-		internal static bool FirebaseOk { get; private set; }
+		//internal static bool FirebaseOk { get; private set; }
 
 		private enum State
 		{
@@ -44,15 +44,18 @@ namespace Funzilla
 					Application.targetFrameRate = 60;
 					//GameAnalytics.Initialize();
 					//FB.Init();
+					AdsUtility.Initiate(false);
 #if UNITY_EDITOR
-					FirebaseOk = true;
+					
 #else
-					// FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
-					// {
-					// 	if (task.Result != DependencyStatus.Available) return;
-					// 	FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
-					// 	FirebaseOk = true;
-					// });
+					if (FirebaseController.Instance.IsReady())
+					{
+						OnFirebaseReady();
+					}
+					else
+					{
+						FirebaseController.Instance.OnFirebaseReady += OnFirebaseReady;
+					}
 #endif
 					if (onComplete != null) Instance._queue.Enqueue(onComplete);
 					break;
@@ -75,14 +78,13 @@ namespace Funzilla
 				case State.None:
 					break;
 				case State.InitializingFirebase:
-					_state = State.InitializingConfig;
-					Config.Init();
-					// if (FirebaseOk)
-					// {
-					// 	_state = State.InitializingConfig;
-					// 	Config.Init();
-					// 	//Adjust.Init();
-					// }
+					// _state = State.InitializingConfig;
+					// Config.Init();
+					if (AdsUtility.Initiated())
+					{
+						_state = State.InitializingConfig;
+						Config.Init();
+					}
 					break;
 				case State.InitializingConfig:
 					if (Config.Initialized)
@@ -101,6 +103,20 @@ namespace Funzilla
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
+		}
+		
+		private static void OnFirebaseReady()
+		{
+			var firebaseController = FirebaseController.Instance;
+
+			RemoteConfigController.Instance.OnFetchCompleted = OnRemoteConfigFetched;
+			RemoteConfigController.Instance.Initialize();
+
+			firebaseController.SetUserId(SystemInfo.deviceUniqueIdentifier);
+		}
+
+		private static void OnRemoteConfigFetched(bool result)
+		{
 		}
 	}
 }

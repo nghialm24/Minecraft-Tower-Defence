@@ -2,7 +2,6 @@ using System;
 
 #if !UNITY_EDITOR
 using System.Globalization;
-using GameAnalyticsSDK;
 #endif
 
 namespace Funzilla
