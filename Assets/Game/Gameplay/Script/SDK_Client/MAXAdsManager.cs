@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MAXAdsManager : SingletonMonoBehaviour<MAXAdsManager>
 {
-    public static string maxSdkKey = "NDcrL4E6eTcwHnfZbHRNw-0AoxPCMdQSgFOFkOyJ8D1VJrumRobtyvufr93tccBk3mIya4_CTO_SENV-vluony";
+    public static string maxSdkKey = "NDcrL4E6eTcwHnfZbHRNw-0AoxPCMdQSgFOFkOyJ8D1VJrumRobtyvufr93tccBk3mIya4";
     public static string ad_id_interstitial = "005cc65b3fb8a529";
     public static string ad_id_rewarded = "2dd0adbc569d433c";
     public static string ad_id_banner = "d6de826ff68cdc5c";
